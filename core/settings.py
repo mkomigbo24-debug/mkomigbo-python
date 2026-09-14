@@ -18,9 +18,6 @@ INSTALLED_APPS = [
     'lang1',
     'religion',
     'language2',
-    'esoterism',
-    'history',
-    'culture',
 ]
 
 MIDDLEWARE = [
