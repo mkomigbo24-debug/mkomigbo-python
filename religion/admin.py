@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Religion, SacredText, Doctrine, Deity, EsotericTradition, Symbol
+from .models import Religion, SacredText, Doctrine, Deity
 
 @admin.register(Religion)
 class ReligionAdmin(admin.ModelAdmin):
@@ -17,12 +17,3 @@ class DoctrineAdmin(admin.ModelAdmin):
 @admin.register(Deity)
 class DeityAdmin(admin.ModelAdmin):
     list_display = ['name', 'religion', 'role', 'is_alusi']
-    list_filter = ['is_alusi', 'religion']
-
-@admin.register(EsotericTradition)
-class EsotericTraditionAdmin(admin.ModelAdmin):
-    list_display = ['name', 'origin_tradition']
-
-@admin.register(Symbol)
-class SymbolAdmin(admin.ModelAdmin):
-    list_display = ['name', 'tradition']
