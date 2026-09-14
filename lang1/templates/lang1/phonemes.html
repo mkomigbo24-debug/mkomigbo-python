@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html><head><title>Igbo Phonemes Thesis - COMPLETE</title>
+<style>
+body{font-family: Georgia, serif; max-width:1150px; margin:auto; padding:20px; line-height:1.6}
+table{border-collapse:collapse; width:100%; margin:15px 0} th,td{border:1px solid #333; padding:8px; text-align:left}
+th{background:#2c3e50; color:white} h2{color:#8B0000; border-bottom:2px solid #8B0000}
+.thesis-box{background:#fff3cd; border-left:5px solid #d4ac0d; padding:15px; margin:15px 0}
+.ipa{font-family:"Charis SIL", serif; color:#0d47a1; font-weight:bold}
+.success{background:#d4edda; border-left:5px solid #28a745; padding:10px}
+</style></head><body>
+<div class="success"><b>✅ Mkomigbo Python Postgre Migration DONE! 37 Present + 12 Missing = 49 Phonemes in PostgreSQL 18.6</b></div>
+<h1>Igbo Phonemes: Colonial Script Problem & The CH Fallacy</h1>
+
+<h2>1. The H Effect - H as Modifier /ʰ/ /ʲ/ /ʷ/</h2>
+<div class="thesis-box"><b>Core Thesis:</b> H after consonant is NOT digraph letter, it is ASPIRATION /ʰ/ and PALATALIZATION /ʲ/. Proof: Nkwerre/Mbano azhia, tsara, chuo vs cuo</div>
+<table><tr><th>Base</th><th>+H</th><th>IPA Base</th><th>IPA +H</th><th>Standard</th><th>Dialect Nkwerre/Mbano</th><th>Process</th></tr>
+{% for r in h_effects %}<tr><td>{{ r.base }}</td><td>{{ r.with_h }}</td><td class="ipa">{{ r.ipa_base }}</td><td class="ipa">{{ r.ipa_h }}</td><td>{{ r.example_std }}</td><td>{{ r.example_dialect }}<br><small>{{ r.dialect }}</small></td><td>{{ r.process }}</td></tr>{% endfor %}</table>
+<h3>Market: ahia vs azhia</h3><p>Standard ahia /a.hia/ vs Nkwerre azhia /a.ʒia/ - Z+H → <span class="ipa">/ʒ/</span> (French je) - H palatalizes!</p>
+<h3>Fruit Ripe: ochara vs tsara atsa</h3><p>ọchara /ɔtʃara/ vs ọtsara /ɔtsara/ - CH → <span class="ipa">/ts/</span> de-palatalization - proves CH is compositional!</p>
+<h3>Chase vs Sacrifice: cuo vs chuo</h3><p>cuo /cʊɔ́/ chase/pursue/sack (dot on u) vs chuo /tʃʊɔ́/ chuo aja sacrifice - H alone changes meaning! Minimal pair proves H is separate phoneme feature!</p>
+
+<h2>2. Present Alphabet (37) - PostgreSQL with Correct IPA</h2>
+<table><tr><th>Symbol</th><th>IPA</th><th>Example</th><th>Meaning</th><th>Category</th><th>Thesis Note</th></tr>
+{% for p in present %}<tr><td>{{ p.symbol }}</td><td class="ipa">{{ p.ipa }}</td><td>{{ p.example }}</td><td>{{ p.meaning }}</td><td>{{ p.category }}</td><td>{{ p.thesis_note }}</td></tr>{% endfor %}</table>
+
+<h2>3. Missing Phonemes (12) - What Borrowed Script Cannot Write - NEW!</h2>
+<div class="thesis-box"><b>These 12 prove colonial Latin script inadequate - needs tone, nasal, aspiration, labialization features!</b></div>
+<table><tr><th>Symbol (Short)</th><th>Category</th><th>IPA Corrected</th><th>Example</th><th>Meaning Difference</th><th>Why Missing / Thesis</th></tr>
+{% for m in missing %}<tr><td><b>{{ m.symbol }}</b></td><td>{{ m.category }}</td><td class="ipa">{{ m.ipa }}</td><td>{{ m.example }}</td><td>{{ m.meaning_diff }}</td><td>{{ m.reason_missing }}</td></tr>{% endfor %}</table>
+
+<h2>4. Conclusion - For Thesis Acceptance</h2>
+<div class="thesis-box">
+1. <b>CH cannot be alphabet letter</b> - Replace with Č /tʃ/ or Cʰ aspirated. Proof: cuo vs chuo minimal pair, TS dialect variation<br>
+2. <b>H,W,Y,R are secondary articulation /ʰ ʷ ʲ/</b> not letters - W=/ʷ/ labial, Y=/ʲ/ palatal, H=/ʰ/ aspiration<br>
+3. <b>Nkwerre/Mbano evidence:</b> azhia /aʒia/, tsara atsa /tsara/, chuo aja vs cuo - H changes meaning<br>
+4. <b>IPA mandatory for every table + audio ▶</b> - First of its kind database!<br>
+5. <b>Restore Nsibidi:</b> Latin A-Z colonial, Q+X dropped, 36 letters inadequate for tones, nasal vowels, aspiration
+</div>
+<p><a href="/admin/">Admin</a> | <a href="/">Home</a></p>
+</body></html>
