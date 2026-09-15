@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -6,6 +7,7 @@ SECRET_KEY = 'django-insecure-mkomigbo-thesis-2026'
 
 DEBUG = True
 
+# For PythonAnywhere + local - allow all
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -66,9 +68,17 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-STATIC_URL = 'static/'
+
+# STATIC + MEDIA - FIXED for admin weird look
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] if os.path.exists(os.path.join(BASE_DIR, 'static')) else []
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'http://localhost:8000']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'http://localhost:8000', 'https://mkomigbo24debug.pythonanywhere.com']
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False

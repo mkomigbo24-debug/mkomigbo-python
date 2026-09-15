@@ -20,6 +20,9 @@ body{font-family:Segoe UI,sans-serif;background:#0f0f0f;color:#f5f5f5;line-heigh
 .btn{display:inline-block;background:#d4a017;color:#000;padding:12px 30px;border-radius:30px;font-weight:700;margin:10px;text-decoration:none}
 footer{background:#0a0a0a;padding:40px;text-align:center;border-top:1px solid #333;margin-top:60px}
 a{color:#1a8a5a}
+table{border-collapse:collapse;width:100%;margin:15px 0}
+th,td{border:1px solid #d4a017;padding:10px;text-align:left}
+th{background:#1a8a5a;color:white}
 </style>
 </head>
 <body>
@@ -27,8 +30,8 @@ a{color:#1a8a5a}
 <h1>MKOM IGBO</h1>
 <p><b>Asusu Igbo Thesis Platform - mkomigbo.com</b><br>Correcting 36-letter fallacy, CH = C+H proof, restoring zh, gh, ts, cuo</p>
 <div class="stats">
-<div class="stat"><b>6</b>Present<br>cuo, guo, zh, gh, ts, zhia</div>
-<div class="stat"><b>6</b>Missing<br>zh, gh, tsara, cuo, zhia, tone</div>
+<div class="stat"><b>{{ present_count }}</b>Present<br>{% for p in present|slice:":5" %}{{ p.symbol }}, {% endfor %}</div>
+<div class="stat"><b>{{ missing_count }}</b>Missing<br>zh, gh, tsara, cuo, zhia, tone</div>
 <div class="stat"><b>6</b>Domains<br>Lang1, Language2, Religion, Esoteric, History, Culture</div>
 <div class="stat"><b>Odinala</b>Rooted<br>Chukwu, Ani, Alusi</div>
 </div>
@@ -38,30 +41,41 @@ a{color:#1a8a5a}
 </div>
 </div>
 <div class="container">
+
+<div style="border:3px solid red; padding:15px; background:#fff3cd; color:#000; border-radius:12px; margin-bottom:20px;">
+<h2>CH FALLACY PROOF - CUỌ vs CHUỌ (Diacritics Emphasis)</h2>
+<table>
+<tr><th>Word</th><th>Spelling</th><th>IPA</th><th>Sound Break</th><th>Meaning</th></tr>
+<tr><td><b>CUỌ</b></td><td>c + ụ + ọ</td><td>/kʷɔ/</td><td>c /k/ + ụ labialization /ʷ/ + ọ /ɔ/</td><td>cuọ ala - mould soil</td></tr>
+<tr><td><b>CHUỌ</b></td><td>ch + ụ + ọ</td><td>/tʃʷɔ/</td><td>c /k/ + h aspiration /ʰ/ + ụ /ʷ/ + ọ /ɔ/</td><td>chuọ - wash (standard collapsed)</td></tr>
+<tr><td><b>GUỌ</b></td><td>g + ụ + ọ</td><td>/gʷɔ/</td><td>g /g/ + ụ /ʷ/ + ọ /ɔ/</td><td>guọ ofe - stir soup</td></tr>
+<tr><td><b>GHUỌ</b></td><td>gh + ụ + ọ</td><td>/ɣʷɔ/</td><td>gh /ɣ/ + ụ /ʷ/ + ọ /ɔ/</td><td>missing proof</td></tr>
+</table>
+<p><b>Proof:</b> CUỌ has NO h! CHUỌ = C + H + Ụ + Ọ. Therefore CH = C+H, NOT single letter! Ụ = /ʷ/ labialization, not vowel! All vowels with dot: <b>ị ọ ụ ṅ</b> - each dot marks distinct phoneme!</p>
+<p><b>IPA Sound:</b> CUỌ /kʷɔ/ = lips round FIRST then release k like "quick". CHUỌ /tʃʷɔ/ = ch like "cheese" + round lips.</p>
+</div>
+
 <div id="thesis" class="thesis">
 <h2>CH FALLACY PROOF - Core Thesis</h2>
 <p><b>Standard says ch is a letter. FALSE!</b> Proof: <b>cuo</b> (mould soil) - the u in cuo is labialization /ʷ/ on consonant, not vowel. Therefore ch = c + h (aspiration), NOT digraph!</p>
 <p style="margin-top:10px">
-<span class="badge">cuo /kʷo/ - mould</span>
-<span class="badge">guo /gʷo/ - stir</span>
-<span class="badge">zh /ʒ/ - azhịa market</span>
-<span class="badge">gh /ɣ/ - aghara change</span>
-<span class="badge">ts /t͡s/ - tsara answer</span>
-<span class="badge">High tone /́/ - ákwá vs àkwà</span>
+{% for p in present|slice:":20" %}
+<span class="badge">{{ p.symbol }} {{ p.ipa }} - {{ p.example }}</span>
+{% endfor %}
 </p>
 </div>
 <div class="grid">
 <div class="card">
-<h3>Lang1 - Present Alphabet</h3>
-<p>Labialized proof: cuo, guo</p>
-<p>Affricates: zh, gh, ts, zhia</p>
-<p><a href="/admin/lang1/presentalphabet/">View 6 →</a></p>
+<h3>Lang1 - Present Alphabet ({{ present_count }})</h3>
+<p>Labialized proof: {% for p in labialized %}{{ p.symbol }} {{ p.ipa }}, {% endfor %}</p>
+<p>Affricates: {% for p in affricates %}{{ p.symbol }} {{ p.ipa }}, {% endfor %}</p>
+<p><a href="/admin/lang1/presentalphabet/">View {{ present_count }} →</a></p>
 </div>
 <div class="card">
 <h3>Missing Phonemes - Proof</h3>
 <p>zh, gh, tsara, cuo, zhia, High tone</p>
 <p>Standard orthography collapsed distinctions</p>
-<p><a href="/admin/lang1/missingphoneme/">View 6 →</a></p>
+<p><a href="/admin/lang1/missingphoneme/">View {{ missing_count }} →</a></p>
 </div>
 <div class="card">
 <h3>Religion - Odinala</h3>
@@ -71,7 +85,7 @@ a{color:#1a8a5a}
 </div>
 <div class="card">
 <h3>Language2 - Dialects & Tones</h3>
-<p>Tones: 2 | Dialects: 2 | Grammar: 1</p>
+<p>Tones: {{ tones|length }} | Dialects: {{ dialects|length }}</p>
 <p>ákwá (egg) vs àkwà (cloth) vs ákwà (cry)</p>
 <p><a href="/admin/language2/tone/">Tones →</a></p>
 </div>
@@ -90,13 +104,13 @@ a{color:#1a8a5a}
 <div class="thesis" style="margin-top:40px">
 <h2>mkomigbo.com - Mission</h2>
 <p>Reconstructing authentic Igbo orthography. Domain: <b>mkomigbo.com</b> (not skillcontinua.com). Built in Aba, Abia State.</p>
-<p style="margin-top:10px">Client Safe: All 6 apps live, admin login fixed, homepage 200 OK!</p>
+<p style="margin-top:10px">Client Safe: All 6 apps live, 43 present, admin login fixed, homepage 200 OK! CUỌ vs CHUỌ proof visible!</p>
 </div>
 </div>
 <footer>
 <h3>MKOM IGBO</h3>
 <p>Igbo Language & Cosmology Research | 2026</p>
-<p><a href="/admin/">Admin</a> | GitHub: mkomigbo24-debug/mkomigbo-python</p>
+<p><a href="/admin/">Admin</a> | GitHub: mkomigbo24-debug/mkomigbo-python | {{ present_count }} Present - CH Fallacy Thesis</p>
 </footer>
 </body>
 </html>
