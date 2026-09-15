@@ -1,0 +1,166 @@
+Subjects: 21
+Pages: 121
+
+
+[about] 5 pages
+  - intro.php: intro (1991 chars)
+  - overview.php: overview (2820 chars)
+  - people.php: people (1470 chars)
+  - sources.php: sources (1927 chars)
+  - topics.php: topics (2413 chars)
+
+[africa] 5 pages
+  - intro.php: intro (3116 chars)
+  - overview.php: overview (6082 chars)
+  - people.php: people (4796 chars)
+  - sources.php: sources (3385 chars)
+  - topics.php: topics (8891 chars)
+
+[arabs] 5 pages
+  - intro.php: intro (2639 chars)
+  - overview.php: overview (601 chars)
+  - people.php: people (601 chars)
+  - sources.php: sources (601 chars)
+  - topics.php: topics (601 chars)
+
+[biafra] 5 pages
+  - intro.php: intro (4395 chars)
+  - overview.php: overview (4716 chars)
+  - people.php: people (4102 chars)
+  - sources.php: sources (3435 chars)
+  - topics.php: topics (4469 chars)
+
+[culture] 5 pages
+  - intro.php: intro (3405 chars)
+  - overview.php: overview (3766 chars)
+  - people.php: people (3560 chars)
+  - sources.php: sources (3167 chars)
+  - topics.php: topics (4121 chars)
+
+[esoterism] 7 pages
+  - african.php: african (25140 chars)
+  - eastern.php: eastern (18565 chars)
+  - intro.php: intro (5361 chars)
+  - overview.php: overview (8664 chars)
+  - people.php: people (8959 chars)
+  - sources.php: sources (18240 chars)
+  - topics.php: topics (39386 chars)
+
+[europe] 5 pages
+  - intro.php: intro (2593 chars)
+  - overview.php: overview (1272 chars)
+  - people.php: people (1272 chars)
+  - sources.php: sources (1272 chars)
+  - topics.php: topics (1272 chars)
+
+[history] 6 pages
+  - intro.php: Introduction (3569 chars)
+  - overview.php: Overview (3720 chars)
+  - people.php: people (3639 chars)
+  - sources.php: sources (3651 chars)
+  - timeline.php: timeline (4327 chars)
+  - topics.php: topics (3548 chars)
+
+[language1] 5 pages
+  - intro.php: intro (3192 chars)
+  - overview.php: overview (3177 chars)
+  - people.php: people (2641 chars)
+  - sources.php: sources (2691 chars)
+  - topics.php: topics (3393 chars)
+
+[language2] 5 pages
+  - intro.php: intro (3148 chars)
+  - overview.php: overview (3196 chars)
+  - people.php: people (2165 chars)
+  - sources.php: sources (2425 chars)
+  - topics.php: topics (3912 chars)
+
+[nigeria] 5 pages
+  - intro.php: intro (3467 chars)
+  - overview.php: overview (3727 chars)
+  - people.php: people (2759 chars)
+  - sources.php: sources (1998 chars)
+  - topics.php: topics (4061 chars)
+
+[people] 6 pages
+  - intro.php: People (1447 chars)
+  - overview.php: Overview (1326 chars)
+  - people.php: People (2963 chars)
+  - profiles.php: Profiles (1324 chars)
+  - sources.php: Sources (1324 chars)
+  - topics.php: Topics (1327 chars)
+
+[persons] 5 pages
+  - intro.php: Sources (1449 chars)
+  - overview.php: Overview (1326 chars)
+  - people.php: People (1322 chars)
+  - sources.php: Sources (1324 chars)
+  - topics.php: Topics (1327 chars)
+
+[pogrom] 5 pages
+  - intro.php: intro (2699 chars)
+  - overview.php: overview (6178 chars)
+  - people.php: people (4674 chars)
+  - sources.php: sources (3588 chars)
+  - topics.php: topics (6074 chars)
+
+[religion] 15 pages
+  - abrahamic.php: abrahamic (18450 chars)
+  - african.php: african (15022 chars)
+  - african_doctrine.php: african_doctrine (15324 chars)
+  - ancient_doctrine.php: ancient_doctrine (31824 chars)
+  - doctrine.php: doctrine (35558 chars)
+  - eastern.php: eastern (31889 chars)
+  - eastern_doctrine.php: eastern_doctrine (41128 chars)
+  - intro.php: intro (4200 chars)
+  - metempsychosis.php: metempsychosis (29321 chars)
+  - modern.php: modern (23148 chars)
+  - modern_doctrine.php: modern_doctrine (34190 chars)
+  - overview.php: overview (9571 chars)
+  - people.php: people (9310 chars)
+  - sources.php: sources (6113 chars)
+  - topics.php: topics (22541 chars)
+
+[resistance] 5 pages
+  - intro.php: intro (3248 chars)
+  - overview.php: overview (488 chars)
+  - people.php: people (488 chars)
+  - sources.php: sources (488 chars)
+  - topics.php: topics (488 chars)
+
+[slavery] 5 pages
+  - intro.php: intro (3889 chars)
+  - overview.php: overview (4063 chars)
+  - people.php: people (3144 chars)
+  - sources.php: sources (2717 chars)
+  - topics.php: topics (4218 chars)
+
+[spirituality] 7 pages
+  - african.php: african (25140 chars)
+  - eastern.php: eastern (18565 chars)
+  - intro.php: intro (5361 chars)
+  - overview.php: overview (8664 chars)
+  - people.php: people (8959 chars)
+  - sources.php: sources (18240 chars)
+  - topics.php: topics (39386 chars)
+
+[struggles] 5 pages
+  - intro.php: intro (2676 chars)
+  - overview.php: overview (507 chars)
+  - people.php: people (507 chars)
+  - sources.php: sources (507 chars)
+  - topics.php: topics (507 chars)
+
+[tradition] 5 pages
+  - intro.php: intro (3788 chars)
+  - overview.php: overview (8042 chars)
+  - people.php: people (2874 chars)
+  - sources.php: sources (2534 chars)
+  - topics.php: topics (8241 chars)
+
+[uk] 5 pages
+  - intro.php: intro (3028 chars)
+  - overview.php: overview (4820 chars)
+  - people.php: people (3086 chars)
+  - sources.php: sources (1947 chars)
+  - topics.php: topics (4951 chars)

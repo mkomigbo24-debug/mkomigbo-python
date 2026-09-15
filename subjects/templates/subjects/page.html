@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>{{ page.title }} - {{ subject.name }}</title>
+<style>body{font-family:Segoe UI;background:#f5f5f5;color:#111;line-height:1.7;padding:0;margin:0} .hero{background:#0a4a3a;color:#fff;padding:20px} .container{max-width:900px;margin:auto;padding:20px;background:#fff} .btn{background:#d4a017;color:#000;padding:8px 16px;border-radius:20px;text-decoration:none;margin:4px;display:inline-block} .mk-prose h2{color:#0a4a3a;margin:20px 0 10px}</style>
+</head><body>
+<div class="hero">
+<h1>{{ subject.name }} / {{ page.title }}</h1>
+<a href="/" class="btn">Home</a> <a href="/subjects/{{ subject.slug }}/" class="btn">{{ subject.name }}</a>
+</div>
+<div class="container">
+{{ page.body_html|safe }}
+<hr>
+<p><b>Subject:</b> {{ subject.name }} | <b>Page:</b> {{ page.slug }} | {{ page.body_html|length }} chars</p>
+</div>
+</body></html>

@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'esoteric',
     'history',
     'culture',
+    'subjects',
 ]
 
 MIDDLEWARE = [

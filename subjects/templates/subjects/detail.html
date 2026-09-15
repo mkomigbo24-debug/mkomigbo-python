@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>{{ subject.name }}</title>
+<style>body{font-family:Segoe UI;background:#0f0f0f;color:#f5f5f5;padding:20px} .btn{background:#d4a017;color:#000;padding:8px 16px;border-radius:20px;text-decoration:none;margin:4px;display:inline-block} .card{background:#1e1e1e;padding:15px;margin:10px 0;border-radius:10px}</style>
+</head><body>
+<h1>{{ subject.name }} - {{ subject.pages.count }} Pages</h1>
+<p>{{ subject.description }}</p>
+<a href="/" class="btn">Home</a> <a href="/subjects/" class="btn">All Subjects</a>
+{% for p in pages %}
+<div class="card">
+<h3><a href="/subjects/{{ subject.slug }}/{{ p.slug }}/" style="color:#d4a017">{{ p.title }} ({{ p.slug }})</a></h3>
+<p>{{ p.body_html|truncatewords:20|safe }}</p>
+</div>
+{% endfor %}
+</body></html>
