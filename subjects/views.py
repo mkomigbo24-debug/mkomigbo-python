@@ -18,3 +18,7 @@ def page_detail(request, subject_slug, page_slug):
     subject = get_object_or_404(Subject, slug=subject_slug)
     page = get_object_or_404(Page, subject=subject, slug=page_slug)
     return render(request, 'subjects/page.html', {'subject': subject, 'page': page})
+
+def script_detail(request, slug):
+    # For now show static
+    return render(request, 'subjects/scripts.html', {'slug': slug})

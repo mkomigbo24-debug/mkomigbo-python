@@ -28,3 +28,13 @@ class Page(models.Model):
     
     def __str__(self):
         return f"{self.subject.slug}/{self.slug} - {self.title}"
+    
+class Script(models.Model):
+    slug = models.SlugField(unique=True)  # ndebe, nsibidi
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    body_html = models.TextField()
+    type = models.CharField(max_length=20)  # phonographic, semasiographic
+    
+    def __str__(self):
+        return self.name

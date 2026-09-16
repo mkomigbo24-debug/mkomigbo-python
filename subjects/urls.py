@@ -7,4 +7,5 @@ urlpatterns = [
     path('subjects/', views.subjects_list, name='subjects_list'),
     path('subjects/<slug:slug>/', views.subject_detail, name='subject_detail'),
     path('subjects/<slug:subject_slug>/<slug:page_slug>/', views.page_detail, name='page_detail'),
+    path('scripts/<slug:slug>/', views.script_detail, name='script_detail'),
 ]
