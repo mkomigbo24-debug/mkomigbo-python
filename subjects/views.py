@@ -27,3 +27,9 @@ def ndebe_49(request):
 
 def ndebe_glyphs(request):
     return render(request, 'subjects/ndebe_glyphs.html')  # H effect - 49 glyphs hover
+
+def h_effect(request):
+    return render(request, 'subjects/h_effect.html')
+
+def h_effect_comprehensive(request):
+    return render(request, 'subjects/h_effect_final.html')
