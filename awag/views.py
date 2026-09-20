@@ -3,6 +3,8 @@ from django.http import JsonResponse
 from django.utils import timezone
 from datetime import date, datetime, timedelta
 import random
+import json
+import os
 
 # AWAG - Africas' Weekly Activities Guide
 # 58 Regions - Trading Herders Hunters Healers Leaders Economic Influenced by Nature
@@ -10,7 +12,6 @@ import random
 # Rain locality: Guinea 2 seasons, Sahel Jun-Oct, Long rains Mar-May, Med winter, Winter reverse Jun-Aug, Cyclone Nov-Apr, Lake Chad shrink
 
 REGIONS_58 = [
-    # WEST AFRICA GUINEA - 12 - Harmattan NE Dry 15kt, Rain Apr-Jul 2 seasons
     {'code':'Bonny NG','name':'Bonny','country':'Nigeria','zone':'Guinea','zone_code':'WA-G','wind':'Harmattan NE Dry 15kt','rain':'Guinea 2 seasons Rain Apr-Jul','tide_port':'Niger Delta Bonny Opobo Brass','lingua':'en','element':'Afo Earth','activity':'Traders fishermen oil'},
     {'code':'Lagos NG','name':'Lagos','country':'Nigeria','zone':'Guinea','zone_code':'WA-G','wind':'Harmattan NE Dry 12kt','rain':'Guinea 2 seasons Apr-Jul Oct','tide_port':'Lagos-Bar beach','lingua':'en','element':'Eke Fire','activity':'Traders transporters'},
     {'code':'Baga NG','name':'Baga','country':'Nigeria','zone':'Lake Chad','zone_code':'WA-LC','wind':'Harmattan NE Dry 18kt dusty','rain':'Sahel dry Lake Chad shrink','tide_port':'Baga Lake Chad inland','lingua':'en','element':'Afo Earth','activity':'Herders fishermen lake'},
@@ -23,7 +24,6 @@ REGIONS_58 = [
     {'code':'Monrovia LR','name':'Monrovia','country':'Liberia','zone':'Guinea','zone_code':'WA-G','wind':'Harmattan SW','rain':'Guinea rainy Apr-Oct','tide_port':'Liberia','lingua':'en','element':'Nkwo Air','activity':'Traders rubber'},
     {'code':'Cotonou BJ','name':'Cotonou','country':'Benin','zone':'Guinea','zone_code':'WA-G','wind':'Harmattan SW 10kt','rain':'Guinea 2 seasons','tide_port':'Benin','lingua':'fr','element':'Orie Water','activity':'Traders fishermen'},
     {'code':'Lome TG','name':'Lome','country':'Togo','zone':'Guinea','zone_code':'WA-G','wind':'Harmattan SW','rain':'Guinea 2 seasons','tide_port':'Togo','lingua':'fr','element':'Eke Fire','activity':'Traders'},
-    # WEST AFRICA SAHEL + CENTRAL ATLANTIC - 10
     {'code':'Douala CM','name':'Douala','country':'Cameroon','zone':'Central Guinea','zone_code':'CA-G','wind':'Harmattan 8kt equatorial','rain':'Guinea heavy Mar-Oct','tide_port':'Cameroon','lingua':'fr','element':'Orie Water','activity':'Traders hunters oil'},
     {'code':'Libreville GA','name':'Libreville','country':'Gabon','zone':'Central','zone_code':'CA','wind':'Equatorial SW 8kt','rain':'Equator rain year round','tide_port':'Gabon','lingua':'fr','element':'Nkwo Air','activity':'Hunters oil'},
     {'code':'Pointe-Noire CG','name':'Pointe-Noire','country':'Congo','zone':'Central','zone_code':'CA','wind':'Benguela edge SW 10kt','rain':'Equator 2 rains','tide_port':'Congo','lingua':'fr','element':'Afo Earth','activity':'Traders oil'},
@@ -34,7 +34,6 @@ REGIONS_58 = [
     {'code':'Kinshasa CD','name':'Kinshasa','country':'DR Congo','zone':'Central Congo','zone_code':'CA','wind':'Congo Basin variable','rain':'Equator rain year','tide_port':'Congo River inland','lingua':'fr','element':'Nkwo Air','activity':'Traders healers leaders'},
     {'code':'Kalemie CD','name':'Kalemie','country':'DR Congo','zone':'Rift Tanganyika','zone_code':'Rift','wind':'Lake Tanganyika breeze 8kt','rain':'Rift short rains Oct-Dec long Mar-May','tide_port':'DR Congo Tanganyika','lingua':'fr','element':'Orie Water','activity':'Fishermen lake'},
     {'code':'Kigoma TZ','name':'Kigoma','country':'Tanzania','zone':'Rift Tanganyika','zone_code':'Rift','wind':'Lake Tanganyika breeze','rain':'Rift 2 seasons','tide_port':'Lake Tanganyika','lingua':'sw','element':'Nkwo Air','activity':'Fishermen traders'},
-    # EAST AFRICA - 15 - Monsoon Kusi/Kaskazi SE 12kt, Long rains Mar-May
     {'code':'Mombasa KE','name':'Mombasa','country':'Kenya','zone':'East Monsoon','zone_code':'EA-M','wind':'Monsoon Kusi SE 12kt Kaskazi NE Dec-Mar','rain':'Long rains Mar-May short Oct-Dec','tide_port':'Kenya Swahili coast','lingua':'sw','element':'Afo Earth','activity':'Traders fishermen Swahili'},
     {'code':'Kisumu KE','name':'Kisumu','country':'Kenya','zone':'Lake Victoria','zone_code':'Rift','wind':'Lake Victoria breeze 10kt Winam Gulf','rain':'Lake Victoria long Mar-May','tide_port':'Lake Victoria Winam Gulf','lingua':'sw','element':'Orie Water','activity':'Fishermen lake traders'},
     {'code':'Turkana KE','name':'Turkana','country':'Kenya','zone':'Rift Desert Lake','zone_code':'Rift','wind':'Turkana Jet SE 20kt desert','rain':'Desert arid Rift','tide_port':'Lake Turkana Rudolf desert lake','lingua':'sw','element':'Eke Fire','activity':'Herders fishermen desert'},
@@ -50,7 +49,6 @@ REGIONS_58 = [
     {'code':'Nairobi KE','name':'Nairobi','country':'Kenya','zone':'Highland East','zone_code':'EA-M','wind':'Highland SE 10kt','rain':'Long rains Mar-May','tide_port':'Kenya highland inland','lingua':'sw','element':'Eke Fire','activity':'Leaders traders'},
     {'code':'Addis Ababa ET','name':'Addis Ababa','country':'Ethiopia','zone':'Highland Horn','zone_code':'EA-M','wind':'Highland Rift SE','rain':'Kiremt Jun-Sep Belg Mar-May','tide_port':'Ethiopia highland inland','lingua':'am','element':'Afo Earth','activity':'Leaders herders'},
     {'code':'Kampala UG','name':'Kampala','country':'Uganda','zone':'Lake Victoria','zone_code':'Rift','wind':'Lake Victoria breeze','rain':'2 rains Mar-May Oct-Dec','tide_port':'Uganda Lake Victoria','lingua':'en','element':'Nkwo Air','activity':'Traders fishermen'},
-    # NORTH AFRICA MED + RED SEA - 12
     {'code':'Casablanca MA','name':'Casablanca','country':'Morocco','zone':'Med Atlantic-Med convergence','zone_code':'NA-Med','wind':'Mediterranean Mistral NW 10kt Atlantic convergence','rain':'Med winter rain Oct-Apr summer dry','tide_port':'Morocco Atlantic-Med convergence','lingua':'ar','element':'Orie Water','activity':'Traders fishermen'},
     {'code':'Algiers DZ','name':'Algiers','country':'Algeria','zone':'Med','zone_code':'NA-Med','wind':'Mistral NW Med 10kt','rain':'Med winter rain','tide_port':'Algeria Med','lingua':'ar','element':'Nkwo Air','activity':'Traders'},
     {'code':'Tunis TN','name':'Tunis','country':'Tunisia','zone':'Med','zone_code':'NA-Med','wind':'Mistral Med 12kt','rain':'Med winter rain Oct-Apr','tide_port':'Tunisia Med','lingua':'ar','element':'Eke Fire','activity':'Traders'},
@@ -63,21 +61,44 @@ REGIONS_58 = [
     {'code':'Khartoum SD','name':'Khartoum','country':'Sudan','zone':'Sahel Nile','zone_code':'WA-S','wind':'Harmattan NE dry','rain':'Sahel Jul-Sep','tide_port':'Sudan Nile inland','lingua':'ar','element':'Afo Earth','activity':'Herders traders Nile'},
     {'code':'Walvis Bay NA','name':'Walvis Bay','country':'Namibia','zone':'South Benguela Desert','zone_code':'SA-B','wind':'Benguela SW 18kt desert fog','rain':'Desert fog Benguela arid','tide_port':'Namibia','lingua':'en','element':'Orie Water','activity':'Fishermen desert herders'},
     {'code':'Cape Town ZA','name':'Cape Town','country':'South Africa','zone':'South West convergence','zone_code':'SA-B','wind':'Cape Doctor SE 20kt SW winter','rain':'Winter rain Jun-Aug reverse Med','tide_port':'South Africa West convergence','lingua':'en','element':'Nkwo Air','activity':'Traders fishermen wine'},
-    # SOUTH + extras to make 58
     {'code':'Durban ZA','name':'Durban','country':'South Africa','zone':'South East Agulhas','zone_code':'SA-A','wind':'Agulhas SE 12kt East','rain':'Summer rain Nov-Mar','tide_port':'South Africa East Agulhas','lingua':'en','element':'Orie Water','activity':'Traders fishermen'},
     {'code':'Johannesburg ZA','name':'Johannesburg','country':'South Africa','zone':'Highveld','zone_code':'SA-A','wind':'Highveld SE','rain':'Summer rain Oct-Mar','tide_port':'South Africa highveld inland','lingua':'en','element':'Afo Earth','activity':'Leaders miners traders'},
     {'code':'Harare ZW','name':'Harare','country':'Zimbabwe','zone':'Highveld','zone_code':'SA-A','wind':'SE trade highveld','rain':'Summer rain Nov-Mar','tide_port':'Zimbabwe inland','lingua':'en','element':'Eke Fire','activity':'Traders farmers'},
     {'code':'Lusaka ZM','name':'Lusaka','country':'Zambia','zone':'Central Plateau','zone_code':'CA','wind':'SE trade plateau','rain':'Rainy Nov-Apr','tide_port':'Zambia inland','lingua':'en','element':'Afo Earth','activity':'Traders farmers'},
     {'code':'Yaounde CM','name':'Yaounde','country':'Cameroon','zone':'Central Forest','zone_code':'CA','wind':'Equatorial variable','rain':'2 rains Mar-Jun Sep-Nov','tide_port':'Cameroon inland','lingua':'fr','element':'Nkwo Air','activity':'Hunters healers'},
     {'code':'Brazzaville CG','name':'Brazzaville','country':'Congo','zone':'Central Congo','zone_code':'CA','wind':'Congo Basin variable','rain':'Equator 2 rains','tide_port':'Congo River inland','lingua':'fr','element':'Orie Water','activity':'Traders'},
+    {'code':'Brazzaville CG','name':'Brazzaville','country':'Congo','zone':'Central Congo','zone_code':'CA','wind':'Congo Basin variable','rain':'Equator 2 rains','tide_port':'Congo River inland','lingua':'fr','element':'Orie Water','activity':'Traders'},
+    {'code':'Banjul GM','name':'Banjul','country':'Gambia','zone':'Guinea','zone_code':'WA-G','wind':'Harmattan 10kt River Gambia','rain':'Guinea rainy May-Oct','tide_port':'Gambia River Gambia','lingua':'en','element':'Orie Water','activity':'Traders fishermen rice-fish Mandinka river'},
+    {'code':'Malabo GQ','name':'Malabo','country':'Equatorial Guinea','zone':'Central Guinea','zone_code':'CA-G','wind':'Monsoon SW 10kt island','rain':'Guinea heavy Mar-Nov','tide_port':'Equatorial Guinea Bioko','lingua':'es','element':'Nkwo Air','activity':'Traders oil fishermen'},
+    {'code':'Sao Tome ST','name':'Sao Tome','country':'Sao Tome and Principe','zone':'Gulf Guinea','zone_code':'CA-G','wind':'Monsoon SW 8kt Gulf','rain':'Equator 2 rains','tide_port':'Sao Tome Gulf Guinea','lingua':'pt','element':'Afo Earth','activity':'Fishermen island cocoa traders'},
 ]
 
 ELEMENTS = {
     'EKE': {'element':'Fire','emoji':'🔥','color':'#ff4500','meaning':'Light New beginnings Creativity','advice':'Traders start, fishermen shore, farmers planting'},
     'ORIE': {'element':'Water','emoji':'💧','color':'#1e90ff','meaning':'Flow Stability Cleansing','advice':'Water, fishing best when high tide, stability'},
     'AFO': {'element':'Earth','emoji':'🌍','color':'#8B4513','meaning':'Grounding Harvest Abundance','advice':'Earth, harvest, market day sell'},
-    'NKWO': {'element':'Air','emoji':'🌬️','color':'#87ceeb','meaning':'Spirit Reflection Transition','advice':'Air, spirits, preservation, reflection'},
+    'NKWO': {'element':'Air','emoji':'🌬','color':'#87ceeb','meaning':'Spirit Reflection Transition','advice':'Air, spirits, preservation, reflection'},
 }
+
+# AWAG Coding 678 loader
+def load_awag_coding_groups():
+    path = 'awag/data/awag_grouped.json'
+    if os.path.exists(path):
+        with open(path, encoding='utf-8') as f:
+            return json.load(f)
+    return {}
+
+def awag_coding(request):
+    groups = load_awag_coding_groups()
+    mapped = []
+    for r in REGIONS_58:
+        activities = []
+        for key, vals in groups.items():
+            if r['name'].split()[0].lower() in key.lower() or r['code'].split()[0].lower() in key.lower() or r['country'].lower() in key.lower():
+                activities.extend(vals)
+        mapped.append({**r, 'activities': activities[:12], 'count': len(activities)})
+    total_activities = sum(len(v) for v in groups.values()) if groups else 0
+    return render(request, 'awag/coding.html', {'regions_58': mapped, 'total': len(groups), 'total_activities': total_activities})
 
 def get_element_info(market_day):
     return ELEMENTS.get(market_day.upper(), ELEMENTS['EKE'])
@@ -89,25 +110,16 @@ def get_wind_for_region(code):
     return REGIONS_58[0]
 
 def awag_home(request):
-    # Keep your original logic + 58 regions + today banner data
     try:
         from amuzhi_calendar.models import MarketDay
         from amuzhi_calendar.views import get_today_market_day
         today_market = get_today_market_day()
     except:
         today_market = None
-
-    # Region query with zone filter
     zone = request.GET.get('zone')
-    if zone:
-        regions_filtered = [r for r in REGIONS_58 if r['zone_code']==zone or r['zone']==zone]
-    else:
-        regions_filtered = REGIONS_58
-
+    regions_filtered = [r for r in REGIONS_58 if r['zone_code']==zone or r['zone']==zone] if zone else REGIONS_58
     lang = request.GET.get('lang', 'en')
     langs = [('en','English'),('fr','French'),('es','Spanish'),('pt','Portuguese'),('sw','Swahili'),('ar','Arabic'),('ig','Igbo'),('am','Amharic')]
-
-    # Mock or real DB
     try:
         from.models import Region, WeeklyGuide, Tide, MoonCycle
         regions_db = Region.objects.all()
@@ -121,15 +133,12 @@ def awag_home(request):
         tides = []
         moon_today = None
         total = len(REGIONS_58)
-
-    # Build today context with element
     today_element = None
     if today_market:
         today_element = get_element_info(today_market.market_day)
-
     return render(request, 'awag/home.html', {
         'regions_58': regions_filtered,
-        'regions': regions_db or regions_filtered, # template compatibility
+        'regions': regions_db or regions_filtered,
         'guides': guides,
         'tides': tides,
         'moon_today': moon_today,
@@ -142,7 +151,7 @@ def awag_home(request):
         'zones': sorted(set(r['zone'] for r in REGIONS_58)),
         'zone_codes': sorted(set(r['zone_code'] for r in REGIONS_58)),
         'selected_zone': zone,
-        'today': today_market, # for banner reuse
+        'today': today_market,
     })
 
 def awag_region(request, code):
@@ -152,16 +161,13 @@ def awag_region(request, code):
         region_db = get_object_or_404(Region, code=code)
     except:
         region_db = region_dict
-
     lang = request.GET.get('lang', region_dict.get('lingua','en') if isinstance(region_dict, dict) else 'en')
     try:
         from.models import WeeklyGuide
         guides = WeeklyGuide.objects.filter(region=region_db).order_by('-week_start') if hasattr(region_db, 'id') else []
     except:
         guides = []
-
     element_info = get_element_info(region_dict.get('element','EKE').split()[0] if isinstance(region_dict, dict) else 'EKE')
-
     return render(request, 'awag/region.html', {
         'region': region_db,
         'region_dict': region_dict,
@@ -177,9 +183,6 @@ def awag_tides(request):
         tides = Tide.objects.order_by('datetime')[:50]
     except:
         tides = []
-        # Mock tides from regions
-        from datetime import datetime, timedelta
-        import random
         base = datetime.now()
         for r in REGIONS_58[:20]:
             tides.append({
@@ -193,9 +196,8 @@ def awag_tides(request):
             })
     return render(request, 'awag/tides.html', {'tides': tides, 'regions_58': REGIONS_58})
 
-
 def awag_tide_table(request):
-    from .models import Tide
+    from.models import Tide
     port = request.GET.get('port','Bonny Opobo Brass')
     tides = Tide.objects.filter(location__icontains=port).order_by('datetime')[:28]
     ports = ['Bonny Opobo Brass','Calabar','Lagos-Bar','Mombasa','Dakar','Tema','Abidjan','Cotonou','Lome','Douala','Beira','Maputo','Djibouti','Port Sudan','Alexandria','Casablanca','Cape Town','Durban','Walvis Bay','Luanda']
@@ -205,22 +207,24 @@ def awag_farmers(request):
     lang = request.GET.get('lang','en')
     zone = request.GET.get('zone')
     regions = [r for r in REGIONS_58 if not zone or r['zone_code']==zone]
-    from .models import WeeklyGuide
-    week_start = date.today() - timedelta(days=date.today().weekday())
-    guides = WeeklyGuide.objects.filter(week_start=week_start, language=lang) if WeeklyGuide.objects.exists() else []
+    try:
+        from.models import WeeklyGuide
+        week_start = date.today() - timedelta(days=date.today().weekday())
+        guides = WeeklyGuide.objects.filter(week_start=week_start, language=lang) if WeeklyGuide.objects.exists() else []
+    except:
+        guides = []
+        week_start = date.today() - timedelta(days=date.today().weekday())
     return render(request, 'awag/farmers.html', {'regions_58':regions,'guides':guides,'lang':lang,'zone':zone,'week_start':week_start})
 
 def api_tides(request):
     port = request.GET.get('port','Bonny')
-    from .models import Tide
+    from.models import Tide
     tides = Tide.objects.filter(location__icontains=port).order_by('datetime')[:14].values('location','datetime','high_height_m','low_height_m','advice_en')
     return JsonResponse({'port':port,'tides':list(tides)})
-
 
 def api_moon(request, date_str):
     try:
         d = datetime.strptime(date_str, '%Y-%m-%d').date()
-        # try amuzhi moon
         try:
             from amuzhi_calendar.models import MarketDay
             md = MarketDay.objects.filter(date_gregorian=d).first()
@@ -228,7 +232,6 @@ def api_moon(request, date_str):
                 return JsonResponse({'date': date_str,'moon_symbol': md.moon_symbol,'moon_stage': md.moon_stage,'illumination': md.illumination,'market_day': md.market_day,'element': get_element_info(md.market_day)})
         except:
             pass
-        # fallback calc
         from.models import moon_phase_info
         info = moon_phase_info(d)
         return JsonResponse(info)
@@ -241,7 +244,6 @@ def api_wind_rain(request):
     return JsonResponse({'total': len(data), 'regions': data, 'elements': ELEMENTS})
 
 def awag_weekly(request):
-    # Weekly guide builder - uses Amuzhi week 4-day vs Greg 7-day
     today = date.today()
     try:
         from amuzhi_calendar.views import get_today_market_day
