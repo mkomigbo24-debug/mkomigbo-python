@@ -1,0 +1,30 @@
+{% extends "base.html" %}{% block content %}
+<div style="max-width:1400px;margin:0 auto;padding:14px;font-family:system-ui">
+<h1>📜 AWAG Coding - 58 Regions - 677 Activities - Wind Locality</h1>
+<p><strong>Total groups: {{ total }} | Total activities: {{ total_activities }} | Regions: 58 exact</strong></p>
+<p style="background:#0a4a3a;color:white;padding:12px;border-radius:8px">Wind: East Monsoon Kusi/Kaskazi SE/NE | West Harmattan NE Dry 15-20kt | South Benguela/Agulhas SW 12-18kt | North Mistral NW | Rift Lake Breeze | Turkana Jet SE 20kt | Red Sea Khamsin N 14kt | Cape Doctor SE 20kt<br>
+Rain: Guinea 2 seasons Apr-Jul/Oct | Sahel Jun-Oct | Long rains Mar-May | Med winter Oct-Apr | Winter reverse Jun-Aug | Cyclone Nov-Apr | Lake Chad shrink</p>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:12px">
+{% for r in regions_58 %}
+<div style="background:white;border-radius:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1);border-left:5px solid #0a4a3a">
+<h3 style="margin:0 0 6px 0">{{ r.name }} <small>{{ r.code }} - {{ r.country }}</small></h3>
+<p style="margin:4px 0;font-size:13px"><strong>Zone:</strong> {{ r.zone }} ({{ r.zone_code }}) | <strong>Element:</strong> {{ r.element }}</p>
+<p style="margin:4px 0;font-size:12px">💨 <strong>Wind:</strong> {{ r.wind }}<br>🌧 <strong>Rain:</strong> {{ r.rain }}<br>⚓ <strong>Tide Port:</strong> {{ r.tide_port }}<br>🎯 <strong>Activity:</strong> {{ r.activity }} | <strong>Lingua:</strong> {{ r.lingua }}</p>
+{% if r.activities %}
+<p style="margin:6px 0 0 0;font-size:12px"><strong>Coding Activities ({{ r.count }}):</strong></p>
+<ul style="margin:4px 0 0 16px;font-size:11px;max-height:120px;overflow-y:auto">
+{% for a in r.activities %}
+<li>{{ a }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p style="margin:6px 0 0 0;font-size:11px;color:#666">No grouped coding yet - check awag/data/awag_grouped.json</p>
+{% endif %}
+</div>
+{% endfor %}
+</div>
+
+<p style="margin-top:20px;padding:12px;background:#e8f5e9;border-radius:8px">✅ 58 Regions exact: Bonny NG, Lagos NG, Baga NG, Tema GH, Abidjan CI, Dakar SN, Bissau GW, Conakry GN, Freetown SL, Monrovia LR, Cotonou BJ, Lome TG, Douala CM, Libreville GA, Pointe-Noire CG, Mopti ML, Nouakchott MR, Luanda AO, Namibe AO, Kinshasa CD, Kalemie CD, Kigoma TZ, Mombasa KE, Kisumu KE, Turkana KE, Mwanza TZ, Dar es Salaam TZ, Zanzibar TZ, Mogadishu SO, Djibouti DJ, Beira MZ, Maputo MZ, Mahajanga MG, Antananarivo MG, Nairobi KE, Addis Ababa ET, Kampala UG, Casablanca MA, Algiers DZ, Tunis TN, Tripoli LY, Alexandria EG, Hurghada EG, Port Sudan SD, Cairo EG, Rabat MA, Khartoum SD, Walvis Bay NA, Cape Town ZA, Durban ZA, Johannesburg ZA, Harare ZW, Lusaka ZM, Yaounde CM, Brazzaville CG, Banjul GM, Malabo GQ, Sao Tome ST</p>
+</div>
+{% endblock %}
