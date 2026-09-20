@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block content %}
+<div style="max-width:1350px;margin:0 auto;padding:14px">
+<h1>🌱 Farmers Planting Calendar - 58 Regions - Early/Late Rain - Soil dry/wet</h1>
+<p>Farmers know planting, soil too dry/wet, harvest, sell | Moon cycle influence | Wind locality</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px">
+{% for r in regions_58 %}
+<div style="background:white;border-radius:12px;padding:12px;border-left:4px solid #2e7d32">
+<strong>{{ r.code }} - {{ r.name }}</strong> - {{ r.rain }}<br>
+<small>💨 {{ r.wind }} | 🌊 {{ r.tide_port }} | {{ r.element }}</small><br>
+{% for g in guides %}{% if g.region.code == r.code %}<small>🌙 {{ g.moon_phase_week }}<br>🌱 {{ g.farmers_planting_en }}<br>🎣 {{ g.fishermen_moon_tide_en }}</small>{% endif %}{% endfor %}
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Search Eke Afo - Ad Infinitum</title>
+<style>body{font-family:system-ui;margin:0;background:#fdfaf3;padding:12px}.card{max-width:1100px;margin:12px auto;background:white;border-radius:16px;padding:18px;box-shadow:0 4px 20px rgba(0,0,0,.08)} input,select,button{padding:10px;border-radius:10px;border:1px solid #ccc;margin:4px} button{background:#0a4a3a;color:white;font-weight:700}.day{padding:10px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;flex-wrap:wrap} @media(max-width:640px){.day{flex-direction:column}}</style>
+</head><body>
+{% include 'amuzhi_calendar/today_banner.html' %}
+<div class="card">
+<h2>🔍 Search Any Year Past/Future - Eke or Afo - Ad Infinitum - Planning Decades Centuries</h2>
+<p>Any year you want, go there and check Eke or Afo day whether past or future. Good for planning decades to come and keeping records centuries past. Phone display important.</p>
+<form method="get">
+<select name="market"><option value="">All Market Days</option><option value="EKE" {% if market == 'EKE' %}selected{% endif %}>Eke</option><option value="ORIE" {% if market == 'ORIE' %}selected{% endif %}>Orie</option><option value="AFO" {% if market == 'AFO' %}selected{% endif %}>Afo</option><option value="NKWO" {% if market == 'NKWO' %}selected{% endif %}>Nkwo</option></select>
+<input type="number" name="year" placeholder="Year e.g. 2026 or 1960 or 2050" value="{{ year }}" min="1" max="9999" style="width:160px">
+<input type="text" name="q" placeholder="Search month Onwa" value="{{ query }}">
+<button type="submit">Search Ad Infinitum</button>
+</form>
+<p><a href="/amuzhi/">Home</a> | <a href="/amuzhi/2026/">2026</a> | <a href="/amuzhi/2025/">2025</a> | <a href="/amuzhi/2027/">2027</a> | <a href="/amuzhi/1960/">1960 Past</a> | <a href="/amuzhi/2050/">2050 Future</a></p>
+</div>
+<div class="card">
+<h3>Results - {{ days|length }} days</h3>
+{% for d in days %}
+<div class="day"><span><strong>{{ d.date_gregorian }}</strong> {{ d.weekday }} - {{ d.market_day }} - Day {{ d.igbo_day }} {{ d.month.name_igbo }} {{ d.moon_symbol }} {{ d.illumination }}%</span><span>{{ d.tide_location }} H {{ d.high_tide|time:"H:i" }}</span></div>
+{% empty %}
+<p>No results - try year 2026 and market EKE</p>
+{% endfor %}
+</div>
+</body></html>

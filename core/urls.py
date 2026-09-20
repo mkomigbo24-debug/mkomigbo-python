@@ -3,6 +3,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('lang1/', include('lang1.urls')),  # advanced 49 phonemes
-    path('', include('subjects.urls')),  # 21 subjects
+    path('awag/', include('awag.urls')),
+    path('amuzhi/', include('amuzhi_calendar.urls')),
+    path('', include('subjects.urls')), # your home
+    # ... keep your other paths
 ]

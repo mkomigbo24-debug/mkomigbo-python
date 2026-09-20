@@ -1,0 +1,118 @@
+{% if today %}
+<style>
+.banner{max-width:1350px;margin:0 auto;background:linear-gradient(135deg,#0a4a3a 0%,#0e5a4a 55%,#0e4a6a 100%);color:white;border-radius:0 0 18px 18px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.22);border:1px solid rgba(212,160,23,.25);border-top:none;position:sticky;top:0;z-index:999}
+.banner-header{padding:14px 18px 10px;border-bottom:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center}
+.banner-header h2{font-family:'Instrument Serif',serif;margin:0;font-size:1.4rem;line-height:1.2}
+.banner-header small{opacity:.85;font-size:.82rem}
+.banner-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:12px 14px}
+@media(max-width:1000px){.banner-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.banner-grid{grid-template-columns:repeat(2,1fr);gap:8px;padding:10px}}
+@media(max-width:420px){.banner-grid{grid-template-columns:1fr 1fr}}
+.box{background:rgba(255,255,255,.09);backdrop-filter:blur(10px);border-radius:11px;padding:10px 11px;border:1px solid rgba(255,255,255,.13);position:relative}
+.box.l{font-size:.6rem;letter-spacing:.09em;opacity:.7;font-weight:800;text-transform:uppercase}
+.box.v{font-weight:700;font-size:.84rem;margin-top:3px;line-height:1.25}
+.box s{font-size:.72rem;opacity:.85;display:block;margin-top:2px;line-height:1.25;text-decoration:none}
+.box.element{border-left:4px solid}
+.box.element.eke{border-left-color:#ff4500;background:linear-gradient(135deg,rgba(255,69,0,.22),rgba(255,255,255,.09))}
+.box.element.orie{border-left-color:#1e90ff;background:linear-gradient(135deg,rgba(30,144,255,.22),rgba(255,255,255,.09))}
+.box.element.afo{border-left-color:#8B4513;background:linear-gradient(135deg,rgba(139,69,19,.22),rgba(255,255,255,.09))}
+.box.element.nkwo{border-left-color:#87ceeb;background:linear-gradient(135deg,rgba(135,206,235,.22),rgba(255,255,255,.09))}
+.box.wind{border-left:4px solid #a0d8ef;background:linear-gradient(135deg,rgba(160,216,239,.18),rgba(255,255,255,.09))}
+.box.rain{border-left:4px solid #4a90e2;background:linear-gradient(135deg,rgba(74,144,226,.18),rgba(255,255,255,.09))}
+.dropdown-bar{max-width:1350px;margin:8px auto;background:white;border-radius:12px;padding:10px 12px;box-shadow:0 4px 16px rgba(0,0,0,.07);display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:sticky;top:0;z-index:998}
+.dropdown-bar select{padding:8px 10px;border-radius:8px;border:1px solid #ccc;font-weight:600;min-width:100px}
+.dropdown-bar button{padding:8px 12px;border-radius:8px;border:none;background:#0a4a3a;color:white;font-weight:700;cursor:pointer}
+</style>
+
+<div class="banner">
+<div class="banner-header">
+<h2>📍 TODAY • {{ today.weekday }} {{ today.date_gregorian|date:"F j, Y" }} • {{ today.market_day }} {{ today.moon_symbol }} {{ today.illumination }}%</h2>
+<small>Igbo Day {{ today.igbo_day }}/{{ today.month.days_in_month }} • {{ today.month.name_igbo }} {{ today.month.number }}{% if today.month.number == 1 %}st{% elif today.month.number == 2 %}nd{% elif today.month.number == 3 %}rd{% else %}th{% endif %} Month/13 • {{ today.month.year.gregorian_year }} • {{ today.date_gregorian|date:"W" }}/52 weeks Greg • {{ today.igbo_day|divisibleby:4|yesno:"91 weeks Igbo,91 weeks Igbo" }}</small>
+</div>
+
+<div class="banner-grid">
+<!-- 1. ELEMENT PROMINENCE - Eke Fire Orie Water Afo Earth Nkwo Air -->
+<div class="box element {{ today.market_day|lower }}">
+<div class="l">{% if today.market_day == 'EKE' %}🔥 EKE - FIRE{% elif today.market_day == 'ORIE' %}💧 ORIE - WATER{% elif today.market_day == 'AFO' %}🌍 AFO - EARTH{% else %}🌬️ NKWO - AIR{% endif %} - ELEMENT</div>
+<div class="v">{% if today.market_day == 'EKE' %}Fire • Light • New{% elif today.market_day == 'ORIE' %}Water • Flow • Stability{% elif today.market_day == 'AFO' %}Earth • Ground • Harvest{% else %}Air • Spirit • Reflection{% endif %}</div>
+<s>Today {{ today.market_day }} prominence • 4-day-week</s>
+</div>
+
+<!-- 2. WIND - LOCALITY - East Africa monsoon, West Africa harmattan -->
+<div class="box wind">
+<div class="l">💨 WIND - LOCALITY</div>
+<div class="v">
+{% if 'Mombasa' in today.tide_location or 'Malindi' in today.tide_location or 'Dar' in today.tide_location or 'Zanzibar' in today.tide_location or 'Mogadishu' in today.tide_location or 'Beira' in today.tide_location or 'Maputo' in today.tide_location or 'Mahajanga' in today.tide_location or 'Kisumu' in today.tide_location or 'Mwanza' in today.tide_location or 'KE' in today.tide_location or 'TZ' in today.tide_location or 'SO' in today.tide_location or 'MZ' in today.tide_location or 'MG' in today.tide_location %}Monsoon Kusi/Kaskazi SE 12kt
+{% elif 'Dakar' in today.tide_location or 'Nouakchott' in today.tide_location or 'Bissau' in today.tide_location or 'Conakry' in today.tide_location or 'Freetown' in today.tide_location or 'Tema' in today.tide_location or 'Lagos' in today.tide_location or 'Bonny' in today.tide_location or 'Douala' in today.tide_location or 'Baga' in today.tide_location or 'Mopti' in today.tide_location or 'SN' in today.tide_location or 'GW' in today.tide_location or 'GH' in today.tide_location or 'NG' in today.tide_location %}Harmattan NE Dry 15kt
+{% elif 'Algiers' in today.tide_location or 'Tunis' in today.tide_location or 'Tripoli' in today.tide_location or 'Alexandria' in today.tide_location or 'Casablanca' in today.tide_location or 'MA' in today.tide_location or 'DZ' in today.tide_location or 'TN' in today.tide_location or 'LY' in today.tide_location %}Mediterranean Mistral NW 10kt
+{% elif 'Cape Town' in today.tide_location or 'Durban' in today.tide_location or 'Walvis' in today.tide_location or 'Luanda' in today.tide_location or 'Namibe' in today.tide_location or 'ZA' in today.tide_location or 'NA' in today.tide_location or 'AO' in today.tide_location %}Benguela/Agulhas SW 18kt
+{% elif 'Kigoma' in today.tide_location or 'Kalemie' in today.tide_location or 'Turkana' in today.tide_location or 'Lake' in today.tide_location %}Lake Breeze Variable 8kt
+{% elif 'Port Sudan' in today.tide_location or 'Hurghada' in today.tide_location or 'Djibouti' in today.tide_location or 'SD' in today.tide_location or 'EG' in today.tide_location or 'DJ' in today.tide_location %}Red Sea Khamsin N 14kt
+{% else %}Trade Wind Variable 10kt{% endif %}
+</div>
+<s>{{ today.tide_location|default:"Bonny NG" }} • {{ today.weekday }}</s>
+</div>
+
+<!-- 3. RAIN - LOCALITY - varies different part Africa coded -->
+<div class="box rain">
+<div class="l">🌧️ RAIN - LOCALITY</div>
+<div class="v">
+{% if 'Mombasa' in today.tide_location or 'KE' in today.tide_location or 'TZ' in today.tide_location or 'MWanza' in today.tide_location or 'Kisumu' in today.tide_location %}Long rains Mar-May • {{ today.month.number|divisibleby:3|yesno:"Wet, Dry"}} 
+{% elif 'Dakar' in today.tide_location or 'SN' in today.tide_location or 'Bissau' in today.tide_location or 'Conakry' in today.tide_location %}Sahel rainy Jun-Oct • Harmattan dry
+{% elif 'Tema' in today.tide_location or 'Lagos' in today.tide_location or 'Bonny' in today.tide_location or 'Douala' in today.tide_location or 'GH' in today.tide_location or 'NG' in today.tide_location or 'CM' in today.tide_location %}Guinea 2 seasons • Rain Apr-Jul
+{% elif 'Algiers' in today.tide_location or 'Tunis' in today.tide_location or 'Casablanca' in today.tide_location or 'MA' in today.tide_location or 'DZ' in today.tide_location %}Med winter rain • Summer dry
+{% elif 'Cape Town' in today.tide_location or 'ZA' in today.tide_location or 'NA' in today.tide_location %}Winter rain Jun-Aug • Reverse
+{% elif 'Maputo' in today.tide_location or 'Beira' in today.tide_location or 'Mahajanga' in today.tide_location or 'MZ' in today.tide_location or 'MG' in today.tide_location %}Cyclone season Nov-Apr
+{% elif 'Baga' in today.tide_location or 'Lake Chad' in today.tide_location or 'Mopti' in today.tide_location %}Sahel • Lake Chad shrink • Dry
+{% elif 'Kigoma' in today.tide_location or 'Kalemie' in today.tide_location or 'Turkana' in today.tide_location %}Rift Valley • Short rains Oct-Dec
+{% else %}Local rain pattern • Check moon{% endif %}
+</div>
+<s>Equator reverse climate • North dry South wet</s>
+</div>
+
+<!-- 4. TIDE -->
+<div class="box">
+<div class="l">🌊 TIDE TODAY</div>
+<div class="v">H {{ today.high_tide|time:"H:i"|default:"--:--" }} • L {{ today.low_tide|time:"H:i"|default:"--:--" }} • {{ today.tide_height_m|default:"--" }}m</div>
+<s>{{ today.tide_location|default:"Bonny NG" }} • {{ today.moon_stage }}</s>
+</div>
+
+<!-- 5. MOON -->
+<div class="box">
+<div class="l">🌙 MOON VITAL</div>
+<div class="v">{{ today.moon_stage }} • {{ today.illumination }}%</div>
+<s>{% if today.illumination < 20 %}New planting{% elif today.illumination < 50 %}Waxing growth{% elif today.illumination < 80 %}Quarter harvest{% else %}Full best fishing{% endif %}</s>
+</div>
+
+<!-- 6. IGBO WEEK -->
+<div class="box">
+<div class="l">📅 IGBO WEEK</div>
+<div class="v">4-day • Week {{ today.month.number }}•{{ today.igbo_day }} • 91 weeks/yr</div>
+<s>13 months • {{ today.month.name_igbo }} • Eke→Orie→Afo→Nkwo</s>
+</div>
+
+<!-- 7. GREGORIAN WEEK -->
+<div class="box">
+<div class="l">🛖 GREGORIAN WEEK</div>
+<div class="v">7-day • Week {{ today.date_gregorian|date:"W" }}/52 • {{ today.date_gregorian|date:"l" }}</div>
+<s>12 months • Year {{ today.month.year.gregorian_year }}</s>
+</div>
+
+<!-- 8. FARMERS + FISHERMEN COMBINED - only header can stand, rest boxes -->
+<div class="box" style="background:rgba(212,160,23,.15);border-left:4px solid #d4a017">
+<div class="l">🌱🎣 FARMERS + FISHERMEN</div>
+<div class="v">{{ today.market_day }} • {{ today.tide_advice|slice:":40" }}</div>
+<s>Trading herders hunters healers leaders economic Nature</s>
+</div>
+</div>
+</div>
+
+<div class="dropdown-bar">
+<strong>🔽 Jump:</strong>
+<select id="selYear"><option value="">Year</option><script>for(let yr=1900;yr<=2100;yr++){document.write(`<option value="${yr}" ${yr==={{ today.month.year.gregorian_year }}? 'selected' : ''}>${yr}</option>`)}</script></select>
+<select id="selMarket"><option value="">Element</option><option value="EKE">Eke 🔥 Fire</option><option value="ORIE">Orie 💧 Water</option><option value="AFO">Afo 🌍 Earth</option><option value="NKWO">Nkwo 🌬️ Air</option></select>
+<select id="selWind"><option value="">Wind Locality</option><option value="monsoon">Monsoon East Africa</option><option value="harmattan">Harmattan West Africa</option><option value="benguela">Benguela South</option><option value="med">Mediterranean North</option></select>
+<button onclick="const y=document.getElementById('selYear').value||{{ today.month.year.gregorian_year }}; window.location='/amuzhi/'+y+'/'">Go Year →</button>
+<button onclick="const mk=document.getElementById('selMarket').value; const yr=document.getElementById('selYear').value||{{ today.month.year.gregorian_year }}; if(mk) window.location='/amuzhi/search/?market='+mk+'&year='+yr">Search Element →</button>
+</div>
+{% endif %}

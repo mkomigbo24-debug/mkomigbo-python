@@ -1,0 +1,43 @@
+{% extends "base.html" %}{% block content %}
+{% include "amuzhi_calendar/today_banner.html" %}
+<style>.grid58{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}.card58{background:white;border-radius:12px;padding:12px;border-left:4px solid #0a4a3a;box-shadow:0 4px 12px rgba(0,0,0,.06)}.badge{display:inline-block;padding:2px 6px;border-radius:6px;background:#eee;font-size:.75rem;margin:2px}</style>
+
+<div style="max-width:1350px;margin:0 auto;padding:14px">
+<h1>🌍 AWAG - Africas Weekly Activities Guide</h1>
+<p>Moon cycle, Wind pattern, Rainfall, Tide, Daily Weekly Monthly Reliable Forecast | Serving 2 Billion | Local Lingua Franca</p>
+<p><b>{{ total_regions }} Regions Africa</b> Farmers Planting Early/Late Rain Fishermen Moon+Tide Transporters Rain Pattern</p>
+<p>Farmers know planting, soil too dry/wet, harvest, sell | Fishermen moon+tide fishing preserve sell | Transporters move rain predictable | Traders artisans hunters healers leaders</p>
+
+<div style="background:#fff;padding:12px;border-radius:12px;margin:12px 0;border:2px solid #d4a017">
+<strong>🌐 Languages - Serving 2B Population in Lingua Franca:</strong><br>
+{% for code,name in langs %}<a href="?lang={{ code }}" style="padding:6px 10px;margin:3px;display:inline-block;background:{% if lang == code %}#0a4a3a;color:white{% else %}#f3f3f3{% endif %};border-radius:8px;text-decoration:none">{{ name }} ({{ code }})</a>{% endfor %}
+<br><small>Current: {{ lang }} | Regions served in local language</small>
+</div>
+
+<div style="background:white;padding:12px;border-radius:12px;margin:12px 0">
+<strong>🗺️ Filter by Wind Locality Zone:</strong>
+<a href="/awag/" style="padding:6px 10px;background:#0a4a3a;color:white;border-radius:8px;text-decoration:none">All 58</a>
+{% for zc in zone_codes %}<a href="?zone={{ zc }}&lang={{ lang }}" style="padding:6px 10px;margin:2px;background:#e8f5e9;border-radius:8px;text-decoration:none;border:1px solid #ccc">{{ zc }}</a>{% endfor %}
+</div>
+
+<div class="grid58">
+{% for r in regions_58 %}
+<div class="card58" style="border-left-color:{% if 'Harmattan' in r.wind %}#d4a017{% elif 'Monsoon' in r.wind %}#1e90ff{% elif 'Benguela' in r.wind %}#0e4a6a{% elif 'Mistral' in r.wind %}#8B4513{% elif 'Lake' in r.wind %}#87ceeb{% else %}#0a4a3a{% endif %}">
+<strong>{{ r.code }} - {{ r.name }} - {{ r.tide_port }}</strong><br>
+<small>Lingua Franca: {{ r.lingua }} | {{ r.zone }} | {{ r.element }} | {{ r.activity }}</small><br>
+<span class="badge">💨 {{ r.wind }}</span>
+<span class="badge">🌧️ {{ r.rain }}</span>
+<span class="badge">🌊 {{ r.tide_port }}</span><br>
+<a href="/awag/region/{{ r.code }}/?lang={{ lang }}" style="margin-top:6px;display:inline-block;padding:6px 12px;background:#0a4a3a;color:white;border-radius:8px;text-decoration:none">AWAG → {{ r.code }}</a>
+</div>
+{% endfor %}
+</div>
+
+<div style="margin-top:16px;background:white;padding:12px;border-radius:12px">
+<h3>🌙 Moon Today + 🌊 Tides + 🌧 Weather</h3>
+<p>Tides - Bonny Opobo Brass Calabar Lagos Mombasa | AWAG Weekly Guides - Predictable Economy</p>
+<p>Farmers reliable info whole Africa, Traders, Fishermen, Artisans, Hunters, Traditional Healers, Leaders, Transporters economic activities predictable</p>
+<a href="/awag/tides/">Tides →</a> | <a href="/awag/weekly/">Weekly →</a> | <a href="/amuzhi/2026/">Amuzhi Calendar →</a>
+</div>
+</div>
+{% endblock %}

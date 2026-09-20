@@ -17,14 +17,43 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lang1',
-    'religion',
-    'language2',
-    'esoteric',
-    'history',
-    'culture',
     'subjects',
+    'lang1',
+    'language2',
+    'culture',
+    'history',
+    'religion',
+    'esoteric',
+    'awag',  # NEW - Africas Weekly Activities Guide
+    'amuzhi_calendar',  # NEW - Amuzhi (renamed amujz)
 ]
+
+# Multilingual for 2B - English, French, Spanish, Portuguese, Swahili, Arabic, Igbo
+LANGUAGE_CODE = 'en'
+LANGUAGES = [
+    ('en', 'English'),
+    ('fr', 'French - Français'),
+    ('es', 'Spanish - Español'),
+    ('pt', 'Portuguese - Português'),
+    ('sw', 'Swahili - Kiswahili'),
+    ('ar', 'Arabic - العربية'),
+    ('ig', 'Igbo - Igbo'),
+]
+USE_I18N = True
+LOCALE_PATHS = [BASE_DIR / 'locale']
+
+# PostgreSQL for 2B - optimum
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'mkomigbo',
+#         'USER': 'mkomigbo_user',
+#         'PASSWORD': 'your_password',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#         'OPTIONS': {'charset': 'utf8mb4'},
+#     }
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
