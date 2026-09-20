@@ -253,222 +253,6 @@
 },
 {
   "model": "subjects.subject",
-  "pk": 22,
-  "fields": {
-    "slug": "igbo-language",
-    "name": "Igbo Language",
-    "nav_order": 1,
-    "description": "Igbo asụsụ - 4 dialects",
-    "icon": "🗣️",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 23,
-  "fields": {
-    "slug": "ndebe-49",
-    "name": "Ndebe 49",
-    "nav_order": 2,
-    "description": "49 Ndebe glyphs - base script",
-    "icon": "🔤",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 24,
-  "fields": {
-    "slug": "ndebe-glyphs",
-    "name": "Ndebe Glyphs H Effect",
-    "nav_order": 3,
-    "description": "H effect 27 minimal pairs B BH CH etc",
-    "icon": "✍️",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 25,
-  "fields": {
-    "slug": "nsibidi",
-    "name": "Nsibidi",
-    "nav_order": 4,
-    "description": "Nsibidi ideographs - 500+ symbols, Calabar, Ejagham, Igbo",
-    "icon": "🪶",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 26,
-  "fields": {
-    "slug": "amuzhi-calendar",
-    "name": "Amuzhi Calendar",
-    "nav_order": 5,
-    "description": "13 months + 4 market days Eke Orie Afo Nkwo",
-    "icon": "📅",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 27,
-  "fields": {
-    "slug": "awag",
-    "name": "AWAG - Africa Weekly Guide",
-    "nav_order": 6,
-    "description": "58 regions wind locality farmers fishermen",
-    "icon": "🌍",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 28,
-  "fields": {
-    "slug": "odinala",
-    "name": "Odinala",
-    "nav_order": 7,
-    "description": "Odinala religion - Chi, Ala, Amadioha",
-    "icon": "⛪",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 29,
-  "fields": {
-    "slug": "history-ndigbo",
-    "name": "History Ndigbo",
-    "nav_order": 8,
-    "description": "History of Ndigbo - migration",
-    "icon": "📜",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 30,
-  "fields": {
-    "slug": "proverbs",
-    "name": "Ilu - Proverbs",
-    "nav_order": 10,
-    "description": "Igbo proverbs",
-    "icon": "💬",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 31,
-  "fields": {
-    "slug": "folktales",
-    "name": "Akuko - Folktales",
-    "nav_order": 11,
-    "description": "Folktales",
-    "icon": "📖",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 32,
-  "fields": {
-    "slug": "medicine",
-    "name": "Ogwu - Medicine",
-    "nav_order": 12,
-    "description": "Traditional medicine",
-    "icon": "🌿",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 33,
-  "fields": {
-    "slug": "astronomy",
-    "name": "Igbo Astronomy",
-    "nav_order": 13,
-    "description": "Igbo astronomy - kpakpando",
-    "icon": "⭐",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 34,
-  "fields": {
-    "slug": "mathematics",
-    "name": "Igbo Mathematics",
-    "nav_order": 14,
-    "description": "Mgbako - counting, Onu ogugu",
-    "icon": "🔢",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 35,
-  "fields": {
-    "slug": "music",
-    "name": "Igbo Music",
-    "nav_order": 15,
-    "description": "Egwu - instruments",
-    "icon": "🥁",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 36,
-  "fields": {
-    "slug": "dance",
-    "name": "Igbo Dance",
-    "nav_order": 16,
-    "description": "Igba egwu",
-    "icon": "💃",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 37,
-  "fields": {
-    "slug": "art",
-    "name": "Igbo Art",
-    "nav_order": 17,
-    "description": "Nka - Uli, pottery",
-    "icon": "🎨",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 38,
-  "fields": {
-    "slug": "food",
-    "name": "Igbo Food",
-    "nav_order": 18,
-    "description": "Nri - Ji, Ofe",
-    "icon": "🍲",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
-  "pk": 39,
-  "fields": {
-    "slug": "governance",
-    "name": "Igbo Governance",
-    "nav_order": 19,
-    "description": "Ochi ochichi - Umunna, Eze",
-    "icon": "⚖️",
-    "status": "active"
-  }
-},
-{
-  "model": "subjects.subject",
   "pk": 40,
   "fields": {
     "slug": "esoteric",
@@ -1853,6 +1637,204 @@
     "title": "H Effect - 27 Minimal Pairs - Aspiration & Nasalization - Your Fieldwork",
     "body_html": "\n<h1>H EFFECT - 27 Minimal Pairs - H Produces Phonemes</h1>\n<p><b>Aspiration & Nasalization - Some are aspiration, some nasalization</b></p>\n\n<div style=\"background:#8B0000;color:white;padding:12px;border-radius:8px;margin-bottom:15px;\">\n<strong>CH Aberration:</strong> No letter C but Igbo refused C for /tʃ/, used CH English way. Phoneme left unaccounted - oversight. This page fixes it: C = /c/ vs CH = /tʃ/ = Č\n</div>\n\n<h2>Comprehensive H Table - As You Know It</h2>\n<table border=1 cellpadding=8 style=\"border-collapse:collapse;width:100%;font-size:13px\">\n<tr style=\"background:#0a4a3a;color:white\"><th>Base</th><th>+H</th><th>Diacritic Form</th><th>IPA</th><th>Igbo Word</th><th>Meaning</th><th>Process</th></tr>\n\n<tr style=\"background:#fff3cd\"><td><b>BAA</b></td><td><b>BHAA</b></td><td>BAA vs BHAA</td><td>/baa/ vs /bʰaa/</td><td>BAA soak cloth/seeds vs BHAA enter, peel yam, scold</td><td>soak vs enter/peel/scold</td><td>Aspiration - is it aspired? YES /bʰ/</td></tr>\n\n<tr><td><b>BEE</b></td><td><b>BHEE</b></td><td>BEE vs BHEE</td><td>/bee/ vs /bʰee/</td><td>BEE - bee akwa cry, bete akwa/anu cut cloth/meat vs BHEE peel orange (dialectical)</td><td>cry/cut vs peel orange</td><td>Aspiration</td></tr>\n\n<tr style=\"background:#d4edda\"><td><b>BUO</b> with dots</td><td><b>BHUO</b> with dots</td><td><b>BỤỌ</b> vs <b>BHỤỌ</b></td><td>/bʊɔ/ vs /bʰʊɔ/</td><td>BỤỌ - over too much salt, over emphasis vs BHỤỌ - uproot bhuo osisi, curse bhuo onu</td><td>over vs uproot/curse</td><td>Aspiration + labialization ụ ọ dots = retracted</td></tr>\n\n<tr><td><b>BIA</b> with dot</td><td><b>BHIA</b> with dot</td><td><b>BỊA</b> vs <b>BHỊA</b></td><td>/bɪa/ vs /bʰɪa/</td><td>BỊA come vs BHỊA press push down cover</td><td>come vs press</td><td>Aspiration + ị dot below</td></tr>\n\n<tr style=\"background:#ffcccc\"><td><b>CUO</b> with dots</td><td><b>CHUO</b> with dots</td><td><b>CỤỌ</b> vs <b>CHỤỌ</b></td><td>/kʷɔ/ or /cʊɔ/ vs /tʃʊɔ/</td><td>CỤỌ chase pursue sack vs CHỤỌ sacrifice (Chuo aja)</td><td>chase vs sacrifice</td><td><b>CH FALLACY CORE - No C but refused C for /tʃ/ used CH - C left unaccounted! CỤỌ vs CHỤỌ minimal pair proves CH must be Č</b></td></tr>\n\n<tr><td><b>CAA</b></td><td><b>CHAA</b></td><td>CAA vs CHAA</td><td>/caa/ vs /tʃaa/</td><td>CAA cut vs CHAA dodge evade sneak away</td><td>cut vs dodge</td><td>Affrication</td></tr>\n\n<tr><td><b>CIA</b> with dot</td><td><b>CHIA</b> with dot</td><td><b>CỊA</b> vs <b>CHỊA</b></td><td>/cɪa/ vs /tʃɪa/</td><td>CỊA laugh cia ochi vs CHỊA push stooling child bearing</td><td>laugh vs push</td><td>Affrication</td></tr>\n\n<tr><td><b>DAA</b></td><td><b>DHAA</b></td><td>DAA vs DHAA</td><td>/daa/ vs /dʰaa/</td><td>DAA roasting maize touching fire vs DHAA fall down</td><td>roast/touch fire vs fall</td><td>Aspiration /d/ vs /dʰ/</td></tr>\n\n<tr><td><b>DEE</b></td><td><b>DHEE</b></td><td>DEE vs DHEE</td><td>/dee/ vs /dʰee/</td><td>DEE write vs DHEE soften</td><td>write vs soften</td><td>Aspiration</td></tr>\n\n<tr><td><b>DUO</b> with dots</td><td><b>DHUO</b> with dots</td><td><b>DỤỌ</b> vs <b>DHỤỌ</b></td><td>/dʊɔ/ vs /dʰʊɔ/</td><td>DỤỌ swear dou isi poke duo aka n'onu vs DHỤỌ prod jab</td><td>swear/poke vs prod/jab</td><td>Aspiration</td></tr>\n\n<tr><td><b>GAA</b></td><td><b>GHAA</b></td><td>GAA vs GHAA</td><td>/gaa/ vs /ɣaa/</td><td>GAA go vs GHAA hold together needle beads crabs fish meat</td><td>go vs skewer hold</td><td>Fricativization /g/→/ɣ/</td></tr>\n\n<tr><td><b>GUO</b> with dots</td><td><b>GHUO</b> with dots</td><td><b>GỤỌ</b> vs <b>GHỤỌ</b></td><td>/gʊɔ/ vs /ɣʊɔ/</td><td>GỤỌ use stick spike from pot vs GHỤỌ count</td><td>use stick vs count</td><td>Fricativization</td></tr>\n\n<tr style=\"background:#e2e3ff\"><td><b>HAA</b></td><td><b>HHAA</b></td><td>HAA vs HHAA</td><td>/haa/ vs /h̃aa/ or /hʰaa/</td><td>HAA Leave let alone vs HHAA hhaata catch in trap</td><td>leave vs catch trap</td><td>Geminate / nasalization - HH?</td></tr>\n\n<tr><td><b>HUO</b> with dots</td><td><b>HHUO</b> with dots nasalize</td><td><b>HỤỌ</b> vs <b>HHỤỌ̃</b></td><td>/hʊɔ/ vs /h̃ʊɔ/</td><td>HỤỌ shake vs HHỤỌ roast (nasalize)</td><td>shake vs roast</td><td><b>Nasalization - HHUO nasalize</b></td></tr>\n\n<tr><td><b>KAA</b></td><td><b>KHAA</b></td><td>KAA vs KHAA</td><td>/kaa/ vs /kʰaa/</td><td>KAA talk say declare vs KHAA sharpen specify</td><td>talk vs sharpen</td><td>Aspiration /k/ vs /kʰ/</td></tr>\n\n<tr><td><b>KUO</b> with dots</td><td><b>KHUO</b> with dots</td><td><b>KỤỌ</b> vs <b>KHỤỌ</b></td><td>/kʊɔ/ vs /kʰʊɔ/</td><td>KỤỌ beat percussion instrument vs KHỤỌ plant seed farm</td><td>beat vs plant</td><td>Aspiration</td></tr>\n\n<tr><td><b>PAA</b></td><td><b>PHAA</b></td><td>PAA vs PHAA</td><td>/paa/ vs /pʰaa/</td><td>PAA carry vs PHAA squiz squeeze</td><td>carry vs squeeze</td><td>Aspiration /p/ vs /pʰ/</td></tr>\n\n<tr><td><b>PUO</b> with dots</td><td><b>PHUO</b> with dots</td><td><b>PỤỌ</b> vs <b>PHỤỌ</b></td><td>/pʊɔ/ vs /pʰʊɔ/</td><td>PỤỌ Go out leave vs PHỤỌ Drag</td><td>go out vs drag</td><td>Aspiration</td></tr>\n\n<tr><td><b>RAA</b></td><td><b>RHAA</b></td><td>RAA vs RHAA</td><td>/raa/ vs /rʰaa/</td><td>RAA lick vs RHAA copulate make love</td><td>lick vs copulate</td><td>Aspiration /r/ vs /rʰ/ or nasalized r̃</td></tr>\n\n<tr><td><b>REE</b></td><td><b>RHEE</b></td><td>REE vs RHEE</td><td>/ree/ vs /rʰee/</td><td>REE sell decay vs RHEE burn</td><td>sell/decay vs burn</td><td>Aspiration</td></tr>\n\n<tr><td><b>RUO</b> with dots</td><td><b>RHUO</b> with dots</td><td><b>RỤỌ</b> vs <b>RHỤỌ</b></td><td>/rʊɔ/ vs /rʰʊɔ/</td><td>RỤỌ poke vs RHỤỌ work</td><td>poke vs work</td><td>Aspiration</td></tr>\n\n<tr><td><b>TAA</b></td><td><b>THAA</b></td><td>TAA vs THAA</td><td>/taa/ vs /tʰaa/</td><td>TAA chew vs THAA blame</td><td>chew vs blame</td><td>Aspiration /t/ vs /tʰ/</td></tr>\n\n<tr><td><b>TUO</b> with dots</td><td><b>THUO</b> with dots</td><td><b>TỤỌ</b> vs <b>THỤỌ</b></td><td>/tʊɔ/ vs /tʰʊɔ/</td><td>TỤỌ throw vs THỤỌ delegate buy</td><td>throw vs delegate</td><td>Aspiration</td></tr>\n\n<tr style=\"background:#d4edda\"><td><b>ZUO</b> with dots</td><td><b>ZHUO</b> with dots</td><td><b>ZỤỌ</b> vs <b>ZHỤỌ</b></td><td>/zʊɔ/ vs /ʒʊɔ/</td><td>ZỤỌ buy vs ZHỤỌ train mentor someone</td><td>buy vs train/mentor</td><td>Palatalization /z/→/ʒ/ - azhia proof</td></tr>\n\n</table>\n\n<h3>Summary - Your Research</h3>\n<p><b>Aspiration:</b> BHAA, BHEE, BHỤỌ, BHỊA, DHAA, DHEE, DHỤỌ, KHAA, KHỤỌ, PHAA, PHỤỌ, THAA, THỤỌ, RHAA, RHEE, RHỤỌ - /ʰ/</p>\n<p><b>Nasalization:</b> HHAA hhaata catch trap, HHỤỌ roast nasalized - /̃/ - HH = nasal</p>\n<p><b>Fricativization:</b> GHAA, GHỤỌ, ZHỤỌ - /ɣ/ /ʒ/</p>\n<p><b>CH Aberration:</b> CỤỌ chase vs CHỤỌ sacrifice - No C but refused C for /tʃ/ used CH - phoneme left unaccounted - must be Č</p>\n<p><b>Dot below:</b> Ụ Ọ Ị = retracted tongue root - BỤỌ vs BỤỌ meaning changes</p>\n\n<p><a href=\"/lang1/phonemes/\">Present + Missing</a> | <a href=\"/subjects/language1/phonemes/\">43 Thesis</a> | <a href=\"/ndebe/glyphs/\">Ndebe Glyphs</a></p>\n",
     "nav_order": 4
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 125,
+  "fields": {
+    "subject": 9,
+    "slug": "igbo-language",
+    "title": "Igbo Language",
+    "body_html": "<h1>Igbo Language</h1><p>Topic preserved as page inside language1 - was subject igbo-language</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 126,
+  "fields": {
+    "subject": 9,
+    "slug": "ndebe-49",
+    "title": "Ndebe 49 - 49 Glyphs",
+    "body_html": "<h1>Ndebe 49 - 49 Glyphs</h1><p>Topic preserved as page inside language1 - was subject ndebe-49</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 127,
+  "fields": {
+    "subject": 9,
+    "slug": "ndebe-glyphs",
+    "title": "Ndebe Glyphs H Effect",
+    "body_html": "<h1>Ndebe Glyphs H Effect</h1><p>Topic preserved as page inside language1 - was subject ndebe-glyphs</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 128,
+  "fields": {
+    "subject": 9,
+    "slug": "nsibidi",
+    "title": "Nsibidi - 500 Symbols MUST NOT FORGET",
+    "body_html": "<h1>Nsibidi - 500 Symbols MUST NOT FORGET</h1><p>Topic preserved as page inside language1 - was subject nsibidi</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 129,
+  "fields": {
+    "subject": 5,
+    "slug": "amuzhi-calendar",
+    "title": "Amuzhi Calendar",
+    "body_html": "<h1>Amuzhi Calendar</h1><p>Topic preserved as page inside culture - was subject amuzhi-calendar</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 130,
+  "fields": {
+    "subject": 15,
+    "slug": "awag",
+    "title": "AWAG - Africa Weekly Guide",
+    "body_html": "<h1>AWAG - Africa Weekly Guide</h1><p>Topic preserved as page inside africa - was subject awag</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 131,
+  "fields": {
+    "subject": 6,
+    "slug": "odinala",
+    "title": "Odinala",
+    "body_html": "<h1>Odinala</h1><p>Topic preserved as page inside religion - was subject odinala</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 132,
+  "fields": {
+    "subject": 1,
+    "slug": "history-ndigbo",
+    "title": "History Ndigbo",
+    "body_html": "<h1>History Ndigbo</h1><p>Topic preserved as page inside history - was subject history-ndigbo</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 133,
+  "fields": {
+    "subject": 5,
+    "slug": "proverbs",
+    "title": "Ilu - Proverbs",
+    "body_html": "<h1>Ilu - Proverbs</h1><p>Topic preserved as page inside culture - was subject proverbs</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 134,
+  "fields": {
+    "subject": 5,
+    "slug": "folktales",
+    "title": "Akuko - Folktales",
+    "body_html": "<h1>Akuko - Folktales</h1><p>Topic preserved as page inside culture - was subject folktales</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 135,
+  "fields": {
+    "subject": 5,
+    "slug": "medicine",
+    "title": "Ogwu - Medicine",
+    "body_html": "<h1>Ogwu - Medicine</h1><p>Topic preserved as page inside culture - was subject medicine</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 136,
+  "fields": {
+    "subject": 5,
+    "slug": "astronomy",
+    "title": "Igbo Astronomy",
+    "body_html": "<h1>Igbo Astronomy</h1><p>Topic preserved as page inside culture - was subject astronomy</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 137,
+  "fields": {
+    "subject": 5,
+    "slug": "mathematics",
+    "title": "Igbo Mathematics",
+    "body_html": "<h1>Igbo Mathematics</h1><p>Topic preserved as page inside culture - was subject mathematics</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 138,
+  "fields": {
+    "subject": 5,
+    "slug": "music",
+    "title": "Igbo Music",
+    "body_html": "<h1>Igbo Music</h1><p>Topic preserved as page inside culture - was subject music</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 139,
+  "fields": {
+    "subject": 5,
+    "slug": "dance",
+    "title": "Igbo Dance",
+    "body_html": "<h1>Igbo Dance</h1><p>Topic preserved as page inside culture - was subject dance</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 140,
+  "fields": {
+    "subject": 5,
+    "slug": "art",
+    "title": "Igbo Art",
+    "body_html": "<h1>Igbo Art</h1><p>Topic preserved as page inside culture - was subject art</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 141,
+  "fields": {
+    "subject": 5,
+    "slug": "food",
+    "title": "Igbo Food",
+    "body_html": "<h1>Igbo Food</h1><p>Topic preserved as page inside culture - was subject food</p>",
+    "nav_order": 99
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 142,
+  "fields": {
+    "subject": 5,
+    "slug": "governance",
+    "title": "Igbo Governance",
+    "body_html": "<h1>Igbo Governance</h1><p>Topic preserved as page inside culture - was subject governance</p>",
+    "nav_order": 99
   }
 },
 {
