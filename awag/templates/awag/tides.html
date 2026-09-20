@@ -1,7 +1,22 @@
 {% extends "base.html" %}{% block content %}
 <div style="max-width:1350px;margin:0 auto;padding:14px">
 <h1>🌊 Tides - 40 Ports - Bonny Opobo Brass Calabar Lagos Mombasa</h1>
-<table style="width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden"><tr style="background:#0a4a3a;color:white"><th>Port</th><th>Code</th><th>High</th><th>Low</th><th>Height</th><th>Wind Locality</th><th>Rain Locality</th></tr>
-{% for t in tides %}<tr style="border-bottom:1px solid #eee"><td>{{ t.port|default:t.location }}</td><td>{{ t.code|default:'' }}</td><td>{{ t.high|default:t.high_tide_time }}</td><td>{{ t.low|default:t.low_tide_time }}</td><td>{{ t.height|default:t.high_height_m }}m</td><td>{{ t.wind|default:t.wind_pattern }}</td><td>{{ t.rain|default:'' }}</td></tr>{% endfor %}</table>
+<p>Wind locality: Harmattan NE Dry 18kt / Monsoon Kusi SE 12kt / Benguela SW 18kt / Mistral / Lake Breeze / Turkana Jet / Khamsin 14kt / Cape Doctor SE 20kt</p>
+<table style="width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden">
+<tr style="background:#0a4a3a;color:white"><th>Port</th><th>Code</th><th>High</th><th>Low</th><th>Height</th><th>Wind Locality</th><th>Rain Locality</th></tr>
+{% for t in tides %}
+<tr style="border-bottom:1px solid #eee">
+<td>{% if t.location %}{{ t.location }}{% else %}{{ t.port }}{% endif %}</td>
+<td>{{ t.code|default:'' }}</td>
+<td>{% if t.high_tide_time %}{{ t.high_tide_time }}{% else %}{{ t.high }}{% endif %}</td>
+<td>{% if t.low_tide_time %}{{ t.low_tide_time }}{% else %}{{ t.low }}{% endif %}</td>
+<td>{% if t.high_height_m %}{{ t.high_height_m }}m{% else %}{{ t.height }}m{% endif %}</td>
+<td>{% if t.wind %}{{ t.wind }}{% else %}Harmattan/Monsoon/Benguela{% endif %}</td>
+<td>{% if t.rain %}{{ t.rain }}{% else %}Guinea/Sahel/Long rains{% endif %}</td>
+</tr>
+{% empty %}
+<tr><td colspan="7" style="padding:20px;text-align:center">No tide data - run: python manage.py seed_awag</td></tr>
+{% endfor %}
+</table>
 </div>
 {% endblock %}
