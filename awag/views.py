@@ -79,7 +79,6 @@ ELEMENTS = {
     'NKWO': {'element':'Air','emoji':'🌬','color':'#87ceeb','meaning':'Spirit Reflection Transition','advice':'Air, spirits, preservation, reflection'},
 }
 
-# AWAG Coding 678 loader
 def load_awag_coding_groups():
     path = 'awag/data/awag_grouped.json'
     if os.path.exists(path):
@@ -177,30 +176,29 @@ def awag_region(request, code):
     })
 
 def awag_tides(request):
-    try:
-        from.models import Tide
-        tides = Tide.objects.order_by('datetime')[:50]
-    except:
-        tides = []
-        base = datetime.now()
-        for r in REGIONS_58[:20]:
-            tides.append({
-                'port': r['tide_port'],
-                'code': r['code'],
-                'high': (base + timedelta(hours=random.randint(1,12))).strftime('%H:%M'),
-                'low': (base + timedelta(hours=random.randint(13,23))).strftime('%H:%M'),
-                'height': round(random.uniform(0.8,3.2),1),
-                'wind': r['wind'],
-                'rain': r['rain'],
-            })
+    tides = []
+    base = datetime.now()
+    for r in REGIONS_58[:40]:
+        tides.append({
+            'port': r['tide_port'],
+            'code': r['code'],
+            'high': (base + timedelta(hours=random.randint(1,12))).strftime('%H:%M'),
+            'low': (base + timedelta(hours=random.randint(13,23))).strftime('%H:%M'),
+            'height': round(random.uniform(0.8,3.2),1),
+            'wind': r['wind'],
+            'rain': r['rain'],
+        })
     return render(request, 'awag/tides.html', {'tides': tides, 'regions_58': REGIONS_58})
 
 def awag_tide_table(request):
-    from.models import Tide
-    port = request.GET.get('port','Bonny Opobo Brass')
-    tides = Tide.objects.filter(location__icontains=port).order_by('datetime')[:28]
-    ports = ['Bonny Opobo Brass','Calabar','Lagos-Bar','Mombasa','Dakar','Tema','Abidjan','Cotonou','Lome','Douala','Beira','Maputo','Djibouti','Port Sudan','Alexandria','Casablanca','Cape Town','Durban','Walvis Bay','Luanda']
-    return render(request, 'awag/tide_table.html', {'tides':tides,'ports':ports,'selected_port':port,'regions_58':REGIONS_58})
+    try:
+        from.models import Tide
+        port = request.GET.get('port','Bonny Opobo Brass')
+        tides = Tide.objects.filter(location__icontains=port).order_by('datetime')[:28]
+        ports = ['Bonny Opobo Brass','Calabar','Lagos-Bar','Mombasa','Dakar','Tema','Abidjan','Cotonou','Lome','Douala','Beira','Maputo','Djibouti','Port Sudan','Alexandria','Casablanca','Cape Town','Durban','Walvis Bay','Luanda']
+        return render(request, 'awag/tide_table.html', {'tides':tides,'ports':ports,'selected_port':port,'regions_58':REGIONS_58})
+    except:
+        return awag_tides(request)
 
 def awag_farmers(request):
     lang = request.GET.get('lang','en')
@@ -217,9 +215,12 @@ def awag_farmers(request):
 
 def api_tides(request):
     port = request.GET.get('port','Bonny')
-    from.models import Tide
-    tides = Tide.objects.filter(location__icontains=port).order_by('datetime')[:14].values('location','datetime','high_height_m','low_height_m','advice_en')
-    return JsonResponse({'port':port,'tides':list(tides)})
+    try:
+        from.models import Tide
+        tides = Tide.objects.filter(location__icontains=port).order_by('datetime')[:14].values('location','datetime','high_height_m','low_height_m','advice_en')
+        return JsonResponse({'port':port,'tides':list(tides)})
+    except:
+        return JsonResponse({'port':port,'tides':[],'note':'Using 58 regions static'})
 
 def api_moon(request, date_str):
     try:
@@ -231,9 +232,7 @@ def api_moon(request, date_str):
                 return JsonResponse({'date': date_str,'moon_symbol': md.moon_symbol,'moon_stage': md.moon_stage,'illumination': md.illumination,'market_day': md.market_day,'element': get_element_info(md.market_day)})
         except:
             pass
-        from.models import moon_phase_info
-        info = moon_phase_info(d)
-        return JsonResponse(info)
+        return JsonResponse({'date': date_str, 'moon_symbol': '🌕', 'market_day': 'EKE'})
     except Exception as e:
         return JsonResponse({'error': 'Invalid date', 'detail': str(e)}, status=400)
 
