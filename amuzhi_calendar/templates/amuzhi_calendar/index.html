@@ -1,24 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{{ title }} - Igbo Traditional Calendar <span style="background:#ffd700;padding:4px 10px;border-radius:20px;font-size:0.9rem">PUBLIC</span></h1>
-<p><strong>Today:</strong> {{ today|date:"l, M j, Y" }} → <b style="font-size:1.4rem;background:#ffd700;padding:6px 14px;border-radius:20px">{{ market_today }}</b> - {{ market_meaning }}</p>
+<h1>{{ title }} - {{ igbo_month }} <span style="background:#ffd700;padding:4px 10px;border-radius:20px;font-size:0.9rem">PUBLIC</span></h1>
 
-<h2 style="margin-top:20px">4 Market Days - Cosmos</h2>
+<div style="background:#0a4a3a;color:#fff;padding:15px;border-radius:12px;margin:15px 0">
+<p style="font-size:1.1rem"><strong>Today:</strong> {{ today|date:"l, M j, Y" }} → <b style="background:#ffd700;color:#000;padding:6px 14px;border-radius:20px">{{ market_today }}</b> - {{ market_meaning }}</p>
+<p>🌙 Moon: <b>{{ moon_name }}</b> ({{ moon_age }} days) | 🌊 {{ tide_today }} | 📅 Igbo Month: {{ igbo_month }}</p>
+<p style="margin-top:8px;font-style:italic">{{ daily_fact }}</p>
+</div>
+
+<h2>4 Market Days - Cosmos</h2>
 <ul>
 {% for day, meaning in market_meaning_all.items %}
   <li><b>{{ day }}</b>: {{ meaning }} {% if day == market_today %}← Today{% endif %}</li>
 {% endfor %}
 </ul>
 
-<h2 style="margin-top:20px">Next 28 Days = 1 Igbo Month (Izu Asaa = 7 weeks x 4 days)</h2>
+<h2>Next 28 Days = 1 Igbo Month (Izu Asaa = 7 weeks x 4)</h2>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:15px 0">
 {% for item in month %}
-  <div style="border:1px solid #ddd;padding:8px;border-radius:8px;{% if item.is_today %}background:#ffd700;font-weight:bold{% endif %}">
-    {{ item.date|date:"M j" }}<br><b>{{ item.market }}</b>
+  <div style="border:1px solid #ddd;padding:10px;border-radius:10px;{% if item.is_today %}background:#ffd700;font-weight:bold;border:2px solid #000{% endif %}">
+    <div style="font-size:0.8rem">{{ item.date|date:"M j" }} - {{ item.igbo_month|slice:":8" }}</div>
+    <div style="font-size:1.1rem"><b>{{ item.market }}</b></div>
+    <div style="font-size:0.7rem">🌙 {{ item.moon|slice:":12" }}</div>
+    <div style="font-size:0.65rem">🌊 {{ item.tide|slice:":18" }}</div>
   </div>
 {% endfor %}
 </div>
 
-<p><a href="/amuzhi/today/">Today</a> | Convert: /amuzhi/convert/DD/MM/YYYY/ | Thesis: Odinala, Chi, 4-day week = 4 elements</p>
-<p><b>{{ public_note }}</b></p>
+<p><b>{{ public_note }}</b> | Thesis: Odinala, Chi, 4 elements = 4 days</p>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Amuzhi Convert</h1>
+<h1>Convert - {{ date|date:"M j, Y" }} = {{ market }}</h1>
 {% if error %}
-  <p style="color:red">Error: {{ error }}</p>
+<p style="color:red">{{ error }}</p>
 {% else %}
-  <p><strong>{{ date|date:"M j, Y" }}</strong> = <b style="font-size:1.5rem;background:#ffd700;padding:4px 12px;border-radius:20px">{{ market }}</b> Market Day</p>
-  <p>Igbo 4-day cycle: Eke → Orie → Afo → Nkwo</p>
+<p><b>{{ market }}</b> - {{ meaning }}</p>
+<p>🌙 Moon: {{ moon }} | 🌊 {{ tide }} | 📅 {{ igbo_month }}</p>
 {% endif %}
-<p><a href="/amuzhi/">← Back to Calendar</a></p>
+<p><a href="/amuzhi/">← Back</a></p>
 {% endblock %}
