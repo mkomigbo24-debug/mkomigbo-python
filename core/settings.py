@@ -4,10 +4,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-mkomigbo-thesis-2026'
-
 DEBUG = True
-
-# For PythonAnywhere + local - allow all
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -20,15 +17,10 @@ INSTALLED_APPS = [
     'subjects',
     'lang1',
     'language2',
-    'culture',
-    'history',
-    'religion',
-    'esoteric',
-    'awag',  # NEW - Africas Weekly Activities Guide
-    'amuzhi_calendar',  # NEW - Amuzhi (renamed amujz)
+    'amuzhi_calendar',  # PUBLIC - /amuzhi/
+    'africa_weekly',    # PUBLIC - /awag/ - AWAG safe name
 ]
 
-# Multilingual for 2B - English, French, Spanish, Portuguese, Swahili, Arabic, Igbo
 LANGUAGE_CODE = 'en'
 LANGUAGES = [
     ('en', 'English'),
@@ -41,19 +33,6 @@ LANGUAGES = [
 ]
 USE_I18N = True
 LOCALE_PATHS = [BASE_DIR / 'locale']
-
-# PostgreSQL for 2B - optimum
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'mkomigbo',
-#         'USER': 'mkomigbo_user',
-#         'PASSWORD': 'your_password',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#         'OPTIONS': {'charset': 'utf8mb4'},
-#     }
-# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,13 +72,11 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = []
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# STATIC + MEDIA - FIXED for admin weird look
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] if os.path.exists(os.path.join(BASE_DIR, 'static')) else []

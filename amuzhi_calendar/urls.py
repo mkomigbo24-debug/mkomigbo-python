@@ -1,9 +1,10 @@
 from django.urls import path
-from. import views
+from . import views
+
+app_name = 'amuzhi_calendar'
 
 urlpatterns = [
-    path('', views.amuzhi_home, name='amuzhi_home'),
-    path('search/', views.amuzhi_search, name='amuzhi_search'),
-    path('today/', views.amuzhi_today, name='amuzhi_today'),
-    path('<int:year>/', views.amuzhi_year, name='amuzhi_year'),
+    path('', views.calendar_view, name='index'),
+    path('today/', views.today_view, name='today'),
+    path('convert/<int:day>/<int:month>/<int:year>/', views.convert_view, name='convert'),
 ]

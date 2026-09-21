@@ -1,25 +1,2 @@
-<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Today - Amuzhi Calendar</title>
-<style>body{font-family:system-ui;margin:0;background:#fdfaf3}</style>
-</head>
-<body>
-{% include 'amuzhi_calendar/today_banner.html' %}
-<div style="max-width:800px;margin:24px auto;background:white;border-radius:16px;padding:24px;box-shadow:0 8px 30px rgba(0,0,0,.08)">
-<h2>Today Details</h2>
-{% if today %}
-<p><strong>Gregorian Day and Date:</strong> {{ today.weekday }} {{ today.date_gregorian|date:"l, F j, Y" }}</p>
-<p><strong>Gregorian Year:</strong> {{ today.month.year.gregorian_year }}</p>
-<p><strong>Igbo Day:</strong> Day {{ today.igbo_day }}</p>
-<p><strong>Igbo Date and Month:</strong> {{ today.month.name_igbo }} {{ today.month.gloss }} - {{ today.month.theme }} - Day {{ today.igbo_day }} - {{ today.month.number }}th Month</p>
-<p><strong>Market Day:</strong> {{ today.market_day }} - Eke Orie Afo Nkwo cycle</p>
-<p><strong>Moon:</strong> {{ today.moon_symbol }} {{ today.moon_stage }} {{ today.illumination }}%</p>
-<p><strong>Tide:</strong> High {{ today.high_tide }} Low {{ today.low_tide }} {{ today.tide_height_m }}m {{ today.tide_location }}</p>
-<p><strong>Advice:</strong> {{ today.tide_advice }}</p>
-{% else %}
-<p>No today - generate year</p>
-{% endif %}
-<p><a href="/amuzhi/2026/">View 2026 Full Year</a> | <a href="/awag/">AWAG</a></p>
-</div>
-</body>
-</html>
+<h1>Today - Amuzhi</h1>
+<p>Today: {{ today }} - Market day: {{ market_day }}</p>
