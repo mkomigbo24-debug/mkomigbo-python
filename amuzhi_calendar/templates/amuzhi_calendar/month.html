@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ title }}</h1>
+<h2>{{ igbo_month.igbo }} ({{ igbo_month.greg }})</h2>
+<p>{{ igbo_month.meaning }}</p>
+<p>Festival: {{ igbo_month.festival }}</p>
+{% for d in days %}
+<span style="display:inline-block;border:1px solid #ddd;padding:5px;margin:2px">{{ d.date.day }} {{ d.market }}</span>
+{% endfor %}
+<p><a href="/amuzhi/">← Back</a></p>
+{% endblock %}
