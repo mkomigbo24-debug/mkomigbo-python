@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{{ title }}</h1>
-<p>{{ description }}</p>
-<p>Market days: {{ market_days|join:", " }}</p>
-<p><strong>PUBLIC APP - Accessible at /amuzhi/ - No login required!</strong></p>
+<h1>{{ title }} - PUBLIC APP</h1>
+<p><strong>Today:</strong> {{ today }} - Market Day: <b>{{ market_today }}</b></p>
+<p>Igbo 4-day week: {{ market_days|join:" → " }}</p>
+<p><b>{{ public_note }}</b></p>
+<p><a href="/amuzhi/today/">Today</a> | Try /amuzhi/convert/21/9/2026/</p>
 {% endblock %}
