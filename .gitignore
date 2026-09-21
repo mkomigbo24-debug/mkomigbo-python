@@ -1,17 +1,13 @@
 __pycache__/
 *.pyc
 *.pyo
-*.sqlite3
 *.zip
 *.BACKUP*
-*.BACKUP_SECURED
 db.sqlite3
 venv/
 .env
-banana-source/
 staticfiles/
 *_BACKUP*
-*_SECURED
 add_missing.py
 base.html
 fix_*.py
