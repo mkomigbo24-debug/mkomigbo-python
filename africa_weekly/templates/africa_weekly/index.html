@@ -1,6 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{{ title }} - PUBLIC APP</h1>
+<h1>{{ title }} <span style="background:#0a4a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.9rem">PUBLIC - WEEKLY</span></h1>
+<p><strong>Today:</strong> {{ today|date:"l, M j, Y" }} - Week {{ week }}, {{ year }}</p>
+
+<h2>🌊 Tides - Bight of Biafra</h2>
+<p>High: {{ tides.high }} | Low: {{ tides.low }} | Spring Tide: {{ tides.spring }}</p>
+
+<h2>🌱 Farming This Week - Igbo Calendar Linked</h2>
+<ul>
+{% for tip in farming %}
+  <li>{{ tip }}</li>
+{% endfor %}
+</ul>
+
+<h2>🗺️ Regions</h2>
+<p>{{ regions|join:" | " }}</p>
+
+<h2>📚 AWAG Coding</h2>
+<p>Weekly guide data stored in <code>awag/data/</code> previously - now thesis integrated into <code>subjects</code> Africa subject + this public app /awag/</p>
+
 <p><b>{{ public_note }}</b></p>
-<p>Africa Weekly - Tides, Farming, Regions - Public Domain</p>
+<p><a href="/awag/week/{{ year }}/{{ week }}/">Week {{ week }} Detail</a> | <a href="/">21 Subjects</a></p>
 {% endblock %}

@@ -1,8 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{{ title }} - PUBLIC APP</h1>
-<p><strong>Today:</strong> {{ today }} - Market Day: <b>{{ market_today }}</b></p>
-<p>Igbo 4-day week: {{ market_days|join:" → " }}</p>
+<h1>{{ title }} - Igbo Traditional Calendar <span style="background:#ffd700;padding:4px 10px;border-radius:20px;font-size:0.9rem">PUBLIC</span></h1>
+<p><strong>Today:</strong> {{ today|date:"l, M j, Y" }} → <b style="font-size:1.4rem;background:#ffd700;padding:6px 14px;border-radius:20px">{{ market_today }}</b> - {{ market_meaning }}</p>
+
+<h2 style="margin-top:20px">4 Market Days - Cosmos</h2>
+<ul>
+{% for day, meaning in market_meaning_all.items %}
+  <li><b>{{ day }}</b>: {{ meaning }} {% if day == market_today %}← Today{% endif %}</li>
+{% endfor %}
+</ul>
+
+<h2 style="margin-top:20px">Next 28 Days = 1 Igbo Month (Izu Asaa = 7 weeks x 4 days)</h2>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:15px 0">
+{% for item in month %}
+  <div style="border:1px solid #ddd;padding:8px;border-radius:8px;{% if item.is_today %}background:#ffd700;font-weight:bold{% endif %}">
+    {{ item.date|date:"M j" }}<br><b>{{ item.market }}</b>
+  </div>
+{% endfor %}
+</div>
+
+<p><a href="/amuzhi/today/">Today</a> | Convert: /amuzhi/convert/DD/MM/YYYY/ | Thesis: Odinala, Chi, 4-day week = 4 elements</p>
 <p><b>{{ public_note }}</b></p>
-<p><a href="/amuzhi/today/">Today</a> | Try /amuzhi/convert/21/9/2026/</p>
 {% endblock %}
