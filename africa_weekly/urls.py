@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from. import views
 app_name = 'africa_weekly'
 urlpatterns = [
     path('', views.weekly_guide, name='index'),

@@ -1,13 +1,1 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>{{ title }}</h1>
-<p>NB: Igbo calendar not universal - observed in mind of people, intercalary month added every few years</p>
-{% for m in months %}
-<div style="border:1px solid #ddd;padding:12px;margin:8px 0;border-radius:8px">
-<h3>{{ m.igbo }} ({{ m.greg }}) - 21st = {{ m.market }}</h3>
-<p>{{ m.meaning }}</p>
-<p><em>🎉 {{ m.festival }}</em></p>
-</div>
-{% endfor %}
-<p><a href="/amuzhi/">← Back to Calendar</a></p>
-{% endblock %}
+{% extends "base.html" %}{% block content %}<h1>{{ title }}</h1><p>Each month (1st)(2nd) to help learners + 🔊 audio</p>{% for m in months %}<div style="border:1px solid #ddd;padding:12px;margin:8px 0;border-radius:8px"><h3>{{ m.igbo }} ({{ m.ordinal }}) - {{ m.greg }} <button onclick="speakIgbo('{{ m.igbo }}')" style="background:#0a4a3a;color:#fff;border:none;padding:3px 8px;border-radius:10px">🔊</button></h3><p>{{ m.meaning }}</p><p>🎉 {{ m.festival }}</p></div>{% endfor %}<script>function speakIgbo(t){var u=new SpeechSynthesisUtterance(t);u.lang='ig-IG';u.rate=0.8;speechSynthesis.speak(u);}</script><p><a href="/amuzhi/">← Back</a></p>{% endblock %}
