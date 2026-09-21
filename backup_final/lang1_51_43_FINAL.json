@@ -1,0 +1,1267 @@
+[
+{
+  "model": "lang1.presentalphabet",
+  "pk": 1,
+  "fields": {
+    "symbol": "cuo",
+    "ipa": "/kʷo/",
+    "example": "cuo ala",
+    "meaning": "mould soil - labialized proof",
+    "category": "labialized_consonant",
+    "is_dropped": false,
+    "thesis_note": "CH FALLACY: cuo vs chuo - u is labialization, not ch. Proof that ch is c+h",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 2,
+  "fields": {
+    "symbol": "guo",
+    "ipa": "/gʷo/",
+    "example": "guo ofe",
+    "meaning": "stir soup",
+    "category": "labialized_consonant",
+    "is_dropped": false,
+    "thesis_note": "Labialized - guo not g+uo",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 3,
+  "fields": {
+    "symbol": "zh",
+    "ipa": "/ʒ/",
+    "example": "azhịa",
+    "meaning": "market - correct not azhia",
+    "category": "affricate",
+    "is_dropped": false,
+    "thesis_note": "Missing in standard orthography - zh as in azhịa",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 4,
+  "fields": {
+    "symbol": "gh",
+    "ipa": "/ɣ/",
+    "example": "aghara",
+    "meaning": "change",
+    "category": "affricate",
+    "is_dropped": false,
+    "thesis_note": "Voiced velar fricative - missing",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 5,
+  "fields": {
+    "symbol": "ts",
+    "ipa": "/t͡s/",
+    "example": "tsara",
+    "meaning": "answer",
+    "category": "affricate",
+    "is_dropped": false,
+    "thesis_note": "tsara not sara - affricate proof",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 6,
+  "fields": {
+    "symbol": "zhia",
+    "ipa": "/ʒʲa/",
+    "example": "azhịa",
+    "meaning": "market - palatalized",
+    "category": "labialized_digraph",
+    "is_dropped": false,
+    "thesis_note": "Palatalized zhia",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 7,
+  "fields": {
+    "symbol": "a",
+    "ipa": "/a/",
+    "example": "aka",
+    "meaning": "hand",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Open vowel",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 8,
+  "fields": {
+    "symbol": "b",
+    "ipa": "/b/",
+    "example": "bịa",
+    "meaning": "come",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Bilabial plosive",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 9,
+  "fields": {
+    "symbol": "ch",
+    "ipa": "/tʃ/",
+    "example": "chere",
+    "meaning": "wait",
+    "category": "digraph",
+    "is_dropped": false,
+    "thesis_note": "FALSE as single - actually c+h aspiration! Thesis proof",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 10,
+  "fields": {
+    "symbol": "d",
+    "ipa": "/d/",
+    "example": "de",
+    "meaning": "write",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Alveolar plosive",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 11,
+  "fields": {
+    "symbol": "e",
+    "ipa": "/e/",
+    "example": "ede",
+    "meaning": "cocoyam",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Close-mid front vowel",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 12,
+  "fields": {
+    "symbol": "f",
+    "ipa": "/f/",
+    "example": "fe",
+    "meaning": "fly",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Labiodental fricative",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 13,
+  "fields": {
+    "symbol": "g",
+    "ipa": "/g/",
+    "example": "ga",
+    "meaning": "go",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Velar plosive",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 14,
+  "fields": {
+    "symbol": "gb",
+    "ipa": "/g͡b/",
+    "example": "gbà",
+    "meaning": "run",
+    "category": "labialized_consonant",
+    "is_dropped": false,
+    "thesis_note": "Double articulation gb",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 15,
+  "fields": {
+    "symbol": "gw",
+    "ipa": "/gʷ/",
+    "example": "gwa",
+    "meaning": "tell",
+    "category": "labialized_consonant",
+    "is_dropped": false,
+    "thesis_note": "Labialized g",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 16,
+  "fields": {
+    "symbol": "h",
+    "ipa": "/h/",
+    "example": "ha",
+    "meaning": "them",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Glottal fricative",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 17,
+  "fields": {
+    "symbol": "i",
+    "ipa": "/i/",
+    "example": "imi",
+    "meaning": "nose",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Close front vowel",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 18,
+  "fields": {
+    "symbol": "ị",
+    "ipa": "/ɪ/",
+    "example": "ịta",
+    "meaning": "chew",
+    "category": "diacritic",
+    "is_dropped": false,
+    "thesis_note": "Near-close vowel",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 19,
+  "fields": {
+    "symbol": "j",
+    "ipa": "/dʒ/",
+    "example": "ji",
+    "meaning": "hold",
+    "category": "affricate",
+    "is_dropped": false,
+    "thesis_note": "Affricate j",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 20,
+  "fields": {
+    "symbol": "k",
+    "ipa": "/k/",
+    "example": "ka",
+    "meaning": "more",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Velar plosive",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 21,
+  "fields": {
+    "symbol": "kw",
+    "ipa": "/kʷ/",
+    "example": "kwa",
+    "meaning": "also",
+    "category": "labialized_consonant",
+    "is_dropped": false,
+    "thesis_note": "Labialized k",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 22,
+  "fields": {
+    "symbol": "kp",
+    "ipa": "/k͡p/",
+    "example": "kpọ",
+    "meaning": "call",
+    "category": "labialized_consonant",
+    "is_dropped": false,
+    "thesis_note": "Double articulation kp",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 23,
+  "fields": {
+    "symbol": "l",
+    "ipa": "/l/",
+    "example": "la",
+    "meaning": "return",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Lateral approximant",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 24,
+  "fields": {
+    "symbol": "m",
+    "ipa": "/m/",
+    "example": "mmanụ",
+    "meaning": "oil",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Bilabial nasal",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 25,
+  "fields": {
+    "symbol": "n",
+    "ipa": "/n/",
+    "example": "nri",
+    "meaning": "food",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Alveolar nasal",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 26,
+  "fields": {
+    "symbol": "nw",
+    "ipa": "/nʷ/",
+    "example": "nwa",
+    "meaning": "child",
+    "category": "labialized_consonant",
+    "is_dropped": false,
+    "thesis_note": "Labialized n",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 27,
+  "fields": {
+    "symbol": "ny",
+    "ipa": "/ɲ/",
+    "example": "nyụ",
+    "meaning": "wash",
+    "category": "labialized_digraph",
+    "is_dropped": false,
+    "thesis_note": "Palatal nasal ny",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 28,
+  "fields": {
+    "symbol": "ṅ",
+    "ipa": "/ŋ/",
+    "example": "ṅụ",
+    "meaning": "drink",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Velar nasal",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 29,
+  "fields": {
+    "symbol": "o",
+    "ipa": "/o/",
+    "example": "obi",
+    "meaning": "heart",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Close-mid back vowel",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 30,
+  "fields": {
+    "symbol": "ọ",
+    "ipa": "/ɔ/",
+    "example": "ọla",
+    "meaning": "gold",
+    "category": "diacritic",
+    "is_dropped": false,
+    "thesis_note": "Open-mid back vowel",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 31,
+  "fields": {
+    "symbol": "p",
+    "ipa": "/p/",
+    "example": "pụ",
+    "meaning": "go out",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Bilabial plosive",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 32,
+  "fields": {
+    "symbol": "r",
+    "ipa": "/ɹ/",
+    "example": "ri",
+    "meaning": "eat",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Alveolar approximant",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 33,
+  "fields": {
+    "symbol": "s",
+    "ipa": "/s/",
+    "example": "sa",
+    "meaning": "wash",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Alveolar fricative",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 34,
+  "fields": {
+    "symbol": "sh",
+    "ipa": "/ʃ/",
+    "example": "shị",
+    "meaning": "push",
+    "category": "digraph",
+    "is_dropped": false,
+    "thesis_note": "Postalveolar fricative sh",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 35,
+  "fields": {
+    "symbol": "t",
+    "ipa": "/t/",
+    "example": "ta",
+    "meaning": "chew",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Alveolar plosive",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 36,
+  "fields": {
+    "symbol": "u",
+    "ipa": "/u/",
+    "example": "uli",
+    "meaning": "indigo",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Close back vowel",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 37,
+  "fields": {
+    "symbol": "ụ",
+    "ipa": "/ʊ/",
+    "example": "ụlọ",
+    "meaning": "house",
+    "category": "diacritic",
+    "is_dropped": false,
+    "thesis_note": "Near-close back vowel",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 38,
+  "fields": {
+    "symbol": "v",
+    "ipa": "/v/",
+    "example": "vụ",
+    "meaning": "carry",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Labiodental fricative",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 39,
+  "fields": {
+    "symbol": "w",
+    "ipa": "/w/",
+    "example": "wa",
+    "meaning": "break",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Labial-velar approximant",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 40,
+  "fields": {
+    "symbol": "y",
+    "ipa": "/j/",
+    "example": "ya",
+    "meaning": "him",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Palatal approximant",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 41,
+  "fields": {
+    "symbol": "z",
+    "ipa": "/z/",
+    "example": "za",
+    "meaning": "sweep",
+    "category": "single",
+    "is_dropped": false,
+    "thesis_note": "Alveolar fricative",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 42,
+  "fields": {
+    "symbol": "dz",
+    "ipa": "/d͡z/",
+    "example": "dzi",
+    "meaning": "old",
+    "category": "affricate",
+    "is_dropped": false,
+    "thesis_note": "Affricate dz - missing variant",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.presentalphabet",
+  "pk": 43,
+  "fields": {
+    "symbol": "ghia",
+    "ipa": "/ɣʲa/",
+    "example": "ghia",
+    "meaning": "cut",
+    "category": "labialized_digraph",
+    "is_dropped": false,
+    "thesis_note": "Palatalized ghia - missing",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 1,
+  "fields": {
+    "symbol": "zh",
+    "category": "affricate_missing",
+    "ipa": "/ʒ/",
+    "example": "azhịa - market, not azhia",
+    "meaning_diff": "azhia (wrong) vs azhịa (correct zh sound)",
+    "reason_missing": "Standard orthography collapsed zh to z, losing distinction. zh is voiced postalveolar fricative.",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 2,
+  "fields": {
+    "symbol": "gh",
+    "category": "affricate_missing",
+    "ipa": "/ɣ/",
+    "example": "aghara vs ahara",
+    "meaning_diff": "Different meanings lost",
+    "reason_missing": "gh is voiced velar fricative missing in 36 letter orthography",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 3,
+  "fields": {
+    "symbol": "tsara",
+    "category": "affricate_missing",
+    "ipa": "/t͡sara/",
+    "example": "tsara iza - answer question",
+    "meaning_diff": "tsara (answer) vs sara (??) - meaning lost without ts",
+    "reason_missing": "ts affricate proved by minimal pair",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 4,
+  "fields": {
+    "symbol": "cuo",
+    "category": "labialized",
+    "ipa": "/kʷo/",
+    "example": "cuo vs chuo",
+    "meaning_diff": "cuo = mould, chuo = ??? CH fallacy exposed",
+    "reason_missing": "CH FALLACY: ch is NOT a letter, it is c + h aspiration. cuo proves labialization is on consonant, not vowel. u in cuo is w, not vowel.",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 5,
+  "fields": {
+    "symbol": "zhia",
+    "category": "palatalized",
+    "ipa": "/ʒʲa/",
+    "example": "zhia - to shine",
+    "meaning_diff": "Palatalization distinction",
+    "reason_missing": "Palatalized consonants missing: zhia, ghia, nyia etc",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 6,
+  "fields": {
+    "symbol": "High tone",
+    "category": "tone",
+    "ipa": "/́/",
+    "example": "ákwá vs àkwà",
+    "meaning_diff": "egg vs cloth vs cry - tone changes meaning",
+    "reason_missing": "Tones not written - causes ambiguity",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 7,
+  "fields": {
+    "symbol": "Low tone",
+    "category": "tone",
+    "ipa": "/̀/",
+    "example": "àkwà - cloth vs ákwá - egg",
+    "meaning_diff": "Low vs high tone changes meaning completely",
+    "reason_missing": "Tones not written in standard orthography - causes ákwá/àkwà/àkwá confusion",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 8,
+  "fields": {
+    "symbol": "Downstep",
+    "category": "tone",
+    "ipa": "/ꜜ/",
+    "example": "é!é - emphatic",
+    "meaning_diff": "Downstep tone for emphasis",
+    "reason_missing": "Downstep not represented - 3rd tone level missing",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 9,
+  "fields": {
+    "symbol": "ṃ (syllabic m)",
+    "category": "syllabic_nasal",
+    "ipa": "/m̩/",
+    "example": "ṃ - I/me (first person)",
+    "meaning_diff": "m̩ vs m - syllabic vs consonant",
+    "reason_missing": "Syllabic nasals written as m/n but pronounced as vowels",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 10,
+  "fields": {
+    "symbol": "ṅ (velar nasal)",
+    "category": "syllabic_nasal",
+    "ipa": "/ŋ/",
+    "example": "ṅụọ - drink vs nụọ",
+    "meaning_diff": "Velar nasal distinction lost",
+    "reason_missing": "ṅ vs n confusion - same letter used",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 11,
+  "fields": {
+    "symbol": "ã (nasal vowel)",
+    "category": "original",
+    "ipa": "/ã/",
+    "example": "ã - nasalization",
+    "meaning_diff": "Nasal vs oral vowel contrast",
+    "reason_missing": "Nasal vowels exist in dialects but no letter",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 12,
+  "fields": {
+    "symbol": "nyia",
+    "category": "palatalized",
+    "ipa": "/ɲʲa/",
+    "example": "nyia - palatalized",
+    "meaning_diff": "ny vs nyia palatalization difference",
+    "reason_missing": "Palatalized nyia, ghia, zhia missing - Y as /ʲ/ not letter",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 13,
+  "fields": {
+    "symbol": "kw labialized",
+    "category": "labialized",
+    "ipa": "/kʷ/",
+    "example": "kwuo - speak, kwara - pushed",
+    "meaning_diff": "k vs kw - labialization contrast",
+    "reason_missing": "W as /ʷ/ secondary not letter - kw, gw are single phonemes not k+w - Izhi dialect study",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 14,
+  "fields": {
+    "symbol": "gw labialized",
+    "category": "labialized",
+    "ipa": "/gʷ/",
+    "example": "gwa - tell, gwo - dig",
+    "meaning_diff": "g vs gw",
+    "reason_missing": "Labialized velars - Muazu 2005",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 15,
+  "fields": {
+    "symbol": "nw labialized",
+    "category": "labialized",
+    "ipa": "/ŋʷ/ or /nʷ/",
+    "example": "nwa - child, nwanyi - woman",
+    "meaning_diff": "n vs nw",
+    "reason_missing": "NW as labialized nasal - Standard treats as digraph but single phoneme",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 16,
+  "fields": {
+    "symbol": "dw (labialized d)",
+    "category": "labialized",
+    "ipa": "/dʷ/",
+    "example": "dwa - labialized in Amiyi-Aguata",
+    "meaning_diff": "d vs dw - phonemic in dialects",
+    "reason_missing": "Labialized dw, rw, lw phonemic - Obasi 2023 minimal pairs",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 17,
+  "fields": {
+    "symbol": "rw (labialized r)",
+    "category": "labialized",
+    "ipa": "/rʷ/",
+    "example": "rwa - labialized",
+    "meaning_diff": "r vs rw",
+    "reason_missing": "Labialization remains insufficiently investigated - Ebonyi Journal Izhi",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 18,
+  "fields": {
+    "symbol": "lw (labialized l)",
+    "category": "labialized",
+    "ipa": "/lʷ/",
+    "example": "lwa - labialized",
+    "meaning_diff": "l vs lw",
+    "reason_missing": "Labialized lateral - phonemic in dialects",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 19,
+  "fields": {
+    "symbol": "bw (labialized b)",
+    "category": "labialized",
+    "ipa": "/bʷ/",
+    "example": "bwa - labialized",
+    "meaning_diff": "b vs bw",
+    "reason_missing": "B effect - labialized b",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 20,
+  "fields": {
+    "symbol": "zw (labialized z)",
+    "category": "labialized",
+    "ipa": "/zʷ/",
+    "example": "zwa - labialized",
+    "meaning_diff": "z vs zw",
+    "reason_missing": "Z effect - labialized z, part of W effect system",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 21,
+  "fields": {
+    "symbol": "ɓ implosive b",
+    "category": "original",
+    "ipa": "/ɓ/",
+    "example": "ɓa - implosive b in Central Igbo",
+    "meaning_diff": "b vs ɓ - implosive contrast",
+    "reason_missing": "Voiced labial-velar implosive exists in Central dialect - not in Onwu 36",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 22,
+  "fields": {
+    "symbol": "ɗ implosive d",
+    "category": "original",
+    "ipa": "/ɗ/",
+    "example": "ɗa - implosive d",
+    "meaning_diff": "d vs ɗ",
+    "reason_missing": "D effect - implosive d in dialects",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 23,
+  "fields": {
+    "symbol": "zh labialized",
+    "category": "labialized",
+    "ipa": "/ʒʷ/",
+    "example": "zhwa - labialized zh",
+    "meaning_diff": "zh vs zhw",
+    "reason_missing": "Z effect extends to labialized zh - combined H+W effect",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 24,
+  "fields": {
+    "symbol": "z palatalized",
+    "category": "palatalized",
+    "ipa": "/zʲ/",
+    "example": "zia - palatalized",
+    "meaning_diff": "z vs zia",
+    "reason_missing": "Palatalized z - Y effect",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 25,
+  "fields": {
+    "symbol": "kpʰ aspirated kp",
+    "category": "affricate_missing",
+    "ipa": "/k͡pʰ/",
+    "example": "kpʰa - aspirated kp",
+    "meaning_diff": "kp vs kpʰ",
+    "reason_missing": "Aspirated double articulation - part of 96 thesis - Armstrong 60 phonemes",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 26,
+  "fields": {
+    "symbol": "gbʰ aspirated gb",
+    "category": "affricate_missing",
+    "ipa": "/g͡bʰ/",
+    "example": "gbʰa",
+    "meaning_diff": "gb vs gbʰ",
+    "reason_missing": "Aspirated gb - Central Igbo",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 27,
+  "fields": {
+    "symbol": "BH - aspirated b",
+    "category": "aspirated",
+    "ipa": "/bʰ/",
+    "example": "BHAA - bhaa - enter, peel yam, scold vs BAA soak",
+    "meaning_diff": "BAA soak vs BHAA enter - aspiration contrast",
+    "reason_missing": "B vs BH minimal pair - BAA vs BHAA - aspirated b not in Onwu 36",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 28,
+  "fields": {
+    "symbol": "BHEE - aspirated bee",
+    "category": "aspirated",
+    "ipa": "/bʰe/",
+    "example": "BEE - bee akwa cry, bete akwa cut vs BHEE peel orange dialectical",
+    "meaning_diff": "BEE cry vs BHEE peel orange",
+    "reason_missing": "BEE vs BHEE",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 29,
+  "fields": {
+    "symbol": "BHỤỌ - aspirated buo",
+    "category": "labialized",
+    "ipa": "/bʰʊɔ/",
+    "example": "BỤỌ - over too much salt vs BHỤỌ uproot bhuo osisi, curse bhuo onu",
+    "meaning_diff": "BỤỌ over vs BHỤỌ uproot",
+    "reason_missing": "BUO vs BHUO with dot below ụ ọ - labialized aspirated",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 30,
+  "fields": {
+    "symbol": "BHỊA - aspirated bia",
+    "category": "aspirated",
+    "ipa": "/bʰɪa/",
+    "example": "BỊA come vs BHỊA press push down cover",
+    "meaning_diff": "BỊA come vs BHỊA press",
+    "reason_missing": "BIA vs BHIA with dot below ị",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 31,
+  "fields": {
+    "symbol": "CỤỌ - plain c",
+    "category": "original",
+    "ipa": "/cʊɔ/ or /kʷɔ/",
+    "example": "CỤỌ chase pursue sack - C with dot below ụ ọ",
+    "meaning_diff": "CỤỌ chase vs CHỤỌ sacrifice - CH fallacy proof",
+    "reason_missing": "No letter C but Igbo refused C for /tʃ/ used CH English way - phoneme left unaccounted - C is /c/ not /tʃ/",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 32,
+  "fields": {
+    "symbol": "CHỤỌ - palatalized c",
+    "category": "palatalized",
+    "ipa": "/tʃʊɔ/",
+    "example": "CHỤỌ sacrifice - Chuo aja vs CỤỌ chase",
+    "meaning_diff": "CỤỌ chase vs CHỤỌ sacrifice - minimal pair proves CH must be Č",
+    "reason_missing": "CH fallacy core - C never alone except in CH - must be Č single letter",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 33,
+  "fields": {
+    "symbol": "CAA - plain caa",
+    "category": "original",
+    "ipa": "/caa/",
+    "example": "CAA cut vs CHAA dodge evade sneak away",
+    "meaning_diff": "CAA cut vs CHAA dodge",
+    "reason_missing": "CAA vs CHAA",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 34,
+  "fields": {
+    "symbol": "CỊA - plain cia",
+    "category": "original",
+    "ipa": "/cɪa/",
+    "example": "CỊA laugh cia ochi vs CHỊA push stooling child bearing",
+    "meaning_diff": "CỊA laugh vs CHỊA push",
+    "reason_missing": "CIA vs CHIA with dot below ị",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 35,
+  "fields": {
+    "symbol": "DHAA - aspirated daa",
+    "category": "aspirated",
+    "ipa": "/dʰaa/",
+    "example": "DAA roasting maize touching fire vs DHAA fall down",
+    "meaning_diff": "DAA roast vs DHAA fall",
+    "reason_missing": "DAA vs DHAA - aspirated d",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 36,
+  "fields": {
+    "symbol": "DHEE - aspirated dee",
+    "category": "aspirated",
+    "ipa": "/dʰee/",
+    "example": "DEE write vs DHEE soften",
+    "meaning_diff": "DEE write vs DHEE soften",
+    "reason_missing": "DEE vs DHEE",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 37,
+  "fields": {
+    "symbol": "DHỤỌ - aspirated duo",
+    "category": "aspirated",
+    "ipa": "/dʰʊɔ/",
+    "example": "DỤỌ swear dou isi poke duo aka n onu vs DHỤỌ prod jab",
+    "meaning_diff": "DỤỌ swear vs DHỤỌ prod",
+    "reason_missing": "DUO vs DHUO with dot below ụ ọ",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 38,
+  "fields": {
+    "symbol": "GHAA - fricative gaa",
+    "category": "fricative",
+    "ipa": "/ɣaa/",
+    "example": "GAA go vs GHAA hold together needle beads crabs fish meat",
+    "meaning_diff": "GAA go vs GHAA skewer hold",
+    "reason_missing": "GAA vs GHAA - /g/ vs /ɣ/",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 39,
+  "fields": {
+    "symbol": "GHỤỌ - fricative guo",
+    "category": "fricative",
+    "ipa": "/ɣʊɔ/",
+    "example": "GỤỌ use stick spike from pot vs GHỤỌ count",
+    "meaning_diff": "GỤỌ use stick vs GHỤỌ count",
+    "reason_missing": "GUO vs GHUO with dot below ụ ọ",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 40,
+  "fields": {
+    "symbol": "HHAA - geminate haa",
+    "category": "nasalized",
+    "ipa": "/h̃aa/ or /ʰʰaa/",
+    "example": "HAA leave let alone vs HHAA hhaata catch in trap",
+    "meaning_diff": "HAA leave vs HHAA catch trap",
+    "reason_missing": "HAA vs HHAA - geminate/nasalized H",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 41,
+  "fields": {
+    "symbol": "HHỤỌ - nasalized huo",
+    "category": "nasalized",
+    "ipa": "/h̃ʊɔ/",
+    "example": "HỤỌ shake vs HHỤỌ nasalized roast",
+    "meaning_diff": "HỤỌ shake vs HHỤỌ roast - nasalization",
+    "reason_missing": "HUO vs HHUO with dot below ụ ọ - HHUO nasalize roast",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 42,
+  "fields": {
+    "symbol": "KHAA - aspirated kaa",
+    "category": "aspirated",
+    "ipa": "/kʰaa/",
+    "example": "KAA talk say declare vs KHAA sharpen specify",
+    "meaning_diff": "KAA talk vs KHAA sharpen",
+    "reason_missing": "KAA vs KHAA - /k/ vs /kʰ/",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 43,
+  "fields": {
+    "symbol": "KHỤỌ - aspirated kuo",
+    "category": "aspirated",
+    "ipa": "/kʰʊɔ/",
+    "example": "KỤỌ beat percussion vs KHỤỌ plant seed farm",
+    "meaning_diff": "KỤỌ beat vs KHỤỌ plant",
+    "reason_missing": "KUO vs KHUO with dot below ụ ọ",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 44,
+  "fields": {
+    "symbol": "PHAA - aspirated paa",
+    "category": "aspirated",
+    "ipa": "/pʰaa/",
+    "example": "PAA carry vs PHAA squiz squeeze",
+    "meaning_diff": "PAA carry vs PHAA squeeze",
+    "reason_missing": "PAA vs PHAA",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 45,
+  "fields": {
+    "symbol": "PHỤỌ - aspirated puo",
+    "category": "aspirated",
+    "ipa": "/pʰʊɔ/",
+    "example": "PỤỌ go out leave vs PHỤỌ Drag",
+    "meaning_diff": "PỤỌ go out vs PHỤỌ drag",
+    "reason_missing": "PUO vs PHUO with dot below ụ ọ",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 46,
+  "fields": {
+    "symbol": "RHAA - aspirated raa",
+    "category": "aspirated",
+    "ipa": "/rʰaa/ or /r̃aa/",
+    "example": "RAA lick vs RHAA copulate make love",
+    "meaning_diff": "RAA lick vs RHAA copulate",
+    "reason_missing": "RAA vs RHAA - r vs rh - nasalized?",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 47,
+  "fields": {
+    "symbol": "RHEE - aspirated ree",
+    "category": "aspirated",
+    "ipa": "/rʰee/",
+    "example": "REE sell decay vs RHEE burn",
+    "meaning_diff": "REE sell vs RHEE burn",
+    "reason_missing": "REE vs RHEE",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 48,
+  "fields": {
+    "symbol": "RHỤỌ - aspirated ruo",
+    "category": "aspirated",
+    "ipa": "/rʰʊɔ/",
+    "example": "RỤỌ poke vs RHỤỌ work",
+    "meaning_diff": "RỤỌ poke vs RHỤỌ work",
+    "reason_missing": "RUO vs RHUO with dot below ụ ọ",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 49,
+  "fields": {
+    "symbol": "THAA - aspirated taa",
+    "category": "aspirated",
+    "ipa": "/tʰaa/",
+    "example": "TAA chew vs THAA blame",
+    "meaning_diff": "TAA chew vs THAA blame",
+    "reason_missing": "TAA vs THAA - /t/ vs /tʰ/",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 50,
+  "fields": {
+    "symbol": "THỤỌ - aspirated tuo",
+    "category": "aspirated",
+    "ipa": "/tʰʊɔ/",
+    "example": "TỤỌ throw vs THỤỌ delegate buy",
+    "meaning_diff": "TỤỌ throw vs THỤỌ delegate",
+    "reason_missing": "TUO vs THUO with dot below ụ ọ",
+    "audio": ""
+  }
+},
+{
+  "model": "lang1.missingphoneme",
+  "pk": 51,
+  "fields": {
+    "symbol": "ZHỤỌ - fricative zuo",
+    "category": "fricative",
+    "ipa": "/ʒʊɔ/",
+    "example": "ZỤỌ buy vs ZHỤỌ train mentor",
+    "meaning_diff": "ZỤỌ buy vs ZHỤỌ train",
+    "reason_missing": "ZUO vs ZHUO with dot below ụ ọ - /z/ vs /ʒ/",
+    "audio": ""
+  }
+}
+]
