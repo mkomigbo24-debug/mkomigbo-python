@@ -1,2 +1,6 @@
-<h1>Today - Amuzhi</h1>
-<p>Today: {{ today }} - Market day: {{ market_day }}</p>
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ title }} - Today</h1>
+<p>Today: {{ today }} - Market Day: <b>{{ market_today }}</b></p>
+<p>{{ public_note }}</p>
+{% endblock %}

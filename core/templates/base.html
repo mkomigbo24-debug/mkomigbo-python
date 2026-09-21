@@ -3,11 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mkomigbo - Amuzhi + AWAG</title>
+<title>Mkomigbo - 21 Subjects + Public Apps</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
-<style>body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;background:#f6f5f0} a{color:#0a4a3a}</style>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f5f0;color:#1a1a1a;line-height:1.6}
+  header{background:#fff;border-bottom:2px solid #0a4a3a;position:sticky;top:0;z-index:100}
+  .nav{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .logo{font-family:'Instrument Serif',serif;font-size:1.5rem;font-weight:700;color:#0a4a3a;text-decoration:none;margin-right:auto}
+  .nav a{text-decoration:none;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.9rem;transition:all 0.2s}
+  .nav .public-amuzhi{background:#ffd700;color:#000;border:2px solid #000}
+  .nav .public-awag{background:#0a4a3a;color:#fff}
+  .nav .public-amuzhi:hover,.nav .public-awag:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+  .nav .normal{background:#eee;color:#333}
+  main{max-width:1000px;margin:30px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,0.05)}
+  h1{font-family:'Instrument Serif',serif;color:#0a4a3a}
+  .badge{display:inline-block;background:#0a4a3a;color:#fff;padding:2px 8px;border-radius:10px;font-size:0.7rem;margin-left:8px}
+</style>
 </head>
 <body>
+<header>
+  <nav class="nav">
+    <a href="/" class="logo">Mkomigbo <span class="badge">21 Subjects</span></a>
+    <a href="/amuzhi/" class="public-amuzhi">📅 Amuzhi Calendar - PUBLIC</a>
+    <a href="/awag/" class="public-awag">🌍 AWAG - PUBLIC</a>
+    <a href="/admin/" class="normal">Admin</a>
+  </nav>
+</header>
+<main>
 {% block content %}{% endblock %}
+</main>
+<footer style="text-align:center;padding:20px;color:#666;font-size:0.85rem">
+  Mkomigbo Thesis 2026 - 21 Subjects + 2 Public Apps - Amuzhi + AWAG easily accessible to all
+</footer>
 </body>
 </html>
