@@ -1,6 +1,43 @@
 from django.shortcuts import render
 from datetime import date, timedelta
 
+
+MOON_PHASES_ORDER = ['New Moon','Waxing Crescent','First Quarter','Waxing Gibbous','Full Moon','Waning Gibbous','Last Quarter','Waning Crescent']
+MOON_SCIENCE = {
+    'New Moon': {'emoji':'🌑','igbo':'Ọnwa Ọhụrụ - Anya Anaghị Ahụ','visible':'0% illuminated - hemisphere in shadow','real_vs_eye':'Astronomical New: between Earth & Sun, invisible. Human eye first crescent appears 1-2 days later!','science':'Conjunction: Sun-Moon-Earth aligned.','igbo_meaning':'New cycle, Ani renewal'},
+    'Waxing Crescent': {'emoji':'🌒','igbo':'Ọnwa Na-Eto Obere','visible':'1-49% - small sliver right','real_vs_eye':'First visible to human eye! People call this New, but real New was 1-2 days before!','science':'Waxing=growing.','igbo_meaning':'Hope rising'},
+    'First Quarter': {'emoji':'🌓','igbo':'Ọnwa Ọkara Mbụ','visible':'50% - half moon','real_vs_eye':'Half visible, 7.4 days after New','science':'90° from Sun. Neap tide.','igbo_meaning':'Decision time'},
+    'Waxing Gibbous': {'emoji':'🌔','igbo':'Ọnwa Na-Eto Ukwuu','visible':'51-99% - almost full','real_vs_eye':'Gibbous=humpback, growing to full','science':'More than half lit','igbo_meaning':'Preparation'},
+    'Full Moon': {'emoji':'🌕','igbo':'Ọnwa Oju','visible':'100% - fully lit','real_vs_eye':'Appears full 1 day before/after peak!','science':'Opposition: Earth between Sun & Moon. Spring tide','igbo_meaning':'Full power, harvest'},
+    'Waning Gibbous': {'emoji':'🌖','igbo':'Ọnwa Na-Ada Ukwuu','visible':'99-51% - decreasing','real_vs_eye':'Waning=shrinking after full','science':'Shadow growing','igbo_meaning':'Gratitude'},
+    'Last Quarter': {'emoji':'🌗','igbo':'Ọnwa Ọkara Ikpeazụ','visible':'50% - left lit','real_vs_eye':'Third Quarter','science':'270° from Sun','igbo_meaning':'Release'},
+    'Waning Crescent': {'emoji':'🌘','igbo':'Ọnwa Na-Ada Obere','visible':'49-1% - thin sliver left','real_vs_eye':'Last visible to eye! Real Last invisible 1-2 days after this! Eye last ≠ real last!','science':'Final visible before New','igbo_meaning':'Rest, ancestors wisdom'}
+}
+def get_moon_phase(target_date):
+    import datetime
+    from datetime import date as date_cls
+    if isinstance(target_date, datetime.datetime):
+        target_date = target_date.date()
+    known_new = date_cls(2024, 1, 11)
+    diff = (target_date - known_new).days
+    lunar = 29.53058867
+    phase_days = diff % lunar
+    if phase_days < 1.5: key='New Moon'
+    elif phase_days < 7.0: key='Waxing Crescent'
+    elif phase_days < 8.5: key='First Quarter'
+    elif phase_days < 14.0: key='Waxing Gibbous'
+    elif phase_days < 16.0: key='Full Moon'
+    elif phase_days < 21.5: key='Waning Gibbous'
+    elif phase_days < 23.0: key='Last Quarter'
+    else: key='Waning Crescent'
+    return key, phase_days
+
+def get_moon_detail(target_date):
+    name, age = get_moon_phase(target_date)
+    d = MOON_SCIENCE[name]
+    return {'phase':name,'age':age,'emoji':d['emoji'],'igbo':d['igbo'],'visible':d['visible'],'real_vs_eye':d['real_vs_eye'],'science':d['science'],'igbo_meaning':d['igbo_meaning'],'moon_emoji':d['emoji'],'moon_phase':name,'moon_igbo':d['igbo'],'moon_visible':d['visible'],'moon_real_vs_eye':d['real_vs_eye'],'moon_science':d['science']}
+
+
 MARKET_DAYS = ['Eke','Orie','Afo','Nkwo']
 MARKET_MEANING = {
     'Eke': 'Creation, East, beginnings - Chi',
@@ -49,11 +86,6 @@ def get_market_day(d):
     ref = date(2024,1,1)
     return MARKET_DAYS[(MARKET_DAYS.index('Afo') + (d-ref).days) % 4]
 
-def get_moon_phase(d):
-    ref = date(2024,1,11)
-    days = (d-ref).days % 29.53
-    idx = int((days/29.53)*8) % 8
-    return MOON_PHASES[idx], days
 
 def get_moon_emoji(phase_name):
     for k,v in MOON_EMOJI.items():
@@ -89,6 +121,7 @@ def calendar_view(request):
     today = date.today()
     market_today = get_market_day(today)
     moon_name, moon_age = get_moon_phase(today)
+ moon_detail = get_moon_detail(today)
     tide_today = get_tide(today)
     month_idx = 0
     if today.month==3 or (today.month==4 and today.day<15): month_idx=1
