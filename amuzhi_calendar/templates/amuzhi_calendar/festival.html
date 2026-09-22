@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block content %}
+<h1>Festival Calendar</h1>
+{% for m in months %}<div style="border:1px solid #ddd;padding:10px;margin:5px;border-radius:8px"><b>{{ forloop.counter }}. {{ m.igbo }}</b> - {{ m.festival }}</div>{% endfor %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block content %}
+<h1>Igbo Calendar Quiz</h1>
+<form method="post">{% csrf_token %}
+{% for q in questions %}
+<div style="border:1px solid #ddd;padding:15px;margin:10px 0;border-radius:10px">
+<p><b>Q{{ forloop.counter }}: {{ q.q }}</b></p>
+{% for opt in q.options %}
+<label style="display:block"><input type="radio" name="q{{ forloop.counter0 }}" value="{{ forloop.counter0 }}" required> {{ opt }}</label>
+{% endfor %}
+</div>
+{% endfor %}
+<button type="submit" style="background:#0a4a3a;color:#fff;padding:12px 24px;border:none;border-radius:8px">Submit</button>
+</form>
+{% endblock %}

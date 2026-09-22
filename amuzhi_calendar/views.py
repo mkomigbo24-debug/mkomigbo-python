@@ -141,3 +141,75 @@ def convert_view(request, day, month, year):
         return render(request,'amuzhi_calendar/convert.html',{'date':d,'market':m,'meaning':MARKET_MEANING[m],'moon':moon,'moon_emoji':get_moon_emoji(moon),'tide':get_tide(d),'igbo_month':igbo_m})
     except Exception as e:
         return render(request,'amuzhi_calendar/convert.html',{'error':str(e)})
+
+# === STEP C: Learning Features - Quiz + Market Calculator + Festival ===
+from django.http import JsonResponse
+import random
+
+def market_calculator_view(request):
+    from datetime import date
+    # Base reference: Known Eke day - Jan 1 2024 was Orie (example)
+    base_date = date(2024, 1, 1)  # Orie
+    base_index = MARKET_DAYS.index('Orie')
+    q_date_str = request.GET.get('date')
+    try:
+        if q_date_str:
+            y,m,d = map(int, q_date_str.split('-'))
+            target = date(y,m,d)
+        else:
+            target = date.today()
+        diff = (target - base_date).days
+        market_index = (base_index + diff) % 4
+        market = MARKET_DAYS[market_index]
+        return render(request, 'amuzhi_calendar/calculator.html', {
+            'title': 'Market Day Calculator',
+            'target_date': target,
+            'market': market,
+            'meaning': MARKET_MEANING.get(market, ''),
+            'today': date.today(),
+            'all_markets': MARKET_DAYS,
+        })
+    except Exception as e:
+        return render(request, 'amuzhi_calendar/calculator.html', {
+            'title': 'Market Day Calculator',
+            'target_date': date.today(),
+            'market': 'Eke',
+            'meaning': MARKET_MEANING['Eke'],
+            'error': str(e),
+            'today': date.today(),
+        })
+
+def quiz_view(request):
+    # Quiz about 13 Onwa
+    questions = [
+        {'q': 'What does Ọnwa Mbụ (1st) mark?', 'options': ['Igbo New Year, Igu Aro festival', 'Yam planting', 'Fishing'], 'answer': 0, 'explain': 'Ọnwa Mbụ is Feb-Mar, Igbo New Year, Igu Aro festival, 1013th year'},
+        {'q': 'Which month is for yam deity Ifejioku?', 'options': ['Ọnwa Ifejiọkụ (6th)', 'Ọnwa Ana (9th)', 'Ọnwa Mbụ (1st)'], 'answer': 0, 'explain': 'Ọnwa Ifejiọkụ Jul-Aug dedicated to yam deity Ifejioku and Njoku Ji'},
+        {'q': 'When is August meeting?', 'options': ['Ọnwa Alọm Chi (7th)', 'Ọnwa Okike (10th)', 'Ọnwa Ife Eke (3rd)'], 'answer': 0, 'explain': 'Ọnwa Alọm Chi Aug-early Sep is women prayer, Alom Chi shrine, August meeting'},
+        {'q': 'What is Eke market meaning?', 'options': ['Creation, East, beginnings', 'Spirit, South', 'Rest, North'], 'answer': 0, 'explain': 'Eke = Creation, East, beginnings - Chi'},
+        {'q': 'How many months in authentic Igbo calendar?', 'options': ['13 months', '12 months', '10 months'], 'answer': 0, 'explain': 'Authentic has 13 months including intercalary Ọnwa Ụzọ Alụsị'},
+    ]
+    score = 0
+    if request.method == 'POST':
+        for i, q in enumerate(questions):
+            ans = request.POST.get(f'q{i}')
+            if ans is not None and int(ans) == q['answer']:
+                score += 1
+        return render(request, 'amuzhi_calendar/quiz_result.html', {
+            'title': 'Quiz Result',
+            'score': score,
+            'total': len(questions),
+            'questions': questions,
+        })
+    # Shuffle for GET
+    random.shuffle(questions)
+    return render(request, 'amuzhi_calendar/quiz.html', {
+        'title': 'Igbo Calendar Quiz',
+        'questions': questions,
+    })
+
+def festival_view(request):
+    return render(request, 'amuzhi_calendar/festival.html', {
+        'title': 'Igbo Festival Calendar',
+        'months': IGBO_MONTHS_AUTH,
+        'today': date.today(),
+    })

@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block content %}
+<h1>Market Day Calculator</h1>
+<div style="background:#0a4a3a;color:#fff;padding:20px;border-radius:12px">
+<form method="get">
+<label>Date: <input type="date" name="date" value="{{ target_date|date:'Y-m-d' }}"></label>
+<button type="submit" style="background:#ffd700;padding:8px 16px;border:none;border-radius:8px">Calculate</button>
+</form>
+<h2>{{ target_date|date:"l, M j, Y" }} -> <b style="background:#ffd700;color:#000;padding:6px 14px;border-radius:20px">{{ market }}</b></h2>
+<p>{{ meaning }}</p>
+</div>
+<p><a href="/amuzhi/">Back</a></p>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block content %}
+<h1>Result: {{ score }}/{{ total }}</h1>
+<div style="padding:20px;border-radius:12px;background:{% if score == total %}#d4edda{% else %}#fff3cd{% endif %}">
+<h2>Score {{ score }}/{{ total }}</h2>
+</div>
+<p><a href="/amuzhi/quiz/">Retake</a></p>
+{% endblock %}
