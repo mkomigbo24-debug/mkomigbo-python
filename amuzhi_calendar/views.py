@@ -18,11 +18,11 @@ IGBO_MONTHS_AUTH = [
     {'igbo': 'Ọnwa Ifejiọkụ', 'greg': 'Jul–Aug', 'meaning': 'Dedicated to yam deity Ifejioku and Njoku Ji, yam rituals for New Yam Festival', 'festival': 'New Yam rituals', 'audio': 'onwa_ifejioku.mp3', 'pronunciation': 'O-nwa Ifejioku', 'ordinal': '6th'},
     {'igbo': 'Ọnwa Alọm Chi', 'greg': 'Aug–early Sep', 'meaning': 'Yam harvesting, prayer for women, Alom Chi shrine for ancestors, mothers', 'festival': 'August meeting', 'audio': 'onwa_alom_chi.mp3', 'pronunciation': 'O-nwa Alom Chi', 'ordinal': '7th'},
     {'igbo': 'Ọnwa Ilọ Mmụọ', 'greg': 'Late Sep', 'meaning': 'Eighth Month festival Onwa Asato, spiritual return', 'festival': 'Onwa Asato', 'audio': 'onwa_ilo_mmuo.mp3', 'pronunciation': 'O-nwa Ilo Mmuo', 'ordinal': '8th'},
-    {'igbo': 'Ọnwa Ana', 'greg': 'Oct', 'meaning': 'Ana/Ala earth goddess rituals commence', 'festival': 'Ana rituals', 'audio': 'onwa_ana.mp3', 'pronunciation': 'O-nwa Ana', 'ordinal': '9th'},
+    {'igbo': 'Ọnwa Ala', 'greg': 'Oct', 'meaning': 'Ana/Ala earth goddess rituals commence', 'festival': 'Ana rituals', 'audio': 'onwa_ala.mp3', 'pronunciation': 'O-nwa Ana', 'ordinal': '9th'},
     {'igbo': 'Ọnwa Okike', 'greg': 'Early Nov', 'meaning': 'Okike ritual takes place', 'festival': 'Okike ritual', 'audio': 'onwa_okike.mp3', 'pronunciation': 'O-nwa Okike', 'ordinal': '10th'},
-    {'igbo': 'Ọnwa Ajana', 'greg': 'Late Nov', 'meaning': 'Okike ritual continues', 'festival': 'Okike continuation', 'audio': 'onwa_ajana.mp3', 'pronunciation': 'O-nwa Ajana', 'ordinal': '11th'},
-    {'igbo': 'Ọnwa Ede Ajana', 'greg': 'Late Nov–Dec', 'meaning': 'Ritual Ends', 'festival': 'End of Okike', 'audio': 'onwa_ede_ajana.mp3', 'pronunciation': 'O-nwa Ede Ajana', 'ordinal': '12th'},
-    {'igbo': 'Ọnwa Ụzọ Alụsị', 'greg': 'Jan–early Feb', 'meaning': 'Last month, offering to the Alusi, intercalary month added every few years', 'festival': 'Alusi offering', 'audio': 'onwa_uzo_alusi.mp3', 'pronunciation': 'O-nwa Uzo Alusi', 'ordinal': '13th'},
+    {'igbo': 'Ọnwa Ajala', 'greg': 'Late Nov', 'meaning': 'Okike ritual continues', 'festival': 'Okike continuation', 'audio': 'onwa_ajala.mp3', 'pronunciation': 'O-nwa Ajana', 'ordinal': '11th'},
+    {'igbo': 'Ọnwa Ede Ajala', 'greg': 'Late Nov–Dec', 'meaning': 'Ritual Ends', 'festival': 'End of Okike', 'audio': 'onwa_ede_ajala.mp3', 'pronunciation': 'O-nwa Ede Ajana', 'ordinal': '12th'},
+    {'igbo': 'Ọnwa Ụzọ Arụshị', 'greg': 'Jan–early Feb', 'meaning': 'Last month, offering to the Alusi, intercalary month added every few years', 'festival': 'Alusi offering', 'audio': 'onwa_uzo_arushi.mp3', 'pronunciation': 'O-nwa Uzo Alusi', 'ordinal': '13th'},
 ]
 
 # SCIENTIFIC MOON - educative - real vs human eye
