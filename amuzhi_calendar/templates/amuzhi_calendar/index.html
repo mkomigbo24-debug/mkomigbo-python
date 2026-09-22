@@ -1,23 +1,49 @@
-{% extends "base.html" %}{% block content %}
-<h1>{{ title }} - Igbo Calendar <span style="background:#ffd700;padding:4px 10px;border-radius:20px">PUBLIC 13 Onwa</span></h1>
+{% extends "base.html" %}{% load static %}{% block content %}
+<h1>{{ title }} - Igbo Calendar <span style="background:#ffd700;padding:4px 10px;border-radius:20px">PUBLIC 13 Onwa 🔊 Real Voice</span></h1>
 <div style="background:#0a4a3a;color:#fff;padding:15px;border-radius:12px">
 <p><strong>Today:</strong> {{ today|date:"l, M j, Y" }} → <b style="background:#ffd700;color:#000;padding:6px 14px;border-radius:20px">{{ market_today }}</b> - {{ market_meaning }}</p>
-<p>📅 <b>{{ igbo_month.igbo }} ({{ igbo_month.ordinal }})</b> ({{ igbo_month.greg }}) <button onclick="speakIgbo('{{ igbo_month.igbo }}')" style="background:#ffd700;border:none;padding:4px 8px;border-radius:10px;cursor:pointer">🔊</button></p>
+<p>📅 <b>{{ igbo_month.igbo }} ({{ igbo_month.ordinal }})</b> ({{ igbo_month.greg }}) 
+<audio id="audio-today" preload="none"><source src="{% static 'audio/amuzhi/' %}{{ igbo_month.audio }}" type="audio/mpeg"></audio>
+<button onclick="playAudio('audio-today','{{ igbo_month.igbo }}')" style="background:#ffd700;border:none;padding:6px 12px;border-radius:20px;cursor:pointer">🔊 {{ igbo_month.pronunciation }}</button>
+</p>
 <p>🌙 {{ moon_emoji }} {{ moon_name }} | 🌊 {{ tide_today }}</p>
 </div>
-<h2>13 Onwa with Audio 🔊 & Moon 🌙 & Ordinal</h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
+
+<h2>13 Onwa - Real Voice + (1st) + Moon 🌙</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px">
 {% for m in igbo_months_all %}
 {% with forloop.counter as num %}
-<div style="border:1px solid #ddd;padding:10px;border-radius:8px;{% if m.igbo == igbo_month.igbo %}background:#fff9c4;border:2px solid #000{% endif %}">
-<b>{{ m.igbo }} ({{ num }}{% if num == 1 %}st{% elif num == 2 %}nd{% elif num == 3 %}rd{% else %}th{% endif %})</b> <button onclick="speakIgbo('{{ m.igbo }}')" style="background:#0a4a3a;color:#fff;border:none;padding:2px 6px;border-radius:10px">🔊</button><br><small>{{ m.greg }}</small><br><small>{{ m.meaning|truncatechars:70 }}</small>
+<div style="border:1px solid #ddd;padding:12px;border-radius:10px;{% if m.igbo == igbo_month.igbo %}background:#fff9c4;border:2px solid #000{% endif %}">
+<h4 style="margin:0">{{ m.igbo }} ({{ num }}{% if num == 1 %}st{% elif num == 2 %}nd{% elif num == 3 %}rd{% else %}th{% endif %})</h4>
+<p style="margin:4px 0"><small>{{ m.greg }}</small> - <em>{{ m.pronunciation|default:m.igbo }}</em></p>
+<audio id="audio-{{ num }}" preload="none"><source src="{% static 'audio/amuzhi/' %}{{ m.audio }}" type="audio/mpeg"></audio>
+<button onclick="playAudio('audio-{{ num }}','{{ m.igbo }}')" style="background:#0a4a3a;color:#fff;border:none;padding:4px 10px;border-radius:12px;cursor:pointer">🔊 Play</button>
+<br><small>{{ m.meaning|truncatechars:80 }}</small>
 </div>
 {% endwith %}
 {% endfor %}
 </div>
+
 <h2>Next 28 Days 🌙</h2>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
 {% for item in month %}<div style="border:1px solid #ddd;padding:8px;border-radius:8px;text-align:center;{% if item.is_today %}background:#ffd700{% endif %}"><div style="font-size:1.4rem">{{ item.moon_emoji }}</div>{{ item.date|date:"M j" }} <b>{{ item.market }}</b></div>{% endfor %}
 </div>
-<script>function speakIgbo(t){if('speechSynthesis' in window){var u=new SpeechSynthesisUtterance(t);u.lang='ig-IG';u.rate=0.8;speechSynthesis.speak(u);}}</script>
+
+<script>
+function playAudio(id, text){
+  var a=document.getElementById(id);
+  a.play().catch(function(){
+    // Fallback to speech if mp3 not yet recorded
+    if('speechSynthesis' in window){
+      var u=new SpeechSynthesisUtterance(text); u.lang='ig-IG'; u.rate=0.8; speechSynthesis.speak(u);
+    }
+  });
+  a.onerror=function(){ 
+    if('speechSynthesis' in window){
+      var u=new SpeechSynthesisUtterance(text); u.lang='ig-IG'; u.rate=0.8; speechSynthesis.speak(u);
+    }
+  }
+}
+</script>
+<p><b>To add real voice:</b> Record 13 mp3 files and upload to <code>static/audio/amuzhi/</code> - then real Igbo speaker plays, not robot!</p>
 {% endblock %}

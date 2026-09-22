@@ -10,18 +10,18 @@ MARKET_MEANING = {
 }
 
 IGBO_MONTHS_AUTH = [
-    {'igbo': 'Ọnwa Mbụ', 'greg': 'Feb–Mar', 'meaning': 'Igbo New Year, Igu Aro festival, Nri calendar year counting, 1013th year recorded', 'festival': 'Igu Aro - Nkwo day 3rd week Feb'},
-    {'igbo': 'Ọnwa Abụọ', 'greg': 'Mar–Apr', 'meaning': 'Cleaning and farming month, preparation', 'festival': 'Cleaning, farm clearing'},
-    {'igbo': 'Ọnwa Ife Eke', 'greg': 'Apr–May', 'meaning': 'Fasting period Ugani - hunger period, sacrificial harmony to Ani Earth goddess, Ikenga wrestling', 'festival': 'Ugani fasting, wrestling for Ikenga'},
-    {'igbo': 'Ọnwa Anọ', 'greg': 'May–Jun', 'meaning': 'Planting seed yams, Ekeleke dance festival - optimism, belief in God', 'festival': 'Ekeleke dance, yam planting'},
-    {'igbo': 'Ọnwa Agwụ', 'greg': 'Jun–Jul', 'meaning': 'Traditional start of year, adult masquerades Igochi na mmanwu, Alusi Agwu venerated by Dibia priests', 'festival': 'Agwu veneration, masquerades'},
-    {'igbo': 'Ọnwa Ifejiọkụ', 'greg': 'Jul–Aug', 'meaning': 'Dedicated to yam deity Ifejioku and Njoku Ji, yam rituals for New Yam Festival', 'festival': 'New Yam Festival rituals'},
-    {'igbo': 'Ọnwa Alọm Chi', 'greg': 'Aug–early Sep', 'meaning': 'Yam harvesting, prayer and meditation for women, Alom Chi shrine for ancestors, venerating mothers and motherhood, August meeting', 'festival': 'August meeting, Alom Chi'},
-    {'igbo': 'Ọnwa Ilọ Mmụọ', 'greg': 'Late Sep', 'meaning': 'Eighth Month festival Onwa Asato, spiritual return', 'festival': 'Onwa Asato festival'},
-    {'igbo': 'Ọnwa Ana', 'greg': 'Oct', 'meaning': 'Ana/Ala earth goddess rituals commence, named after her', 'festival': 'Ana rituals'},
-    {'igbo': 'Ọnwa Okike', 'greg': 'Early Nov', 'meaning': 'Okike ritual takes place', 'festival': 'Okike ritual'},
-    {'igbo': 'Ọnwa Ajana', 'greg': 'Late Nov', 'meaning': 'Okike ritual continues', 'festival': 'Okike continuation'},
-    {'igbo': 'Ọnwa Ede Ajana', 'greg': 'Late Nov–Dec', 'meaning': 'Ritual Ends', 'festival': 'End of Okike'},
+    {'igbo': 'Ọnwa Mbụ', 'greg': 'Feb–Mar', 'meaning': 'Igbo New Year, Igu Aro festival, Nri calendar year counting, 1013th year recorded', 'festival': 'Igu Aro - Nkwo day 3rd week Feb', 'audio': 'onwa_mbu.mp3', 'pronunciation': 'O-nwa Mbu'},
+    {'igbo': 'Ọnwa Abụọ', 'greg': 'Mar–Apr', 'meaning': 'Cleaning and farming month, preparation', 'festival': 'Cleaning, farm clearing', 'audio': 'onwa_abuo.mp3', 'pronunciation': 'O-nwa Abuo'},
+    {'igbo': 'Ọnwa Ife Eke', 'greg': 'Apr–May', 'meaning': 'Fasting period Ugani - hunger period, sacrificial harmony to Ani Earth goddess, Ikenga wrestling', 'festival': 'Ugani fasting, wrestling for Ikenga', 'audio': 'onwa_ife_eke.mp3', 'pronunciation': 'O-nwa Ife Eke'},
+    {'igbo': 'Ọnwa Anọ', 'greg': 'May–Jun', 'meaning': 'Planting seed yams, Ekeleke dance festival - optimism, belief in God', 'festival': 'Ekeleke dance, yam planting', 'audio': 'onwa_ano.mp3', 'pronunciation': 'O-nwa Ano'},
+    {'igbo': 'Ọnwa Agwụ', 'greg': 'Jun–Jul', 'meaning': 'Traditional start of year, adult masquerades Igochi na mmanwu, Alusi Agwu venerated by Dibia priests', 'festival': 'Agwu veneration, masquerades', 'audio': 'onwa_agwu.mp3', 'pronunciation': 'O-nwa Agwu'},
+    {'igbo': 'Ọnwa Ifejiọkụ', 'greg': 'Jul–Aug', 'meaning': 'Dedicated to yam deity Ifejioku and Njoku Ji, yam rituals for New Yam Festival', 'festival': 'New Yam Festival rituals', 'audio': 'onwa_ifejioku.mp3', 'pronunciation': 'O-nwa Ifejioku'},
+    {'igbo': 'Ọnwa Alọm Chi', 'greg': 'Aug–early Sep', 'meaning': 'Yam harvesting, prayer and meditation for women, Alom Chi shrine for ancestors, venerating mothers and motherhood, August meeting', 'festival': 'August meeting, Alom Chi', 'audio': 'onwa_alom_chi.mp3', 'pronunciation': 'O-nwa Alom Chi'},
+    {'igbo': 'Ọnwa Ilọ Mmụọ', 'greg': 'Late Sep', 'meaning': 'Eighth Month festival Onwa Asato, spiritual return', 'festival': 'Onwa Asato festival', 'audio': 'onwa_ilo_mmuo.mp3', 'pronunciation': 'O-nwa Ilo Mmuo'},
+    {'igbo': 'Ọnwa Ana', 'greg': 'Oct', 'meaning': 'Ana/Ala earth goddess rituals commence, named after her', 'festival': 'Ana rituals', 'audio': 'onwa_ana.mp3', 'pronunciation': 'O-nwa Ana'},
+    {'igbo': 'Ọnwa Okike', 'greg': 'Early Nov', 'meaning': 'Okike ritual takes place', 'festival': 'Okike ritual', 'audio': 'onwa_okike.mp3', 'pronunciation': 'O-nwa Okike'},
+    {'igbo': 'Ọnwa Ajana', 'greg': 'Late Nov', 'meaning': 'Okike ritual continues', 'festival': 'Okike continuation', 'audio': 'onwa_ajana.mp3', 'pronunciation': 'O-nwa Ajana'},
+    {'igbo': 'Ọnwa Ede Ajana', 'greg': 'Late Nov–Dec', 'meaning': 'Ritual Ends', 'festival': 'End of Okike', 'audio': 'onwa_ede_ajana.mp3', 'pronunciation': 'O-nwa Ede Ajana'},
     {'igbo': 'Ọnwa Ụzọ Alụsị', 'greg': 'Jan–early Feb', 'meaning': 'Last month, offering to the Alusi, intercalary month added every few years to align lunar with seasonal', 'festival': 'Alusi offerings, intercalary adjustment'},
 ]
 
