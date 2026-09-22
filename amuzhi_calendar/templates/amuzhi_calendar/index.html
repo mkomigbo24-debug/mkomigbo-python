@@ -1,9 +1,13 @@
 {% extends "base.html" %}{% load static %}{% block content %}
-<h1>{{ title }} - Igbo Calendar <span style="background:#ffd700;padding:4px 10px;border-radius:20px">PUBLIC 13 Onwa 🔊 Real Voice</span></h1>
+<h1>{{ title }} - Igbo Calendar <span style="background:#ffd700;padding:4px 10px;border-radius:20px">PUBLIC 13 Onwa 🔊 REAL VOICE</span></h1>
+
+<!-- REAL AUDIO PLAYER - CENTRAL DIALECT -->
+<audio id="realAudioPlayer" preload="none"></audio>
+
 <div style="background:#0a4a3a;color:#fff;padding:15px;border-radius:12px">
 <p><strong>Today:</strong> {{ today|date:"l, M j, Y" }} → <b style="background:#ffd700;color:#000;padding:6px 14px;border-radius:20px">{{ market_today }}</b> - {{ market_meaning }}</p>
 <p>📅 <b>{{ igbo_month.igbo }} ({{ igbo_month.ordinal }})</b> ({{ igbo_month.greg }}) 
-<button onclick="speakIgbo('{{ igbo_month.igbo }}')" style="background:#ffd700;border:none;padding:6px 12px;border-radius:20px;cursor:pointer">🔊 {{ igbo_month.pronunciation }} - Speak</button>
+<button onclick="playOnwa('{{ igbo_month.audio }}','{{ igbo_month.igbo }}')" style="background:#ffd700;border:none;padding:6px 12px;border-radius:20px;cursor:pointer">🔊 {{ igbo_month.pronunciation }} - REAL VOICE</button>
 </p>
 <p>🌙 {{ moon_emoji }} {{ moon_detail.phase }} {{ moon_detail.emoji }} | 🌊 {{ tide_today }}</p>
 <div style="background:#1a5a4a;padding:10px;border-radius:8px;margin-top:8px;font-size:12px">
@@ -15,16 +19,15 @@ Igbo: {{ moon_detail.igbo_meaning }}
 </div>
 </div>
 
-<h2>13 Onwa - Real Voice + Moon 🌙 - Click 🔊 to hear!</h2>
+<h2>13 Onwa - REAL Central Voice 🔊 Click to hear Ala, Ajala, Arushi!</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px">
 {% for m in igbo_months_all %}
 {% with forloop.counter as num %}
 <div style="border:1px solid #ddd;padding:12px;border-radius:10px;{% if m.igbo == igbo_month.igbo %}background:#fff9c4;border:2px solid #000{% endif %}">
 <h4 style="margin:0">{{ m.igbo }} ({{ num }}{% if num == 1 %}st{% elif num == 2 %}nd{% elif num == 3 %}rd{% else %}th{% endif %})</h4>
 <p style="margin:4px 0"><small>{{ m.greg }}</small> - <em>{{ m.pronunciation }}</em></p>
-<button onclick="speakIgbo('{{ m.igbo }}')" style="background:#0a4a3a;color:#fff;border:none;padding:6px 12px;border-radius:12px;cursor:pointer;font-size:14px">🔊 Play {{ m.igbo }}</button>
+<button onclick="playOnwa('{{ m.audio }}','{{ m.igbo }}')" style="background:#0a4a3a;color:#fff;border:none;padding:8px 14px;border-radius:12px;cursor:pointer;font-size:14px">🔊 Play REAL - {{ m.igbo }}</button>
 <br><small style="margin-top:6px;display:block">{{ m.meaning|truncatechars:90 }}</small>
-<audio preload="none" style="display:none"><source src="{% static 'audio/amuzhi/' %}{{ m.audio }}" type="audio/mpeg"></audio>
 </div>
 {% endwith %}
 {% endfor %}
@@ -59,41 +62,33 @@ Igbo: {{ moon_detail.igbo_meaning }}
 </div>
 
 <script>
-// WORKING SOUND - same as year.html that works on local
-function speakIgbo(text){
-  console.log("Speaking:", text);
-  // Try mp3 first if exists
-  try {
-    let file = "/static/audio/amuzhi/" + text.toLowerCase().replace(/ /g,'_').replace(/ọ/g,'o').replace(/ụ/g,'u').replace(/ị/g,'i') + ".mp3";
-    // For now use speech synthesis - guaranteed sound even without mp3
-    if('speechSynthesis' in window){
-      speechSynthesis.cancel();
-      let utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'ig-NG';
-      utter.rate = 0.7;
-      utter.pitch = 1;
-      utter.volume = 1;
-      // Try to find Igbo voice if available
-      let voices = speechSynthesis.getVoices();
-      console.log("Voices:", voices.length);
-      speechSynthesis.speak(utter);
-      // Visual feedback
-      alert("🔊 " + text + " - Speaking! (Upload real mp3 to static/audio/amuzhi/ for natural voice)");
-    } else {
-      alert("🔊 " + text);
-    }
-  } catch(e){
-    console.log("Speech error", e);
-    alert("🔊 " + text);
-  }
+// REAL VOICE ONLY - Central Dialect Ala, Ajala, Arushi
+function playOnwa(audioFile, igboName){
+    const player = document.getElementById('realAudioPlayer');
+    // Your files are m4a AAC content named .mp3 - use /static/audio/amuzhi/
+    const base = "{% static 'audio/amuzhi/' %}";
+    player.src = base + audioFile;
+    console.log("🔊 Playing REAL central voice:", igboName, "->", player.src);
+    player.play().then(()=>{
+        console.log("Playing:", igboName);
+    }).catch(e=>{
+        console.error("Play failed:", e);
+        // Try without static tag fallback
+        player.src = "/static/audio/amuzhi/" + audioFile;
+        player.play().catch(err=>{
+            alert("❌ Audio not found: " + audioFile + "\nCheck static/audio/amuzhi/" + audioFile + " exists!");
+        });
+    });
 }
-// Load voices
-if('speechSynthesis' in window){
-  speechSynthesis.onvoiceschanged = function(){
-    console.log("Voices loaded", speechSynthesis.getVoices().length);
-  };
+
+function stopAudio(){
+    const player = document.getElementById('realAudioPlayer');
+    player.pause();
+    player.currentTime = 0;
 }
-function playAudio(id, text){ speakIgbo(text); }
+
+// No more robot! Delete speakIgbo, speechSynthesis, responsiveVoice!
 </script>
-<p><b>Sound fix:</b> Now uses speechSynthesis directly - guaranteed sound! Upload 13 real mp3 to <code>static/audio/amuzhi/</code> for natural Igbo voice.</p>
+
+<p><b>REAL Central Voice:</b> Now plays your 13 natural mp3 - <code>static/audio/amuzhi/onwa_ala.mp3, onwa_ajala.mp3, onwa_ede_ajala.mp3, onwa_uzo_arushi.mp3</code> - Ala, Ajala, Arushi central dialect!</p>
 {% endblock %}
