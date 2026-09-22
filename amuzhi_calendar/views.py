@@ -1,24 +1,46 @@
 from django.shortcuts import render
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 
-
-MOON_PHASES_ORDER = ['New Moon','Waxing Crescent','First Quarter','Waxing Gibbous','Full Moon','Waning Gibbous','Last Quarter','Waning Crescent']
-MOON_SCIENCE = {
-    'New Moon': {'emoji':'🌑','igbo':'Ọnwa Ọhụrụ - Anya Anaghị Ahụ','visible':'0% illuminated - hemisphere in shadow','real_vs_eye':'Astronomical New: between Earth & Sun, invisible. Human eye first crescent appears 1-2 days later!','science':'Conjunction: Sun-Moon-Earth aligned.','igbo_meaning':'New cycle, Ani renewal'},
-    'Waxing Crescent': {'emoji':'🌒','igbo':'Ọnwa Na-Eto Obere','visible':'1-49% - small sliver right','real_vs_eye':'First visible to human eye! People call this New, but real New was 1-2 days before!','science':'Waxing=growing.','igbo_meaning':'Hope rising'},
-    'First Quarter': {'emoji':'🌓','igbo':'Ọnwa Ọkara Mbụ','visible':'50% - half moon','real_vs_eye':'Half visible, 7.4 days after New','science':'90° from Sun. Neap tide.','igbo_meaning':'Decision time'},
-    'Waxing Gibbous': {'emoji':'🌔','igbo':'Ọnwa Na-Eto Ukwuu','visible':'51-99% - almost full','real_vs_eye':'Gibbous=humpback, growing to full','science':'More than half lit','igbo_meaning':'Preparation'},
-    'Full Moon': {'emoji':'🌕','igbo':'Ọnwa Oju','visible':'100% - fully lit','real_vs_eye':'Appears full 1 day before/after peak!','science':'Opposition: Earth between Sun & Moon. Spring tide','igbo_meaning':'Full power, harvest'},
-    'Waning Gibbous': {'emoji':'🌖','igbo':'Ọnwa Na-Ada Ukwuu','visible':'99-51% - decreasing','real_vs_eye':'Waning=shrinking after full','science':'Shadow growing','igbo_meaning':'Gratitude'},
-    'Last Quarter': {'emoji':'🌗','igbo':'Ọnwa Ọkara Ikpeazụ','visible':'50% - left lit','real_vs_eye':'Third Quarter','science':'270° from Sun','igbo_meaning':'Release'},
-    'Waning Crescent': {'emoji':'🌘','igbo':'Ọnwa Na-Ada Obere','visible':'49-1% - thin sliver left','real_vs_eye':'Last visible to eye! Real Last invisible 1-2 days after this! Eye last ≠ real last!','science':'Final visible before New','igbo_meaning':'Rest, ancestors wisdom'}
+MARKET_DAYS = ['Eke','Orie','Afo','Nkwo']
+MARKET_MEANING = {
+    'Eke': 'Creation, East, beginnings - Chi',
+    'Orie': 'Work, West, trade',
+    'Afo': 'Rest, North, community',
+    'Nkwo': 'Spirit, South, ancestors',
 }
+
+IGBO_MONTHS_AUTH = [
+    {'igbo': 'Ọnwa Mbụ', 'greg': 'Feb–Mar', 'meaning': 'Igbo New Year, Igu Aro festival, Nri calendar year counting, 1013th year recorded', 'festival': 'Igu Aro - Nkwo day 3rd week Feb', 'audio': 'onwa_mbu.mp3', 'pronunciation': 'O-nwa Mbu', 'ordinal': '1st'},
+    {'igbo': 'Ọnwa Abụọ', 'greg': 'Mar–Apr', 'meaning': 'Cleaning and farming month, preparation', 'festival': 'Cleaning, farm clearing', 'audio': 'onwa_abuo.mp3', 'pronunciation': 'O-nwa Abuo', 'ordinal': '2nd'},
+    {'igbo': 'Ọnwa Ife Eke', 'greg': 'Apr–May', 'meaning': 'Fasting period Ugani - hunger period, sacrificial harmony to Ani Earth goddess, Ikenga wrestling', 'festival': 'Ugani fasting, wrestling', 'audio': 'onwa_ife_eke.mp3', 'pronunciation': 'O-nwa Ife Eke', 'ordinal': '3rd'},
+    {'igbo': 'Ọnwa Anọ', 'greg': 'May–Jun', 'meaning': 'Planting seed yams, Ekeleke dance festival - optimism, belief in God', 'festival': 'Ekeleke dance, yam planting', 'audio': 'onwa_ano.mp3', 'pronunciation': 'O-nwa Ano', 'ordinal': '4th'},
+    {'igbo': 'Ọnwa Agwụ', 'greg': 'Jun–Jul', 'meaning': 'Traditional start of year, adult masquerades Igochi na mmanwu, Alusi Agwu venerated', 'festival': 'Agwu veneration', 'audio': 'onwa_agwu.mp3', 'pronunciation': 'O-nwa Agwu', 'ordinal': '5th'},
+    {'igbo': 'Ọnwa Ifejiọkụ', 'greg': 'Jul–Aug', 'meaning': 'Dedicated to yam deity Ifejioku and Njoku Ji, yam rituals for New Yam Festival', 'festival': 'New Yam rituals', 'audio': 'onwa_ifejioku.mp3', 'pronunciation': 'O-nwa Ifejioku', 'ordinal': '6th'},
+    {'igbo': 'Ọnwa Alọm Chi', 'greg': 'Aug–early Sep', 'meaning': 'Yam harvesting, prayer for women, Alom Chi shrine for ancestors, mothers', 'festival': 'August meeting', 'audio': 'onwa_alom_chi.mp3', 'pronunciation': 'O-nwa Alom Chi', 'ordinal': '7th'},
+    {'igbo': 'Ọnwa Ilọ Mmụọ', 'greg': 'Late Sep', 'meaning': 'Eighth Month festival Onwa Asato, spiritual return', 'festival': 'Onwa Asato', 'audio': 'onwa_ilo_mmuo.mp3', 'pronunciation': 'O-nwa Ilo Mmuo', 'ordinal': '8th'},
+    {'igbo': 'Ọnwa Ana', 'greg': 'Oct', 'meaning': 'Ana/Ala earth goddess rituals commence', 'festival': 'Ana rituals', 'audio': 'onwa_ana.mp3', 'pronunciation': 'O-nwa Ana', 'ordinal': '9th'},
+    {'igbo': 'Ọnwa Okike', 'greg': 'Early Nov', 'meaning': 'Okike ritual takes place', 'festival': 'Okike ritual', 'audio': 'onwa_okike.mp3', 'pronunciation': 'O-nwa Okike', 'ordinal': '10th'},
+    {'igbo': 'Ọnwa Ajana', 'greg': 'Late Nov', 'meaning': 'Okike ritual continues', 'festival': 'Okike continuation', 'audio': 'onwa_ajana.mp3', 'pronunciation': 'O-nwa Ajana', 'ordinal': '11th'},
+    {'igbo': 'Ọnwa Ede Ajana', 'greg': 'Late Nov–Dec', 'meaning': 'Ritual Ends', 'festival': 'End of Okike', 'audio': 'onwa_ede_ajana.mp3', 'pronunciation': 'O-nwa Ede Ajana', 'ordinal': '12th'},
+    {'igbo': 'Ọnwa Ụzọ Alụsị', 'greg': 'Jan–early Feb', 'meaning': 'Last month, offering to the Alusi, intercalary month added every few years', 'festival': 'Alusi offering', 'audio': 'onwa_uzo_alusi.mp3', 'pronunciation': 'O-nwa Uzo Alusi', 'ordinal': '13th'},
+]
+
+# SCIENTIFIC MOON - educative - real vs human eye
+MOON_SCIENCE = {
+    'New Moon': {'emoji':'🌑','igbo':'Ọnwa Ọhụrụ - Anya Anaghị Ahụ','visible':'0% illuminated - hemisphere in shadow','real_vs_eye':'Astronomical New: Moon between Earth & Sun, invisible. Human eye first crescent appears 1-2 days later as Waxing Crescent!','science':'Conjunction: Sun-Moon-Earth aligned. Far side lit, near side dark. Not visible.','igbo_meaning':'New cycle, Ani renewal, planting intentions'},
+    'Waxing Crescent': {'emoji':'🌒','igbo':'Ọnwa Na-Eto Obere','visible':'1-49% - small sliver right side','real_vs_eye':'First visible to human eye! People call this New, but real New was 1-2 days before!','science':'Moon moving from Sun, Waxing=growing.','igbo_meaning':'Hope rising, first light'},
+    'First Quarter': {'emoji':'🌓','igbo':'Ọnwa Ọkara Mbụ','visible':'50% - half moon right lit','real_vs_eye':'Half visible, 7.4 days after New','science':'Moon 90° from Sun. Neap tide low.','igbo_meaning':'Decision time, action'},
+    'Waxing Gibbous': {'emoji':'🌔','igbo':'Ọnwa Na-Eto Ukwuu','visible':'51-99% - almost full','real_vs_eye':'Gibbous=humpback, growing to full','science':'More than half lit, shadow shrinking.','igbo_meaning':'Preparation, building energy'},
+    'Full Moon': {'emoji':'🌕','igbo':'Ọnwa Oju','visible':'100% - fully lit face','real_vs_eye':'Real Full vs eye: appears full 1 day before/after peak!','science':'Opposition: Earth between Sun & Moon. Spring tide 2.5m.','igbo_meaning':'Full power, harvest, Agwu active'},
+    'Waning Gibbous': {'emoji':'🌖','igbo':'Ọnwa Na-Ada Ukwuu','visible':'99-51% - decreasing','real_vs_eye':'Waning=shrinking after full','science':'Shadow growing from right.','igbo_meaning':'Gratitude, sharing'},
+    'Last Quarter': {'emoji':'🌗','igbo':'Ọnwa Ọkara Ikpeazụ','visible':'50% - left side lit','real_vs_eye':'Third Quarter, half visible again','science':'Moon 270° from Sun.','igbo_meaning':'Release, forgiveness, cleansing'},
+    'Waning Crescent': {'emoji':'🌘','igbo':'Ọnwa Na-Ada Obere - Ikpeazụ Anya','visible':'49-1% - thin sliver left, disappearing','real_vs_eye':'Last visible to eye! Real Last (shadow hemisphere) invisible 1-2 days AFTER this! Eye last ≠ real last!','science':'Final visible phase before invisible New Moon conjunction.','igbo_meaning':'Rest, reflection, ancestors wisdom'},
+}
+
 def get_moon_phase(target_date):
-    import datetime
-    from datetime import date as date_cls
-    if isinstance(target_date, datetime.datetime):
+    if isinstance(target_date, datetime):
         target_date = target_date.date()
-    known_new = date_cls(2024, 1, 11)
+    known_new = date(2024, 1, 11)
     diff = (target_date - known_new).days
     lunar = 29.53058867
     phase_days = diff % lunar
@@ -35,232 +57,104 @@ def get_moon_phase(target_date):
 def get_moon_detail(target_date):
     name, age = get_moon_phase(target_date)
     d = MOON_SCIENCE[name]
-    return {'phase':name,'age':age,'emoji':d['emoji'],'igbo':d['igbo'],'visible':d['visible'],'real_vs_eye':d['real_vs_eye'],'science':d['science'],'igbo_meaning':d['igbo_meaning'],'moon_emoji':d['emoji'],'moon_phase':name,'moon_igbo':d['igbo'],'moon_visible':d['visible'],'moon_real_vs_eye':d['real_vs_eye'],'moon_science':d['science']}
+    return {
+        'phase': name,
+        'age': age,
+        'emoji': d['emoji'],
+        'igbo': d['igbo'],
+        'visible': d['visible'],
+        'real_vs_eye': d['real_vs_eye'],
+        'science': d['science'],
+        'igbo_meaning': d['igbo_meaning'],
+        'moon_emoji': d['emoji'],
+        'moon_phase': name,
+        'moon_igbo': d['igbo'],
+        'moon_visible': d['visible'],
+        'moon_real_vs_eye': d['real_vs_eye'],
+        'moon_science': d['science'],
+        'moon_name': name,
+    }
 
-
-MARKET_DAYS = ['Eke','Orie','Afo','Nkwo']
-MARKET_MEANING = {
-    'Eke': 'Creation, East, beginnings - Chi',
-    'Orie': 'Work, West, trade',
-    'Afo': 'Rest, North, community',
-    'Nkwo': 'Spirit, South, ancestors',
-}
-
-IGBO_MONTHS_AUTH = [
-    {'igbo': 'Ọnwa Mbụ', 'greg': 'Feb–Mar', 'meaning': 'Igbo New Year, Igu Aro festival, Nri calendar year counting, 1013th year recorded', 'festival': 'Igu Aro - Nkwo day 3rd week Feb', 'audio': 'onwa_mbu.mp3', 'pronunciation': 'O-nwa Mbu'},
-    {'igbo': 'Ọnwa Abụọ', 'greg': 'Mar–Apr', 'meaning': 'Cleaning and farming month, preparation', 'festival': 'Cleaning, farm clearing', 'audio': 'onwa_abuo.mp3', 'pronunciation': 'O-nwa Abuo'},
-    {'igbo': 'Ọnwa Ife Eke', 'greg': 'Apr–May', 'meaning': 'Fasting period Ugani - hunger period, sacrificial harmony to Ani Earth goddess, Ikenga wrestling', 'festival': 'Ugani fasting, wrestling for Ikenga', 'audio': 'onwa_ife_eke.mp3', 'pronunciation': 'O-nwa Ife Eke'},
-    {'igbo': 'Ọnwa Anọ', 'greg': 'May–Jun', 'meaning': 'Planting seed yams, Ekeleke dance festival - optimism, belief in God', 'festival': 'Ekeleke dance, yam planting', 'audio': 'onwa_ano.mp3', 'pronunciation': 'O-nwa Ano'},
-    {'igbo': 'Ọnwa Agwụ', 'greg': 'Jun–Jul', 'meaning': 'Traditional start of year, adult masquerades Igochi na mmanwu, Alusi Agwu venerated by Dibia priests', 'festival': 'Agwu veneration, masquerades', 'audio': 'onwa_agwu.mp3', 'pronunciation': 'O-nwa Agwu'},
-    {'igbo': 'Ọnwa Ifejiọkụ', 'greg': 'Jul–Aug', 'meaning': 'Dedicated to yam deity Ifejioku and Njoku Ji, yam rituals for New Yam Festival', 'festival': 'New Yam Festival rituals', 'audio': 'onwa_ifejioku.mp3', 'pronunciation': 'O-nwa Ifejioku'},
-    {'igbo': 'Ọnwa Alọm Chi', 'greg': 'Aug–early Sep', 'meaning': 'Yam harvesting, prayer and meditation for women, Alom Chi shrine for ancestors, venerating mothers and motherhood, August meeting', 'festival': 'August meeting, Alom Chi', 'audio': 'onwa_alom_chi.mp3', 'pronunciation': 'O-nwa Alom Chi'},
-    {'igbo': 'Ọnwa Ilọ Mmụọ', 'greg': 'Late Sep', 'meaning': 'Eighth Month festival Onwa Asato, spiritual return', 'festival': 'Onwa Asato festival', 'audio': 'onwa_ilo_mmuo.mp3', 'pronunciation': 'O-nwa Ilo Mmuo'},
-    {'igbo': 'Ọnwa Ana', 'greg': 'Oct', 'meaning': 'Ana/Ala earth goddess rituals commence, named after her', 'festival': 'Ana rituals', 'audio': 'onwa_ana.mp3', 'pronunciation': 'O-nwa Ana'},
-    {'igbo': 'Ọnwa Okike', 'greg': 'Early Nov', 'meaning': 'Okike ritual takes place', 'festival': 'Okike ritual', 'audio': 'onwa_okike.mp3', 'pronunciation': 'O-nwa Okike'},
-    {'igbo': 'Ọnwa Ajana', 'greg': 'Late Nov', 'meaning': 'Okike ritual continues', 'festival': 'Okike continuation', 'audio': 'onwa_ajana.mp3', 'pronunciation': 'O-nwa Ajana'},
-    {'igbo': 'Ọnwa Ede Ajana', 'greg': 'Late Nov–Dec', 'meaning': 'Ritual Ends', 'festival': 'End of Okike', 'audio': 'onwa_ede_ajana.mp3', 'pronunciation': 'O-nwa Ede Ajana'},
-    {'igbo': 'Ọnwa Ụzọ Alụsị', 'greg': 'Jan–early Feb', 'meaning': 'Last month, offering to the Alusi, intercalary month added every few years to align lunar with seasonal', 'festival': 'Alusi offerings, intercalary adjustment'},
-]
-
-MOON_EMOJI = {
-    'New Moon': '🌑',
-    'Waxing Crescent': '🌒',
-    'First Quarter': '🌓',
-    'Waxing Gibbous': '🌔',
-    'Full Moon': '🌕',
-    'Waning Gibbous': '🌖',
-    'Last Quarter': '🌗',
-    'Waning Crescent': '🌘',
-    'Ọnwa Ohuru': '🌑',
-    'Ọnwa Okirikiri': '🌕',
-}
-
-MOON_PHASES = ['New Moon - Ọnwa Ohuru','Waxing Crescent','First Quarter','Waxing Gibbous','Full Moon - Ọnwa Okirikiri','Waning Gibbous','Last Quarter','Waning Crescent']
-
-def ordinal(n):
-    if 10 <= n % 100 <= 20:
-        return f"{n}th"
-    return f"{n}{ {1:'st',2:'nd',3:'rd'}.get(n%10,'th')}"
-
-def get_market_day(d):
-    ref = date(2024,1,1)
-    return MARKET_DAYS[(MARKET_DAYS.index('Afo') + (d-ref).days) % 4]
-
-
-def get_moon_emoji(phase_name):
-    for k,v in MOON_EMOJI.items():
-        if k in phase_name:
-            return v
-    return '🌙'
-
-def get_tide(d):
-    name, age = get_moon_phase(d)
-    if 'New Moon' in name or 'Full Moon' in name:
-        return f"Spring Tide 2.1m - {age:.1f}d"
-    return f"Neap Tide 1.2m - {name[:15]}"
-
-
-# Moon phase educative descriptions
-MOON_PHASES = {
-    'New Moon': {'emoji': '🌑', 'igbo': 'Ọnwa Ọhụrụ', 'meaning': 'New beginnings, planting, new projects - Ani goddess renewal'},
-    'Waxing Crescent': {'emoji': '🌒', 'igbo': 'Ọnwa Na-Eto Obere', 'meaning': 'Small growth, hope rising, first light'},
-    'First Quarter': {'emoji': '🌓', 'igbo': 'Ọnwa Ọkara Mbụ', 'meaning': 'Half strength, decision time, action'},
-    'Waxing Gibbous': {'emoji': '🌔', 'igbo': 'Ọnwa Na-Eto Ukwuu', 'meaning': 'Almost full, building energy, preparation'},
-    'Full Moon': {'emoji': '🌕', 'igbo': 'Ọnwa Oju', 'meaning': 'Full power, harvest, celebration, spirits active - Agwu'},
-    'Waning Gibbous': {'emoji': '🌖', 'igbo': 'Ọnwa Na-Ada Ukwuu', 'meaning': 'Gratitude, sharing, thanksgiving'},
-    'Last Quarter': {'emoji': '🌗', 'igbo': 'Ọnwa Ọkara Ikpeazụ', 'meaning': 'Release, forgiveness, cleansing'},
-    'Waning Crescent': {'emoji': '🌘', 'igbo': 'Ọnwa Na-Ada Obere', 'meaning': 'Rest, reflection, wisdom of ancestors'},
-}
-
-def get_moon_phase_desc(day):
-    # Simple calculation for demo - real calc would use lunar library
-    phases = list(MOON_PHASES.keys())
-    return phases[day % 8]
+def get_market_day(target_date):
+    ref = date(2024, 1, 1) # Eke
+    diff = (target_date - ref).days
+    idx = diff % 4
+    return MARKET_DAYS[idx], MARKET_MEANING[MARKET_DAYS[idx]]
 
 def calendar_view(request):
     today = date.today()
-    market_today = get_market_day(today)
+    market_today, market_meaning = get_market_day(today)
     moon_name, moon_age = get_moon_phase(today)
- moon_detail = get_moon_detail(today)
-    tide_today = get_tide(today)
-    month_idx = 0
-    if today.month==3 or (today.month==4 and today.day<15): month_idx=1
-    elif today.month==4 or (today.month==5 and today.day<15): month_idx=2
-    elif today.month==5 or (today.month==6 and today.day<15): month_idx=3
-    elif today.month==6 or (today.month==7 and today.day<15): month_idx=4
-    elif today.month==7 or (today.month==8 and today.day<10): month_idx=5
-    elif today.month==8 or (today.month==9 and today.day<10): month_idx=6
-    elif today.month==9: month_idx=7
-    elif today.month==10: month_idx=8
-    elif today.month==11 and today.day<15: month_idx=9
-    elif today.month==11: month_idx=10
-    elif today.month==12: month_idx=11
-    elif today.month==1: month_idx=12
-    igbo_month_current = {**IGBO_MONTHS_AUTH[month_idx], 'ordinal': ordinal(month_idx+1), 'num': month_idx+1}
-    month=[]
+    moon_detail = get_moon_detail(today)
+    month_num = (today.month - 2) % 13 # Feb=0
+    igbo_month = IGBO_MONTHS_AUTH[month_num]
+
+    # Next 28 days with scientific moon
+    month_data = []
     for i in range(28):
-        d = today+timedelta(days=i)
-        moon_n,_ = get_moon_phase(d)
-        month.append({'date':d,'market':get_market_day(d),'is_today':d==today,'moon':moon_n,'moon_emoji':get_moon_emoji(moon_n),'tide':get_tide(d)})
-    return render(request,'amuzhi_calendar/index.html',{
-        'title':'Amuzhi Calendar',
-        'today':today,
-        'market_today':market_today,
-        'market_meaning':MARKET_MEANING[market_today],
-        'market_meaning_all':MARKET_MEANING,
-        'month':month,
-        'igbo_month':igbo_month_current,
-        'igbo_months_all':IGBO_MONTHS_AUTH,
-        'moon_name':moon_name,
-        'moon_age':round(moon_age,1),
-        'moon_emoji':get_moon_emoji(moon_name),
-        'tide_today':tide_today,
-        'daily_fact':f"Today {today} is {market_today} - {igbo_month_current['igbo']} ({igbo_month_current['ordinal']})",
-        'public_note':'PUBLIC APP - Authentic 13-month Onwa with audio + moon',
-    })
+        d = today + timedelta(days=i)
+        m_day, _ = get_market_day(d)
+        md = get_moon_detail(d)
+        month_data.append({
+            'date': d,
+            'market': m_day,
+            'is_today': d==today,
+            'moon_emoji': md['emoji'],
+            'moon_phase': md['phase'],
+            'moon_igbo': md['igbo'],
+            'moon_visible': md['visible'],
+            'moon_real_vs_eye': md['real_vs_eye'],
+            'moon_science': md['science'],
+            'moon_meaning': md['igbo_meaning'],
+        })
+
+    context = {
+        'title': 'Amuzhi Calendar',
+        'today': today,
+        'market_today': market_today,
+        'market_meaning': market_meaning,
+        'igbo_month': igbo_month,
+        'igbo_months_all': IGBO_MONTHS_AUTH,
+        'moon_name': moon_name,
+        'moon_age': moon_age,
+        'moon_emoji': moon_detail['emoji'],
+        'moon_detail': moon_detail,
+        'tide_today': 'Neap Tide 1.2m - First Quarter' if 'Quarter' in moon_name else 'Spring Tide 2.5m' if 'Full' in moon_name or 'New' in moon_name else 'Moderate Tide',
+        'month': month_data,
+    }
+    return render(request, 'amuzhi_calendar/index.html', context)
 
 def today_view(request):
     return calendar_view(request)
 
 def year_view(request, year):
-    months=[]
-    for idx, m in enumerate(IGBO_MONTHS_AUTH):
-        try:
-            d=date(year,(idx+1)%12+1,21)
-            months.append({'igbo':m['igbo'],'greg':m['greg'],'meaning':m['meaning'],'festival':m['festival'],'date':d,'market':get_market_day(d),'ordinal':ordinal(idx+1),'num':idx+1})
-        except:
-            months.append({'igbo':m['igbo'],'greg':m['greg'],'meaning':m['meaning'],'festival':m['festival'],'date':date(year,1,1),'market':'Eke','ordinal':ordinal(idx+1),'num':idx+1})
-    return render(request,'amuzhi_calendar/year.html',{'year':year,'months':months,'title':f'Amuzhi {year} - 13 Onwa'})
+    return render(request, 'amuzhi_calendar/year.html', {'year': year, 'igbo_months': IGBO_MONTHS_AUTH})
 
 def month_view(request, year, month):
-    days=[]
-    for i in range(31):
-        try:
-            dd=date(year,month,1)+timedelta(days=i)
-            if dd.month!=month: break
-            days.append({'date':dd,'market':get_market_day(dd)})
-        except: break
-    igbo_m = {**IGBO_MONTHS_AUTH[(month-1)%13], 'ordinal': ordinal((month-1)%13+1)} if month<=13 else {**IGBO_MONTHS_AUTH[0], 'ordinal': ordinal(1)}
-    return render(request,'amuzhi_calendar/month.html',{'year':year,'month':month,'days':days,'igbo_month':igbo_m,'title':f"{igbo_m['igbo']} {year}"})
+    return render(request, 'amuzhi_calendar/month.html', {'year': year, 'month': month})
 
 def convert_view(request, day, month, year):
-    try:
-        d=date(year,month,day)
-        m=get_market_day(d)
-        moon,_=get_moon_phase(d)
-        igbo_m = {**IGBO_MONTHS_AUTH[(month-1)%13], 'ordinal': ordinal((month-1)%13+1)}
-        return render(request,'amuzhi_calendar/convert.html',{'date':d,'market':m,'meaning':MARKET_MEANING[m],'moon':moon,'moon_emoji':get_moon_emoji(moon),'tide':get_tide(d),'igbo_month':igbo_m})
-    except Exception as e:
-        return render(request,'amuzhi_calendar/convert.html',{'error':str(e)})
-
-# === STEP C: Learning Features - Quiz + Market Calculator + Festival ===
-from django.http import JsonResponse
-import random
+    d = date(year, month, day)
+    market, meaning = get_market_day(d)
+    moon = get_moon_detail(d)
+    return render(request, 'amuzhi_calendar/convert.html', {'date': d, 'market': market, 'meaning': meaning, 'moon': moon})
 
 def market_calculator_view(request):
-    from datetime import date
-    # Base reference: Known Eke day - Jan 1 2024 was Orie (example)
-    base_date = date(2024, 1, 1)  # Orie
-    base_index = MARKET_DAYS.index('Orie')
-    q_date_str = request.GET.get('date')
-    try:
-        if q_date_str:
-            y,m,d = map(int, q_date_str.split('-'))
-            target = date(y,m,d)
-        else:
-            target = date.today()
-        diff = (target - base_date).days
-        market_index = (base_index + diff) % 4
-        market = MARKET_DAYS[market_index]
-        return render(request, 'amuzhi_calendar/calculator.html', {
-            'title': 'Market Day Calculator',
-            'target_date': target,
-            'market': market,
-            'meaning': MARKET_MEANING.get(market, ''),
-            'today': date.today(),
-            'all_markets': MARKET_DAYS,
-        })
-    except Exception as e:
-        return render(request, 'amuzhi_calendar/calculator.html', {
-            'title': 'Market Day Calculator',
-            'target_date': date.today(),
-            'market': 'Eke',
-            'meaning': MARKET_MEANING['Eke'],
-            'error': str(e),
-            'today': date.today(),
-        })
+    result = None
+    if request.method == 'POST':
+        try:
+            d = int(request.POST.get('day'))
+            m = int(request.POST.get('month'))
+            y = int(request.POST.get('year'))
+            target = date(y, m, d)
+            market, meaning = get_market_day(target)
+            result = {'date': target, 'market': market, 'meaning': meaning}
+        except Exception as e:
+            result = {'error': str(e)}
+    return render(request, 'amuzhi_calendar/calculator.html', {'result': result})
 
 def quiz_view(request):
-    # Quiz about 13 Onwa
-    questions = [
-        {'q': 'What does Ọnwa Mbụ (1st) mark?', 'options': ['Igbo New Year, Igu Aro festival', 'Yam planting', 'Fishing'], 'answer': 0, 'explain': 'Ọnwa Mbụ is Feb-Mar, Igbo New Year, Igu Aro festival, 1013th year'},
-        {'q': 'Which month is for yam deity Ifejioku?', 'options': ['Ọnwa Ifejiọkụ (6th)', 'Ọnwa Ana (9th)', 'Ọnwa Mbụ (1st)'], 'answer': 0, 'explain': 'Ọnwa Ifejiọkụ Jul-Aug dedicated to yam deity Ifejioku and Njoku Ji'},
-        {'q': 'When is August meeting?', 'options': ['Ọnwa Alọm Chi (7th)', 'Ọnwa Okike (10th)', 'Ọnwa Ife Eke (3rd)'], 'answer': 0, 'explain': 'Ọnwa Alọm Chi Aug-early Sep is women prayer, Alom Chi shrine, August meeting'},
-        {'q': 'What is Eke market meaning?', 'options': ['Creation, East, beginnings', 'Spirit, South', 'Rest, North'], 'answer': 0, 'explain': 'Eke = Creation, East, beginnings - Chi'},
-        {'q': 'How many months in authentic Igbo calendar?', 'options': ['13 months', '12 months', '10 months'], 'answer': 0, 'explain': 'Authentic has 13 months including intercalary Ọnwa Ụzọ Alụsị'},
-    ]
-    score = 0
-    if request.method == 'POST':
-        for i, q in enumerate(questions):
-            ans = request.POST.get(f'q{i}')
-            if ans is not None and int(ans) == q['answer']:
-                score += 1
-        return render(request, 'amuzhi_calendar/quiz_result.html', {
-            'title': 'Quiz Result',
-            'score': score,
-            'total': len(questions),
-            'questions': questions,
-        })
-    # Shuffle for GET
-    random.shuffle(questions)
-    return render(request, 'amuzhi_calendar/quiz.html', {
-        'title': 'Igbo Calendar Quiz',
-        'questions': questions,
-    })
+    return render(request, 'amuzhi_calendar/quiz.html', {'months': IGBO_MONTHS_AUTH})
 
 def festival_view(request):
-    return render(request, 'amuzhi_calendar/festival.html', {
-        'title': 'Igbo Festival Calendar',
-        'months': IGBO_MONTHS_AUTH,
-        'today': date.today(),
-    })
+    return render(request, 'amuzhi_calendar/festival.html', {'months': IGBO_MONTHS_AUTH})
