@@ -1,10 +1,8 @@
 from django.urls import path
 from . import views
-
-app_name = 'amuzhi'
-
+app_name = 'amuzhi_calendar'
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.calendar_view, name='index'),
     path('today/', views.today_view, name='today'),
     path('calculator/', views.market_calculator_view, name='calculator'),
     path('quiz/', views.quiz_view, name='quiz'),
