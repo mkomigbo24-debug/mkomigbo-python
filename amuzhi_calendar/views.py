@@ -67,6 +67,24 @@ def get_tide(d):
         return f"Spring Tide 2.1m - {age:.1f}d"
     return f"Neap Tide 1.2m - {name[:15]}"
 
+
+# Moon phase educative descriptions
+MOON_PHASES = {
+    'New Moon': {'emoji': '🌑', 'igbo': 'Ọnwa Ọhụrụ', 'meaning': 'New beginnings, planting, new projects - Ani goddess renewal'},
+    'Waxing Crescent': {'emoji': '🌒', 'igbo': 'Ọnwa Na-Eto Obere', 'meaning': 'Small growth, hope rising, first light'},
+    'First Quarter': {'emoji': '🌓', 'igbo': 'Ọnwa Ọkara Mbụ', 'meaning': 'Half strength, decision time, action'},
+    'Waxing Gibbous': {'emoji': '🌔', 'igbo': 'Ọnwa Na-Eto Ukwuu', 'meaning': 'Almost full, building energy, preparation'},
+    'Full Moon': {'emoji': '🌕', 'igbo': 'Ọnwa Oju', 'meaning': 'Full power, harvest, celebration, spirits active - Agwu'},
+    'Waning Gibbous': {'emoji': '🌖', 'igbo': 'Ọnwa Na-Ada Ukwuu', 'meaning': 'Gratitude, sharing, thanksgiving'},
+    'Last Quarter': {'emoji': '🌗', 'igbo': 'Ọnwa Ọkara Ikpeazụ', 'meaning': 'Release, forgiveness, cleansing'},
+    'Waning Crescent': {'emoji': '🌘', 'igbo': 'Ọnwa Na-Ada Obere', 'meaning': 'Rest, reflection, wisdom of ancestors'},
+}
+
+def get_moon_phase_desc(day):
+    # Simple calculation for demo - real calc would use lunar library
+    phases = list(MOON_PHASES.keys())
+    return phases[day % 8]
+
 def calendar_view(request):
     today = date.today()
     market_today = get_market_day(today)

@@ -2,14 +2,23 @@
 <h1>{{ title }} - Igbo Calendar <span style="background:#ffd700;padding:4px 10px;border-radius:20px">PUBLIC 13 Onwa 🔊 Real Voice</span></h1>
 <div style="background:#0a4a3a;color:#fff;padding:15px;border-radius:12px">
 <p><strong>Today:</strong> {{ today|date:"l, M j, Y" }} → <b style="background:#ffd700;color:#000;padding:6px 14px;border-radius:20px">{{ market_today }}</b> - {{ market_meaning }}</p>
-<p>📅 <b>{{ igbo_month.igbo }} ({{ igbo_month.ordinal }})</b> ({{ igbo_month.greg }}) 
+<p>📅 <b>{{ igbo_month.igbo }} ({{ igbo_month.ordinal }})</b> ({{ igbo_month.greg }})
 <audio id="audio-today" preload="none"><source src="{% static 'audio/amuzhi/' %}{{ igbo_month.audio }}" type="audio/mpeg"></audio>
 <button onclick="playAudio('audio-today','{{ igbo_month.igbo }}')" style="background:#ffd700;border:none;padding:6px 12px;border-radius:20px;cursor:pointer">🔊 {{ igbo_month.pronunciation }}</button>
 </p>
 <p>🌙 {{ moon_emoji }} {{ moon_name }} | 🌊 {{ tide_today }}</p>
+{% if moon_detail %}
+<div style="background:#1a5a4a;padding:10px;border-radius:8px;margin-top:8px;font-size:13px">
+<b>{{ moon_detail.phase }} {{ moon_detail.emoji }} - {{ moon_detail.igbo }}</b><br>
+Visible: {{ moon_detail.visible }}<br>
+Science: {{ moon_detail.science }}<br>
+Real vs Eye: {{ moon_detail.real_vs_eye }}<br>
+Igbo: {{ moon_detail.igbo_meaning }}
+</div>
+{% endif %}
 </div>
 
-<h2>13 Onwa - Real Voice + (1st) + Moon 🌙</h2>
+<h2>13 Onwa - Real Voice + Moon 🌙</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px">
 {% for m in igbo_months_all %}
 {% with forloop.counter as num %}
@@ -24,25 +33,57 @@
 {% endfor %}
 </div>
 
-<h2>Next 28 Days 🌙</h2>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-{% for item in month %}<div style="border:1px solid #ddd;padding:8px;border-radius:8px;text-align:center;{% if item.is_today %}background:#ffd700{% endif %}"><div style="font-size:1.4rem">{{ item.moon_emoji }}</div>{{ item.date|date:"M j" }} <b>{{ item.market }}</b></div>{% endfor %}
+<h2>Next 28 Days 🌙 - Scientific & Educative</h2>
+<div style="background:#f0f8ff;padding:12px;border-radius:10px;margin-bottom:12px;font-size:13px;border-left:4px solid #0a4a3a">
+<b>🌑 New Moon:</b> Visible hemisphere in shadow, 0% lit - astronomical New is invisible! Human eye first sees Waxing Crescent 1-2 days later!<br>
+<b>🌒 Waxing Crescent:</b> 1-49% - first visible to eye (people call this New, but real New was before!)<br>
+<b>🌓 First Quarter:</b> 50% - half moon<br>
+<b>🌔 Waxing Gibbous:</b> 51-99% - almost full<br>
+<b>🌕 Full Moon:</b> 100% - fully lit, Spring tide<br>
+<b>🌖 Waning Gibbous:</b> 99-51% - decreasing<br>
+<b>🌗 Last Quarter:</b> 50% left side<br>
+<b>🌘 Waning Crescent:</b> 49-1% - last visible to eye! Real Last (shadow hemisphere) is invisible 1-2 days after this!
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
+{% for item in month %}
+<div style="border:1px solid #ddd;padding:10px;border-radius:10px;text-align:left;{% if item.is_today %}background:#fff9c4;border:2px solid #ffd700{% endif %}">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:1.6rem">{{ item.moon_emoji }}</span>
+<span><b>{{ item.date|date:"M j" }}</b> <b style="background:#0a4a3a;color:#fff;padding:2px 8px;border-radius:12px">{{ item.market }}</b></span>
+</div>
+<div style="font-size:12px;margin-top:6px">
+<b>{{ item.moon_phase }} - {{ item.moon_igbo }}</b><br>
+<span style="color:#555">Visible: {{ item.moon_visible }}</span><br>
+<span style="color:#0a4a3a"><i>Science:</i> {{ item.moon_science|truncatechars:100 }}</span><br>
+<span style="color:#8B4513"><i>Real vs Eye:</i> {{ item.moon_real_vs_eye|truncatechars:110 }}</span>
+</div>
+</div>
+{% endfor %}
 </div>
 
 <script>
 function playAudio(id, text){
   var a=document.getElementById(id);
-  a.play().catch(function(){
-    // Fallback to speech if mp3 not yet recorded
+  if(!a){
     if('speechSynthesis' in window){
       var u=new SpeechSynthesisUtterance(text); u.lang='ig-IG'; u.rate=0.8; speechSynthesis.speak(u);
+    }
+    return;
+  }
+  a.currentTime=0;
+  a.play().then(()=>{console.log("MP3 played:", text)}).catch(()=>{
+    console.log("MP3 failed, fallback speech:", text);
+    if('speechSynthesis' in window){
+      var u=new SpeechSynthesisUtterance(text); u.lang='ig-IG'; u.rate=0.8; speechSynthesis.speak(u);
+    } else {
+      alert("Upload real mp3: static/audio/amuzhi/");
     }
   });
-  a.onerror=function(){ 
+  a.onerror=()=>{
     if('speechSynthesis' in window){
       var u=new SpeechSynthesisUtterance(text); u.lang='ig-IG'; u.rate=0.8; speechSynthesis.speak(u);
     }
-  }
+  };
 }
 </script>
 <p><b>To add real voice:</b> Record 13 mp3 files and upload to <code>static/audio/amuzhi/</code> - then real Igbo speaker plays, not robot!</p>
