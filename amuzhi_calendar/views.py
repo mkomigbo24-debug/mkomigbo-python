@@ -44,15 +44,50 @@ def get_moon_phase(target_date):
     diff = (target_date - known_new).days
     lunar = 29.53058867
     phase_days = diff % lunar
-    if phase_days < 1.5: key='New Moon'
-    elif phase_days < 7.0: key='Waxing Crescent'
-    elif phase_days < 8.5: key='First Quarter'
-    elif phase_days < 14.0: key='Waxing Gibbous'
-    elif phase_days < 16.0: key='Full Moon'
-    elif phase_days < 21.5: key='Waning Gibbous'
-    elif phase_days < 23.0: key='Last Quarter'
-    else: key='Waning Crescent'
+    
+    # BOSS OBSERVATION: Full lasts 3 days to eye, Dark lasts 3 days with 1 pitch dark night!
+    if phase_days < 0.75 or phase_days > 28.8:
+        key = 'Dark Night - Oji Ogbi'  # Pitch darkness! Your observation!
+    elif phase_days < 1.5:
+        key = 'New Moon - Astronomical'
+    elif phase_days < 3.0:
+        key = 'Waxing Crescent - First Tiny'  # First visible after dark
+    elif phase_days < 6.5:
+        key = 'Waxing Crescent'
+    elif phase_days < 8.5:
+        key = 'First Quarter'
+    elif phase_days < 13.0:
+        key = 'Waxing Gibbous'
+    elif phase_days < 16.5:  # 3.5 days FULL to eye! Your observation!
+        key = 'Full Moon - 3 Days'  # Day before + day + day after = 3 days full!
+    elif phase_days < 21.0:
+        key = 'Waning Gibbous'
+    elif phase_days < 23.5:
+        key = 'Last Quarter'
+    elif phase_days < 27.0:
+        key = 'Waning Crescent - Last Visible'
+    else:
+        key = 'Waning Crescent - Fading to Dark'  # Last 2 days before pitch dark
+    
     return key, phase_days
+
+# Add to MOON_SCIENCE
+MOON_SCIENCE['Dark Night - Oji Ogbi'] = {
+    'emoji':'⬛',
+    'igbo':'Ọnwa Oji Ukwu - Abani - Pitch Darkness',
+    'visible':'0% - NO MOON - pitch darkness, no light at all',
+    'real_vs_eye':'YOUR OBSERVATION! Between last crescent and first crescent - 1 night of total darkness! Visible in SE Nigeria dry season!',
+    'science':'Conjunction peak, Moon-Sun-Earth exact line, far side fully lit, near side 0%. No reflection.',
+    'igbo_meaning':'Great void, ancestors passage, rest, planning, Afa divination night'
+}
+MOON_SCIENCE['Full Moon - 3 Days'] = {
+    'emoji':'🌕🌕🌕',
+    'igbo':'Ọnwa Oju - 3 Days Full',
+    'visible':'98-100% - 3 nights look FULL to human eye!',
+    'real_vs_eye':'YOUR OBSERVATION! Full lasts 3 days to eye! Day before 99%, day 100%, day after 99% - all look full! 3rd seeming full is first waning gibbous!',
+    'science':'Opposition ±1 day still 98%+ illumination, eye cannot detect 1-2% difference.',
+    'igbo_meaning':'Peak power 3 nights - harvest, masquerade, Agwu active 3 days'
+}
 
 def get_moon_detail(target_date):
     name, age = get_moon_phase(target_date)
