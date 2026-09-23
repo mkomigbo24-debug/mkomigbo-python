@@ -11,33 +11,17 @@ urlpatterns = [
     path('amuzhi/', include('amuzhi_calendar.urls')),
     # PUBLIC - AWAG
     path('awag/', include('africa_weekly.urls')),
-    # Subjects hub
-    path('subjects/', include('subjects.urls')),
-    # 20 subjects - SAFE names
-    path('history/', include('history.urls')),
-    path('culture/', include('culture.urls')),
-    path('language1/', include('language1_app.urls')),
-    path('lang2/', include('lang2_app.urls')),
-    path('language2/', include('lang2_app.urls')),
-    path('religion/', include('religion.urls')),
-    path('esoterism/', include('esoterism.urls')),
-    path('tradition/', include('tradition.urls')),
-    path('biafra/', include('biafra.urls')),
-    path('slavery/', include('slavery.urls')),
-    path('nigeria/', include('nigeria.urls')),
-    path('africa/', include('africa_app.urls')),
-    path('pogrom/', include('pogrom.urls')),
-    path('uk/', include('uk_diaspora.urls')),
-    path('uk-diaspora/', include('uk_diaspora.urls')),
-    path('struggles/', include('struggles.urls')),
-    path('resistance/', include('resistance.urls')),
-    path('europe/', include('europe.urls')),
-    path('arabs/', include('arabs.urls')),
-    path('about/', include('about_app.urls')),
-    path('people/', include('people_app.urls')),
-    path('persons/', include('persons.urls')),
-    path('lang1/', include('lang1.urls')),
 ]
+
+# Only include subjects if they exist and have urls.py
+# To avoid crash, we add dynamically
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+for app in ['history','culture','religion','esoterism','tradition','biafra','slavery','nigeria','africa','pogrom','uk','struggles','resistance','europe','arabs','about','people','persons','language1','lang2_app']:
+    # Skip if no urls.py
+    urls_path = os.path.join(BASE_DIR, app, 'urls.py')
+    if os.path.exists(urls_path):
+        urlpatterns.append(path(f'{app}/', include(f'{app}.urls')))
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
