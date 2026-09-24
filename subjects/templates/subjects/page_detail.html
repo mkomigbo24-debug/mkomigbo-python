@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container mt-4">
+<nav><a href="{% url 'subjects:list' %}">All Subjects</a> > <a href="{% url 'subjects:detail' subject.slug %}">{{ subject.name }}</a></nav>
+<h1>{{ page.title }}</h1>
+<p><small>{{ subject.name }} / {{ page.slug }} - Order {{ page.order }}</small></p>
+<div class="card"><div class="card-body">
+<pre style="white-space:pre-wrap; font-family:inherit;">{{ page.content|truncatechars:10000 }}</pre>
+</div></div>
+<div class="mt-3">
+{% if prev_page %}<a href="{% url 'subjects:page' subject.slug prev_page.slug %}" class="btn btn-outline-success">← {{ prev_page.title }}</a>{% endif %}
+{% if next_page %}<a href="{% url 'subjects:page' subject.slug next_page.slug %}" class="btn btn-success float-end">{{ next_page.title }} →</a>{% endif %}
+</div>
+</div>
+{% endblock %}

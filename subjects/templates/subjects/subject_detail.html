@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container mt-4">
+<nav><a href="{% url 'subjects:list' %}">← All 21 Subjects</a></nav>
+<h1>{{ subject.name }} - {{ pages.count }} Pages</h1>
+<div class="list-group">
+{% for page in pages %}
+<a href="{% url 'subjects:page' subject.slug page.slug %}" class="list-group-item">{{ forloop.counter }}. {{ page.title }} - {{ page.slug }}</a>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

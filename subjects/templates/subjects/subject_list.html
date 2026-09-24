@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container mt-4">
+<h1>📚 21 Subjects, {{ total_pages }} Pages - MkomIgbo</h1>
+<p>{{ total_subjects }} Subjects - Free Always - CC BY-NC-SA 4.0</p>
+
+<div class="row">
+{% for subject in subjects %}
+<div class="col-md-3 mb-3">
+<div class="card h-100 border-success">
+<div class="card-body">
+<h5 class="card-title">{{ subject.name }}</h5>
+<p class="card-text">{{ subject.pages.count }} pages</p>
+<a href="{% url 'subjects:detail' subject.slug %}" class="btn btn-success btn-sm">View {{ subject.pages.count }} pages</a>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+<hr>
+<h3>All {{ total_pages }} Pages - PHP → Python PostgreSQL as is</h3>
+<ul>
+{% for subject in subjects %}
+{% for page in subject.pages.all %}
+<li><a href="{% url 'subjects:page' subject.slug page.slug %}">{{ subject.name }} - {{ page.title }}</a> ({{ page.slug }})</li>
+{% endfor %}
+{% endfor %}
+</ul>
+</div>
+{% endblock %}

@@ -5,11 +5,11 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
+    path('', include('core.urls')),  # or your home view
+    path('subjects/', include('subjects.urls')),  # ADD THIS
+    path('amuzhi/', include('amuzhi_calendar.urls')),    
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    # PUBLIC - Amuzhi - 3-day Full + Pitch Dark - DONE 200 OK
-    path('amuzhi/', include('amuzhi_calendar.urls')),
-    # PUBLIC - AWAG
+    path('', views.home, name='home'),    
     path('awag/', include('africa_weekly.urls')),
 ]
 
