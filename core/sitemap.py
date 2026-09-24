@@ -1,22 +1,27 @@
 from django.contrib.sitemaps import Sitemap
-from subjects.models import Page
-from django.urls import reverse
 
 class StaticSitemap(Sitemap):
     priority = 0.9
     changefreq = 'weekly'
     def items(self):
-        return ['home', 'amuzhi', 'awag']
+        return ['/', '/amuzhi/', '/awag/', '/subjects/']
     def location(self, item):
-        return reverse(item) if item != 'home' else '/'
+        return item
 
 class SubjectSitemap(Sitemap):
     priority = 0.8
     changefreq = 'weekly'
     def items(self):
-        return Page.objects.all()
-    def lastmod(self, obj):
-        return obj.updated_at if hasattr(obj, 'updated_at') else None
+        try:
+            from subjects.models import Page
+            return Page.objects.filter(is_published=True)[:200]
+        except:
+            return []
+    def location(self, obj):
+        try:
+            return f"/subjects/{obj.subject.slug}/{obj.slug}/"
+        except:
+            return "/subjects/"
 
 sitemaps = {
     'static': StaticSitemap,
