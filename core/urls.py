@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
+from .sitemap import sitemaps
 from django.urls import path, include
 from . import views
 from django.conf import settings
@@ -11,6 +13,7 @@ urlpatterns = [
     path('awag/', include('africa_weekly.urls')),
     path('lang1/', include('lang1.urls')),
     path('', views.home, name='home'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]
 
 # === SERVE STATIC & MEDIA IN DEBUG - FIXES AUDIO 404 ===
