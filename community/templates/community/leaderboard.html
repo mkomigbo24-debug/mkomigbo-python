@@ -1,0 +1,4 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Leaderboard</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:sans-serif;background:#f6f5f0}.wrap{max-width:800px;margin:20px auto;padding:20px;background:#fff;border-radius:12px} table{width:100%;border-collapse:collapse} th{background:#0a4a3a;color:#fff;padding:8px} td{padding:8px;border-bottom:1px solid #ddd}</style></head><body>
+<div class="wrap"><h1>🏆 Leaderboard</h1><table><tr><th>Rank</th><th>Creator</th><th>Views</th><th>USD</th></tr>
+{% for c in creators %}<tr><td>{{forloop.counter}}</td><td>{{c.user.username}}</td><td>{{c.total_views}}</td><td><b>${{c.wallet_balance_usd}}</b></td></tr>{% empty %}<tr><td colspan="4">No creators</td></tr>{% endfor %}
+</table><p><a href="/community/">Back</a></p></div></body></html>

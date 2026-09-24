@@ -11,6 +11,7 @@ urlpatterns = [
     path('amuzhi/', include('amuzhi_calendar.urls')),
     path('awag/', include('africa_weekly.urls')),
     path('lang1/', include('lang1.urls')),
+    path('community/', include('community.urls')),
     path('sitemap.xml', custom_sitemap, name='django-sitemap'),
     path('', views.home, name='home'),
 ]

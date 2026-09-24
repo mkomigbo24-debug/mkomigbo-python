@@ -1,0 +1,9 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>{{post.title}}</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:sans-serif;background:#f6f5f0;margin:0}.wrap{max-width:800px;margin:20px auto;padding:20px;background:#fff;border-radius:12px}.btn{background:#0a4a3a;color:#fff;padding:8px 16px;border-radius:20px;text-decoration:none}</style></head><body>
+<div class="wrap"><h1>{{post.title}} <small style="background:#ffd700;padding:4px 10px;border-radius:20px">{{post.post_type}}</small></h1>
+<p>By {{post.author}} | {{post.subject_name}} | 👁️{{post.views}} | ❤️{{post.likes}} | ${{post.revenue_usd}}</p>
+<div style="border-top:2px solid #0a4a3a;padding-top:15px;white-space:pre-wrap">{{post.body}}</div>
+<p style="margin-top:20px"><a href="/community/{{post.slug}}/vote/" class="btn">❤️ Like + Pay $0.01</a> <a href="/community/" class="btn" style="background:#eee;color:#000;margin-left:10px">← Back</a></p>
+<h3>Comments ({{post.comments.count}})</h3>
+{% for c in post.comments.all %}<div style="border:1px solid #eee;padding:8px;border-radius:8px;margin-bottom:6px"><b>{{c.author}}</b>: {{c.body}}</div>{% endfor %}
+{% if user.is_authenticated %}<form method="post">{% csrf_token %}<textarea name="body" required style="width:100%;height:80px;border:1px solid #ddd;border-radius:8px;padding:8px"></textarea><br><button class="btn" style="margin-top:8px">Comment</button></form>{% else %}<p><a href="/admin/login/?next=/community/{{post.slug}}/">Login to comment</a></p>{% endif %}
+</div></body></html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Community - Mkomigbo PLATFORM</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:sans-serif;background:#f6f5f0;margin:0;padding:0}header{background:#fff;border-bottom:2px solid #0a4a3a;padding:12px 20px;position:sticky;top:0}.nav{max-width:1100px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap}.btn{background:#0a4a3a;color:#fff;padding:10px 20px;border-radius:20px;text-decoration:none}.btn-gold{background:#ffd700;color:#000;border:2px solid #000}.card{border:1px solid #ddd;padding:12px;border-radius:10px;margin-bottom:10px;background:#fff}</style></head><body>
+<header><div class="nav"><a href="/" style="font-weight:700;color:#0a4a3a;text-decoration:none;margin-right:auto">Mkomigbo</a><a href="/community/" class="btn">Community</a><a href="/amuzhi/" class="btn-gold btn">Amuzhi</a><a href="/awag/" class="btn">AWAG</a></div></header>
+<div style="max-width:1100px;margin:20px auto;padding:20px">
+<h1>🌍 Community PLATFORM <span style="background:#ffd700;padding:4px 10px;border-radius:20px;font-size:14px">EARN USD - 60% SHARE</span></h1>
+<p><a href="/community/create/" class="btn">+ Create Post - Earn $</a> <a href="/community/leaderboard/" class="btn btn-gold" style="margin-left:10px">🏆 Leaderboard</a></p>
+<h2>🔥 Hot Topics</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px">
+{% for p in hot %}<div class="card" style="border:2px solid #ffd700;background:#fff9c4"><h4>{{p.title}}</h4><small>{{p.post_type}} | {{p.subject_name}} | 👁️{{p.views}} ❤️{{p.likes}} ${{p.revenue_usd}}</small><br><a href="/community/{{p.slug}}/">Read</a></div>{% empty %}<p>No hot yet - Create first!</p>{% endfor %}
+</div>
+<h2 style="margin-top:30px">Latest</h2>
+{% for p in posts %}<div class="card"><h3><a href="/community/{{p.slug}}/">{{p.title}}</a> <small style="background:#0a4a3a;color:#fff;padding:2px 8px;border-radius:10px">{{p.post_type}}</small></h3><p>{{p.body|truncatewords:30}}</p><small>By {{p.author}} | {{p.subject_name}} | 👁️{{p.views}} ❤️{{p.likes}} | ${{p.revenue_usd}}</small></div>{% empty %}<p>No posts - <a href="/community/create/">Be first!</a></p>{% endfor %}
+</div></body></html>

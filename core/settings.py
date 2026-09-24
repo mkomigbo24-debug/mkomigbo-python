@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 from pathlib import Path
 import os
 
@@ -15,7 +24,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Your core apps
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'community',
+        # Your core apps
     'core',
     'subjects',
     'lang1',
@@ -45,7 +57,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Serves static even if mapping fails!
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -98,8 +109,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Whitenoise - serves static even if PythonAnywhere mapping is wrong
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-WHITENOISE_USE_FINDERS = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -112,3 +121,4 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
+SITE_ID = 1
