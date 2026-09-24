@@ -1,7 +1,7 @@
-
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
+from django.db import transaction
 from .models import Post, Comment, Vote, CreatorProfile
 
 def community_home(request):
@@ -11,10 +11,21 @@ def community_home(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    Post.objects.filter(id=post.id).update(views=F('views')+1)
+    
+    # Comment handling
     if request.method == 'POST' and request.user.is_authenticated:
         Comment.objects.create(post=post, author=request.user, body=request.POST.get('body','')[:1000])
         return redirect('community_detail', slug=slug)
+    
+    # EASIER: $0.001 per view - safe with F()
+    Post.objects.filter(id=post.id).update(views=F('views')+1)
+    profile, _ = CreatorProfile.objects.get_or_create(user=post.author)
+    CreatorProfile.objects.filter(id=profile.id).update(
+        wallet_balance_usd=F('wallet_balance_usd')+0.001,
+        total_views=F('total_views')+1
+    )
+    # Refresh for template
+    post = Post.objects.get(id=post.id)
     return render(request, 'community/detail.html', {'post': post})
 
 @login_required
@@ -26,24 +37,42 @@ def post_create(request):
         subject_name = request.POST.get('subject_name','')[:100]
         is_hot = request.POST.get('is_hot_topic') == 'on'
         if title and body:
-            post = Post.objects.create(author=request.user, title=title, body=body, post_type=p_type, subject_name=subject_name, is_hot_topic=is_hot)
+            post = Post.objects.create(
+                author=request.user, title=title, body=body, 
+                post_type=p_type, subject_name=subject_name, 
+                is_hot_topic=is_hot
+            )
             CreatorProfile.objects.get_or_create(user=request.user)
             return redirect('community_detail', slug=post.slug)
     return render(request, 'community/create.html')
 
 @login_required
+@transaction.atomic
 def post_vote(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    vote, created = Vote.objects.get_or_create(post=post, user=request.user, defaults={'value':1})
+    
+    # 1 like per user only
+    vote, created = Vote.objects.get_or_create(
+        post=post, user=request.user, 
+        defaults={'value': 1}
+    )
+    
     if not created:
+        # Unlike - remove like count ONLY, keep $$$ earned!
         vote.delete()
         Post.objects.filter(id=post.id).update(likes=F('likes')-1)
     else:
-        Post.objects.filter(id=post.id).update(likes=F('likes')+1)
+        # New like - $0.01 to creator
+        Post.objects.filter(id=post.id).update(
+            likes=F('likes')+1,
+            revenue_usd=F('revenue_usd')+0.01
+        )
         profile, _ = CreatorProfile.objects.get_or_create(user=post.author)
-        from django.db.models import F as F2
-        CreatorProfile.objects.filter(id=profile.id).update(wallet_balance_usd=F2('wallet_balance_usd')+0.01, total_views=F2('total_views')+1)
-        Post.objects.filter(id=post.id).update(revenue_usd=F2('revenue_usd')+0.01)
+        CreatorProfile.objects.filter(id=profile.id).update(
+            wallet_balance_usd=F('wallet_balance_usd')+0.01,
+            total_views=F('total_views')+1
+        )
+    
     return redirect('community_detail', slug=slug)
 
 def leaderboard(request):
