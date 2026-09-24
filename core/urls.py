@@ -13,7 +13,7 @@ urlpatterns = [
     path('', views.home, name='home'),
 ]
 
+# === SERVE STATIC & MEDIA IN DEBUG - FIXES AUDIO 404 ===
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    if hasattr(settings, 'MEDIA_URL'):
-        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
