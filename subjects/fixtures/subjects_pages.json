@@ -1,0 +1,342 @@
+[
+{
+  "model": "subjects.subject",
+  "pk": 1,
+  "fields": {
+    "slug": "about",
+    "name": "About",
+    "description": "about - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 2,
+  "fields": {
+    "slug": "africa",
+    "name": "Africa",
+    "description": "africa - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 3,
+  "fields": {
+    "slug": "arabs",
+    "name": "Arabs",
+    "description": "arabs - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 4,
+  "fields": {
+    "slug": "biafra",
+    "name": "Biafra",
+    "description": "biafra - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 5,
+  "fields": {
+    "slug": "culture",
+    "name": "Culture",
+    "description": "culture - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 6,
+  "fields": {
+    "slug": "esoterism",
+    "name": "Esoterism",
+    "description": "esoterism - 7 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 7,
+  "fields": {
+    "slug": "europe",
+    "name": "Europe",
+    "description": "europe - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 8,
+  "fields": {
+    "slug": "history",
+    "name": "History",
+    "description": "history - 6 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 9,
+  "fields": {
+    "slug": "language1",
+    "name": "Language1",
+    "description": "language1 - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 10,
+  "fields": {
+    "slug": "language2",
+    "name": "Language2",
+    "description": "language2 - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 11,
+  "fields": {
+    "slug": "nigeria",
+    "name": "Nigeria",
+    "description": "nigeria - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 12,
+  "fields": {
+    "slug": "people",
+    "name": "People",
+    "description": "people - 6 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 13,
+  "fields": {
+    "slug": "persons",
+    "name": "Persons",
+    "description": "persons - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 14,
+  "fields": {
+    "slug": "pogrom",
+    "name": "Pogrom",
+    "description": "pogrom - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 15,
+  "fields": {
+    "slug": "religion",
+    "name": "Religion",
+    "description": "religion - 15 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 16,
+  "fields": {
+    "slug": "resistance",
+    "name": "Resistance",
+    "description": "resistance - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 17,
+  "fields": {
+    "slug": "slavery",
+    "name": "Slavery",
+    "description": "slavery - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 18,
+  "fields": {
+    "slug": "spirituality",
+    "name": "Spirituality",
+    "description": "spirituality - 7 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 19,
+  "fields": {
+    "slug": "struggles",
+    "name": "Struggles",
+    "description": "struggles - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 20,
+  "fields": {
+    "slug": "tradition",
+    "name": "Tradition",
+    "description": "tradition - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.subject",
+  "pk": 21,
+  "fields": {
+    "slug": "uk",
+    "name": "Uk",
+    "description": "uk - 5 pages",
+    "page_count": 5,
+    "order": 0,
+    "is_public": true
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 1,
+  "fields": {
+    "subject": 1,
+    "slug": "about-intro",
+    "title": "Intro",
+    "subtitle": "",
+    "content": "<?php\ndeclare(strict_types=1);\necho '<div class=\"mk-prose\">';\necho '<p class=\"mk-muted\" style=\"margin-top:0;\">What Mkomigbo is, why it exists, and what it stands for.</p>';\necho '<h2>What is Mkomigbo?</h2>';\necho '<p>Mkomigbo is an open knowledge platform dedicated to preserving, documenting, and sharing the history, culture, language, and heritage of the Igbo people of West Africa — and the broader African experience that connects them to the world.</p>';\necho '<p>The name draws from the Igbo language — carrying the sense of gathering knowledge from the forest. A metaphor for the deep, living, rooted nature of what we collect and protect.</p>';\necho '<h2>Why We Built This</h2>';\necho '<p>Igbo history is one of the richest in African history. Yet it remains fragmented — scattered across colonial archives, oral traditions, academic papers, diaspora memories, and community knowledge that risks being lost with each generation.</p>';\necho '<p>We built Mkomigbo because knowledge about a people belongs to that people. It should be freely accessible, honestly documented, and built to last.</p>';\necho '<h2>Our Principles</h2>';\necho '<ul>';\necho '<li><strong>Honesty</strong> — we document what happened, not what is comfortable</li>';\necho '<li><strong>Accessibility</strong> — all content is free and open to everyone</li>';\necho '<li><strong>Community</strong> — built with contributors from inside the community</li>';\necho '<li><strong>Depth</strong> — we prefer thorough, sourced content over quick summaries</li>';\necho '<li><strong>Continuity</strong> — we build for the long term, not for trends</li>';\necho '</ul>';\necho '<div style=\"display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 4px;\">';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/subjects/about/overview/\">Overview</a>';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/subjects/about/topics/\">Topics</a>';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/subjects/about/people/\">Contributors</a>';\necho '</div></div>';\n",
+    "content_enhanced": "",
+    "sources": "",
+    "order": 1,
+    "is_published": true,
+    "created_at": "2026-09-24T06:38:16.585Z"
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 2,
+  "fields": {
+    "subject": 1,
+    "slug": "about-overview",
+    "title": "Overview",
+    "subtitle": "",
+    "content": "<?php\ndeclare(strict_types=1);\necho '<div class=\"mk-prose\">';\necho '<p class=\"mk-muted\" style=\"margin-top:0;\">An overview of the Mkomigbo platform — what it contains and how it is organized.</p>';\necho '<h2>The Knowledge Library</h2>';\necho '<p>Mkomigbo is organized around 19 subject areas, each covering a distinct dimension of Igbo and African life. Each subject contains an introduction, overview, key topics, people, and sources — structured to give both a quick entry point and deep research capability.</p>';\necho '<h2>19 Subject Areas</h2>';\necho '<ul>';\necho '<li><strong>History</strong> — timelines, migrations, kingdoms, and turning points</li>';\necho '<li><strong>Slavery</strong> — the Atlantic trade, internal systems, and abolition</li>';\necho '<li><strong>People</strong> — notable communities and identities</li>';\necho '<li><strong>Culture</strong> — arts, customs, festivals, and values</li>';\necho '<li><strong>Religion</strong> — traditional spirituality and belief systems</li>';\necho '<li><strong>Esoterism</strong> — cosmology, metaphysics, and spiritual practice</li>';\necho '<li><strong>Tradition</strong> — rites, norms, and communal frameworks</li>';\necho '<li><strong>Language</strong> — Igbo language, orthography, and learning</li>';\necho '<li><strong>Struggles</strong> — resistance movements and modern activism</li>';\necho '<li><strong>Biafra</strong> — the war, its causes, aftermath, and memory</li>';\necho '<li><strong>Nigeria</strong> — politics, society, and the Igbo experience</li>';\necho '<li><strong>Resistance</strong> — IPOB and contemporary activism in context</li>';\necho '<li><strong>Africa</strong> — continental context and connected histories</li>';\necho '<li><strong>United Kingdom</strong> — diaspora, history, and community life</li>';\necho '<li><strong>Europe</strong> — migration and diaspora contexts</li>';\necho '<li><strong>Arabs</strong> — historical connections and relations</li>';\necho '</ul>';\necho '<h2>AWAG — Africa Weekly Activities Guide</h2>';\necho '<p>Alongside the knowledge library, Mkomigbo hosts AWAG — a practical seasonal calendar for African communities covering farming, fishing, trading, herding, healing, and community life. 13 communities live across 9 ecological zones. Works offline. Installable on any device.</p>';\necho '<h2>Platforms</h2>';\necho '<p>Mkomigbo also hosts a growing set of community platforms — blog, forum, gallery, media library, podcast, and more — all connected to the subject library.</p>';\necho '<div style=\"display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 4px;\">';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/subjects/\">Browse Subjects</a>';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/awag/\">Open AWAG</a>';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/platforms/\">View Platforms</a>';\necho '</div></div>';\n",
+    "content_enhanced": "",
+    "sources": "",
+    "order": 2,
+    "is_published": true,
+    "created_at": "2026-09-24T06:38:16.613Z"
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 3,
+  "fields": {
+    "subject": 1,
+    "slug": "about-people",
+    "title": "People",
+    "subtitle": "",
+    "content": "<?php\ndeclare(strict_types=1);\necho '<div class=\"mk-prose\">';\necho '<p class=\"mk-muted\" style=\"margin-top:0;\">The contributors who build and maintain Mkomigbo.</p>';\necho '<h2>Our Contributors</h2>';\necho '<p>Mkomigbo is built by a small, committed team of researchers, writers, and technologists with roots in Igbo communities. Contributors include scholars, community elders, diaspora members, and anyone willing to bring honest knowledge to the table.</p>';\necho '<p>Every article credits its contributors over time. The platform is designed so that individual knowledge — however specialized — can find its place and be preserved for future generations.</p>';\necho '<h2>How We Work</h2>';\necho '<p>Content on Mkomigbo goes through a review process before publication. Contributors submit articles, corrections, or additions. The editorial team reviews for accuracy, sourcing, and tone. Published content is clearly attributed.</p>';\necho '<h2>Join Us</h2>';\necho '<p>If you have knowledge, research, oral history, photographs, documents, or expertise that belongs on Mkomigbo, we want to hear from you. Every verified contribution, however small, helps build something that will outlast all of us.</p>';\necho '<div style=\"display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 4px;\">';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/contributors/\">View All Contributors</a>';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/contribute/\">Contribute</a>';\necho '</div></div>';\n",
+    "content_enhanced": "",
+    "sources": "",
+    "order": 3,
+    "is_published": true,
+    "created_at": "2026-09-24T06:38:16.643Z"
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 4,
+  "fields": {
+    "subject": 1,
+    "slug": "about-sources",
+    "title": "Sources",
+    "subtitle": "",
+    "content": "<?php\ndeclare(strict_types=1);\necho '<div class=\"mk-prose\">';\necho '<p class=\"mk-muted\" style=\"margin-top:0;\">References and resources about African knowledge preservation and digital heritage.</p>';\necho '<h2>On African Knowledge Preservation</h2>';\necho '<ul>';\necho '<li><strong>UNESCO</strong> — Convention for the Safeguarding of the Intangible Cultural Heritage (2003). The international framework for protecting oral traditions and living heritage.</li>';\necho '<li><strong>Kwame Anthony Appiah</strong> — <em>In My Father\\'s House: Africa in the Philosophy of Culture</em> (1992). Essential reading on African identity, culture, and the challenge of preservation.</li>';\necho '<li><strong>Ngugi wa Thiong\\'o</strong> — <em>Decolonising the Mind</em> (1986). On language, knowledge, and cultural power.</li>';\necho '</ul>';\necho '<h2>On Igbo Documentation</h2>';\necho '<ul>';\necho '<li><strong>M.M. Green</strong> — <em>Igbo Village Affairs</em> (1947). Early ethnographic record of Igbo community life.</li>';\necho '<li><strong>Victor Uchendu</strong> — <em>The Igbo of Southeast Nigeria</em> (1965). Standard introductory anthropological account.</li>';\necho '<li><strong>Nwachukwu-Agbada</strong> — various works on Igbo oral literature and proverbs.</li>';\necho '</ul>';\necho '<h2>Digital Heritage</h2>';\necho '<ul>';\necho '<li><strong>Internet Archive</strong> — archive.org — preserves digital content at risk of loss.</li>';\necho '<li><strong>JSTOR Global Plants</strong> — model for open academic knowledge sharing.</li>';\necho '<li><strong>Wikipedia Foundation</strong> — lessons in community-built knowledge commons.</li>';\necho '</ul>';\necho '<div style=\"display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 4px;\">';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/subjects/about/intro/\">Introduction</a>';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/subjects/about/overview/\">Overview</a>';\necho '</div></div>';\n",
+    "content_enhanced": "",
+    "sources": "",
+    "order": 4,
+    "is_published": true,
+    "created_at": "2026-09-24T06:38:16.666Z"
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 5,
+  "fields": {
+    "subject": 1,
+    "slug": "about-topics",
+    "title": "Topics",
+    "subtitle": "",
+    "content": "<?php\ndeclare(strict_types=1);\necho '<div class=\"mk-prose\">';\necho '<p class=\"mk-muted\" style=\"margin-top:0;\">Key topics about the Mkomigbo project — mission, approach, and future.</p>';\necho '<h2>Why Knowledge Preservation Matters</h2>';\necho '<p>Every generation that passes without documenting oral traditions, community histories, and lived experiences represents an irreversible loss. Mkomigbo exists to slow and reverse that process — creating a permanent, accessible record that belongs to the community it documents.</p>';\necho '<h2>The Challenge of Igbo Documentation</h2>';\necho '<p>The Igbo present a particular documentation challenge. Their precolonial society was decentralized — no single archive, no central court, no unified administrative record. Knowledge was held in oral tradition, in the memories of titled men and women, in ritual practice, and in community consensus. Colonization disrupted these systems without replacing them adequately.</p>';\necho '<h2>Our Approach to Contested History</h2>';\necho '<p>Much of Igbo history is contested — especially the civil war, the slave trade, and the question of political sovereignty. Mkomigbo does not pretend these contests do not exist. We present evidence, acknowledge disagreement, and where knowledge is incomplete or disputed, we say so clearly. We do not suppress uncomfortable truths.</p>';\necho '<h2>The Role of the Diaspora</h2>';\necho '<p>The Igbo diaspora — in the UK, USA, Canada, Australia, and across Africa — carries a significant portion of Igbo cultural memory. Mkomigbo is built to serve diaspora communities as much as home communities. Much of our content is written by, and for, people who grew up between worlds.</p>';\necho '<h2>What We Are Building Toward</h2>';\necho '<p>The current platform is a foundation. Over time we intend to expand into multimedia content — oral history recordings, documentary references, photographic archives, and community-contributed materials. The goal is a living, growing knowledge commons that no single institution owns or controls.</p>';\necho '<div style=\"display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 4px;\">';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/subjects/about/intro/\">Introduction</a>';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/subjects/about/overview/\">Overview</a>';\necho '<a class=\"mk-btn mk-btn--ghost\" href=\"/contribute/\">Contribute</a>';\necho '</div></div>';\n",
+    "content_enhanced": "",
+    "sources": "",
+    "order": 5,
+    "is_published": true,
+    "created_at": "2026-09-24T06:38:16.690Z"
+  }
+},
+{
+  "model": "subjects.page",
+  "pk": 6,
+  "fields": {
+    "subject": 2,
+    "slug": "africa-intro",
+    "title": "Intro",
+    "subtitle": "",
+    "content": 
