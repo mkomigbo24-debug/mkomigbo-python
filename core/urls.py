@@ -7,6 +7,7 @@ from .views_sitemap import custom_sitemap
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('subjects/', include('subjects.urls')),
     path('amuzhi/', include('amuzhi_calendar.urls')),
     path('awag/', include('africa_weekly.urls')),
