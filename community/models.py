@@ -1,14 +1,17 @@
-
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 
 POST_TYPES = [
-    ('blog', 'Blog - Long form'),
-    ('forum', 'Forum - Debate'),
-    ('thread', 'Thread - Hot take'),
-    ('reel', 'Reel - 60s video'),
-    ('podcast', 'Podcast - Audio'),
+    ('blog', 'Blog 📝'),
+    ('forum', 'Forum 💬 HIGH PAY'),
+    ('thread', 'Thread 🧵'),
+    ('reel', 'Reel 🎥'),
+    ('podcast', 'Podcast 🎙️'),
+    ('poll', 'Poll 📊 $0.005/vote'),
+    ('news', 'News 📰 Breaking'),
+    ('market', 'Marketplace 🛒 5%'),
+    ('job', 'Job/Gig 💼 $2'),
 ]
 
 class CreatorProfile(models.Model):
@@ -16,6 +19,7 @@ class CreatorProfile(models.Model):
     bio = models.TextField(blank=True)
     wallet_balance_usd = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     total_views = models.IntegerField(default=0)
+    total_likes = models.IntegerField(default=0)
     stripe_account_id = models.CharField(max_length=100, blank=True)
     wise_email = models.EmailField(blank=True)
     is_verified = models.BooleanField(default=False)
@@ -27,7 +31,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     body = models.TextField()
-    post_type = models.CharField(max_length=10, choices=POST_TYPES, default='blog')
+    post_type = models.CharField(max_length=20, choices=POST_TYPES, default='blog')
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     is_hot_topic = models.BooleanField(default=False)
@@ -39,7 +43,6 @@ class Post(models.Model):
             base = slugify(self.title)[:40] or "post"
             self.slug = f"{base}-{Post.objects.count()+1}"
         super().save(*args, **kwargs)
-    def __str__(self): return self.title
     class Meta: ordering = ['-created_at']
 
 class Comment(models.Model):
