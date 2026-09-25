@@ -3,7 +3,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views_auth
-from . import views_sitemap
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,7 +10,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('subjects.urls')),
     path('community/', include('community.urls')),
-    path('sitemap.xml', views_sitemap.sitemap_xml, name='sitemap_xml'),
 ]
 
 if settings.DEBUG:
