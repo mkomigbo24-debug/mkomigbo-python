@@ -25,6 +25,14 @@
 <p style="color:#666">These pages belong only to {{ subject.name }}. Inter-subject links allowed where needed for reference.</p>
 
 <div class="child-grid">
+{% if subject.slug == 'spirituality' %}
+<div style='background:linear-gradient(135deg,#0a4a3a 0%,#1a5e20 100%);color:white;padding:16px;border-radius:12px;margin:0 5% 20px 5%;text-align:center;border:2px solid #FFD700'>
+<b>🔥 Today's Igbo Day (Amuzhi):</b> <a href='/amuzhi/today/' style='color:#FFD700;font-weight:900;text-decoration:underline'>Check Today - EKE ORIE AFO NKWO</a> | 
+<a href='/amuzhi/' style='color:white'>13 Months Calendar</a> | 
+<a href='/amuzhi/calculator/' style='color:#FFD700'>Find Your Birth Day</a> | 
+<a href='/awag/'>AWAG</a>
+</div>
+{% endif %}
 {% for page in pages %}
 <div class="page-card">
 <h3 style="color:#0a4a3a;margin:0 0 8px 0">{{ page.title }}</h3>
