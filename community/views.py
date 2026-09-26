@@ -71,3 +71,4 @@ def poll_vote(request, slug, option):
     post = get_object_or_404(Post, slug=slug)
     Vote.objects.get_or_create(post=post, user=request.user)
     return redirect('community_detail', slug=slug)
+

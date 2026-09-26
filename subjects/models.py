@@ -27,6 +27,7 @@ class Subject(models.Model):
         ('about', 'About - 5 pages'),
         ('people', 'People - 5 pages'),
         ('persons', 'Persons - 5 pages'),
+        ('spirituality', 'Igbo Spirituality - 7 pages - EKE ORIE AFO NKWO'),
     ]
     slug = models.SlugField(unique=True, choices=SUBJECT_CHOICES)
     name = models.CharField(max_length=100)
