@@ -1,9 +1,16 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>{{post.title}}</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:sans-serif;background:#f6f5f0;margin:0}.wrap{max-width:800px;margin:20px auto;padding:20px;background:#fff;border-radius:12px}.btn{background:#0a4a3a;color:#fff;padding:8px 16px;border-radius:20px;text-decoration:none}</style></head><body>
-<div class="wrap"><h1>{{post.title}} <small style="background:#ffd700;padding:4px 10px;border-radius:20px">{{post.post_type}}</small></h1>
-<p>By {{post.author}} | {{post.subject_name}} | 👁️{{post.views}} | ❤️{{post.likes}} | ${{post.revenue_usd}}</p>
-<div style="border-top:2px solid #0a4a3a;padding-top:15px;white-space:pre-wrap">{{post.body}}</div>
-<p style="margin-top:20px"><a href="/community/{{post.slug}}/vote/" class="btn">❤️ Like + Pay $0.01</a> <a href="/community/" class="btn" style="background:#eee;color:#000;margin-left:10px">← Back</a></p>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>{{post.title}}</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:sans-serif;background:#f6f5f0;margin:0}.wrap{max-width:800px;margin:20px auto;padding:20px;background:#fff;border-radius:12px}.btn{background:#0a4a3a;color:#fff;padding:8px 16px;border-radius:20px;text-decoration:none;display:inline-block;margin:4px}.btn-gold{background:#ffd700;color:#000;border:2px solid #000}.poll-opt{display:block;width:100%;padding:12px;border:2px solid #0a4a3a;border-radius:10px;margin:6px 0;background:#fff;text-align:left;cursor:pointer}.poll-opt:hover{background:#e8f5e9}</style></head><body>
+<div class="wrap"><p><a href="/community/">← Community</a> | <a href="/community/wallet/">💰 Wallet</a></p><h1>{{post.title}} <small style="background:#0a4a3a;color:#fff;padding:4px 10px;border-radius:20px;font-size:12px">{{post.post_type}}</small> {% if post.is_hot_topic %}<span style="background:#ffd700;padding:4px 8px;border-radius:10px;font-size:11px">🔥 HOT</span>{% endif %}</h1>
+<p>By {{post.author}} | {{post.subject_name}} | 👁{{post.views}} | ❤{{post.likes}} | ${{post.revenue_usd}} | You earn 60%</p>
+{% if post.post_type == 'market' %}<div style="background:#fff3e0;border:2px solid #ff6d00;padding:12px;border-radius:10px;margin:12px 0"><h3>🛒 Marketplace - Buy Now</h3><p>Contact seller via WhatsApp - 5% goes to platform</p><a href="https://wa.me/?text=Hi%20I%20want%20{{post.title}}" class="btn" style="background:#25D366">💬 WhatsApp Seller</a></div>{% endif %}
+{% if post.post_type == 'job' %}<div style="background:#ede7f6;border:2px solid #6200ea;padding:12px;border-radius:10px;margin:12px 0"><h3>💼 Job/Gig</h3><p>$2 listing fee - Apply via comment</p></div>{% endif %}
+<div style="border-top:2px solid #0a4a3a;padding-top:15px;white-space:pre-wrap;margin-top:15px">{{post.body}}</div>
+{% if post.post_type == 'poll' %}
+<div style="margin-top:20px"><h3>📊 Vote - $0.005 per vote to author!</h3>
+{% for opt in poll_options %}<a href="/community/{{post.slug}}/poll/{{forloop.counter}}/" class="poll-opt">{{forloop.counter}}. {{opt}} - Vote</a>{% empty %}<p>No options - Body should be: Question on line1, options next lines</p>{% endfor %}
+</div>
+{% endif %}
+<p style="margin-top:20px"><a href="/community/{{post.slug}}/vote/" class="btn">❤ Like + Pay $0.01 to author</a> <a href="/community/" class="btn" style="background:#eee;color:#000">← Back</a> <a href="/community/wallet/" class="btn" style="background:#ffd700;color:#000">💰 Wallet</a></p>
 <h3>Comments ({{post.comments.count}})</h3>
 {% for c in post.comments.all %}<div style="border:1px solid #eee;padding:8px;border-radius:8px;margin-bottom:6px"><b>{{c.author}}</b>: {{c.body}}</div>{% endfor %}
-{% if user.is_authenticated %}<form method="post">{% csrf_token %}<textarea name="body" required style="width:100%;height:80px;border:1px solid #ddd;border-radius:8px;padding:8px"></textarea><br><button class="btn" style="margin-top:8px">Comment</button></form>{% else %}<p><a href="/admin/login/?next=/community/{{post.slug}}/">Login to comment</a></p>{% endif %}
+{% if user.is_authenticated %}<form method="post">{% csrf_token %}<textarea name="body" required style="width:100%;height:80px;border:1px solid #ddd;border-radius:8px;padding:8px" placeholder="For Market: I want to buy...&#10;For Job: I apply..."></textarea><br><button class="btn" style="margin-top:8px">Comment</button></form>{% else %}<p><a href="/accounts/login/?next=/community/{{post.slug}}/">Login to comment & vote</a></p>{% endif %}
 </div></body></html>

@@ -1,42 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mkomigbo - 21 Subjects + Public Apps</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Igbo:wght@400;700&family=Instrument+Serif&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f5f0;color:#1a1a1a;line-height:1.6}
-  header{background:#fff;border-bottom:2px solid #0a4a3a;position:sticky;top:0;z-index:100}
-  .nav{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .logo{font-family:'Instrument Serif',serif;font-size:1.5rem;font-weight:700;color:#0a4a3a;text-decoration:none;margin-right:auto}
-  .nav a{text-decoration:none;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.9rem;transition:all 0.2s}
-  .nav .public-amuzhi{background:#ffd700;color:#000;border:2px solid #000}
-  .nav .public-awag{background:#0a4a3a;color:#fff}
-  .nav .public-amuzhi:hover,.nav .public-awag:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
-  .nav .normal{background:#eee;color:#333}
-  main{max-width:1000px;margin:30px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,0.05)}  
-  h1,h2,h3 { font-family: 'Instrument Serif', 'Noto Serif Igbo', serif; }
-  .badge{display:inline-block;background:#0a4a3a;color:#fff;padding:2px 8px;border-radius:10px;font-size:0.7rem;margin-left:8px}
-  .igbo { font-family: 'Noto Serif Igbo', serif; }
-</style>
-<link rel="manifest" href="/static/manifest.json"><meta name="theme-color" content="#0a4a3a"><link rel="apple-touch-icon" href="/static/icon-192.png"><script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/static/sw.js")}</script></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ SITE_NAME }} - 21 Subjects | Formerly {{ OLD_NAME }}</title>
+<style>body{font-family:sans-serif;background:#f6f5f0} header{background:#fff;border-bottom:2px solid #0a4a3a;position:sticky;top:0} .nav{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap} .logo{font-weight:700;color:#0a4a3a;text-decoration:none;margin-right:auto;font-size:1.5rem} .nav a{padding:8px 16px;border-radius:20px;text-decoration:none;font-weight:600} .public-amuzhi{background:#ffd700;color:#000;border:2px solid #000} .public-awag{background:#0a4a3a;color:#fff} main{max-width:1000px;margin:30px auto;padding:20px;background:#fff;border-radius:12px}</style>
+</head>
 <body>
-<header>
-  <nav class="nav">
-    <a href="/" class="logo">Mkomigbo <span class="badge">21 Subjects</span></a>
-    <a href="/amuzhi/" class="public-amuzhi">📅 Amuzhi Calendar - PUBLIC</a>
-    <a href="/awag/" class="public-awag">🌍 AWAG - PUBLIC</a>
-    <a href="/admin/" class="normal">Admin</a>
-  </nav>
-</header>
+<header><nav class="nav">
+<a href="/" class="logo">{{ SITE_NAME }} <span style="font-size:0.6em">(formerly {{ OLD_NAME }})</span></a>
+<a href="/amuzhi/" class="public-amuzhi">Amuzhi</a>
+<a href="/awag/" class="public-awag">AWAG</a>
+<a href="/community/" style="background:#eee;color:#333">Community</a>
+</nav></header>
 <main>
 {% block content %}{% endblock %}
+<div style="background:#fff8e1;padding:15px;border:2px solid #0a4a3a;border-radius:12px;margin:20px 0">
+<h3>Observation?</h3>
+<form method="post" action="/observation/add/">{% csrf_token %}
+<textarea name="text" required style="width:100%;height:80px" placeholder="Correction for {{ OLD_NAME }} to {{ SITE_NAME }}"></textarea><br>
+<button style="background:#0a4a3a;color:white;padding:10px;border-radius:20px;width:100%">Send</button>
+</form>
+</div>
 </main>
-<footer style="text-align:center;padding:20px;color:#666;font-size:0.85rem">
-  Mkomigbo Thesis 2026 - 21 Subjects + 2 Public Apps - Amuzhi + AWAG easily accessible to all
-</footer>
+<footer style="text-align:center;padding:20px;color:#666">{{ SITE_NAME }} (formerly {{ OLD_NAME }}) - {{ SITE_TAGLINE }}</footer>
 </body>
 </html>

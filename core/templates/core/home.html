@@ -1,39 +1,24 @@
 {% extends "core/base.html" %}
 {% block content %}
-<div style="background:linear-gradient(135deg,#2E7D32,#1B5E20);color:white;padding:3rem 1rem;border-radius:1rem;text-align:center;margin-bottom:2rem">
-<h1>📚 MkomIgbo - Igbo Knowledge Platform</h1>
-<p>20 Subjects, 137+ Pages, 13 AWAG Communities - Free Always</p>
-<div style="margin-top:1.5rem">
-<a href="/amuzhi/" style="background:#FFD700;color:#000;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:bold;margin:5px;display:inline-block">📅 Amuzhi Calendar - 13 Onwa - 3-Day Full + Pitch Dark - LIVE 200 OK</a>
-<a href="/awag/" style="background:#fff;color:#2E7D32;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:bold;margin:5px;display:inline-block">🌍 AWAG - 13 Communities</a>
+<style>
+.wrap{max-width:1280px;margin:0 auto;padding:0 5%}
+.hero{background:linear-gradient(135deg,#0a4a3a,#2E7D32);color:white;padding:3rem 5%;border-radius:20px;text-align:center;margin:20px 5%}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+@media(max-width:1100px){.grid5{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.grid5{grid-template-columns:repeat(2,1fr)}}
+.card5{background:white;border:2px solid #eef6ee;border-radius:16px;padding:20px;text-align:center;text-decoration:none;color:#0a4a3a;min-height:150px;display:flex;flex-direction:column;justify-content:center}
+.card5:hover{border-color:#0a4a3a}
+</style>
+<div class="hero">
+<h1>📚 {{ SITE_NAME }}</h1>
+<p>21 Subjects, 121 Pages - Formerly {{ OLD_NAME }} - {{ SITE_TAGLINE }}</p>
 </div>
-</div>
-<div class="container">
-<h2>20 Subject Areas - PHP → Python PostgreSQL</h2>
-<div class="row">
-<div class="col-md-3 mb-3"><a href="/history/" class="btn btn-outline-success w-100">History - 6</a></div>
-<div class="col-md-3 mb-3"><a href="/culture/" class="btn btn-outline-success w-100">Culture - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/language1/" class="btn btn-outline-success w-100">Language 1 - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/lang2/" class="btn btn-outline-success w-100">Language 2 - 5 - SAFE</a></div>
-<div class="col-md-3 mb-3"><a href="/religion/" class="btn btn-outline-success w-100">Religion - 15</a></div>
-<div class="col-md-3 mb-3"><a href="/esoterism/" class="btn btn-outline-success w-100">Esoterism - 7</a></div>
-<div class="col-md-3 mb-3"><a href="/tradition/" class="btn btn-outline-success w-100">Tradition - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/biafra/" class="btn btn-outline-success w-100">Biafra - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/slavery/" class="btn btn-outline-success w-100">Slavery - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/nigeria/" class="btn btn-outline-success w-100">Nigeria - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/africa/" class="btn btn-outline-success w-100">Africa - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/pogrom/" class="btn btn-outline-success w-100">Pogrom - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/uk/" class="btn btn-outline-success w-100">UK - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/struggles/" class="btn btn-outline-success w-100">Struggles - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/resistance/" class="btn btn-outline-success w-100">Resistance - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/europe/" class="btn btn-outline-success w-100">Europe - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/arabs/" class="btn btn-outline-success w-100">Arabs - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/about/" class="btn btn-outline-success w-100">About - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/people/" class="btn btn-outline-success w-100">People - 5</a></div>
-<div class="col-md-3 mb-3"><a href="/persons/" class="btn btn-outline-success w-100">Persons - 5</a></div>
-</div>
-<div style="background:#fff3cd;padding:1rem;border-radius:8px;margin-top:2rem">
-<strong>✅ Status:</strong> amuzhi_calendar LIVE 200 OK - 3-day Full + Pitch Dark Oji Ogbi - 13 Onwa REAL VOICE!
+<div class="wrap">
+<h2>21 Subjects - 5 Per Row - Not Touching Margins</h2>
+<div class="grid5">
+{% for subj in subjects %}
+<a href="/subjects/{{ subj.slug }}/" class="card5"><b>{{ subj.name }}</b><br><small>{{ subj.pages }} pages</small><br><small style="color:#666">{{ subj.desc }}</small></a>
+{% endfor %}
 </div>
 </div>
 {% endblock %}

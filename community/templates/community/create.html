@@ -1,10 +1,13 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Create</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:sans-serif;background:#f6f5f0}.wrap{max-width:700px;margin:20px auto;padding:20px;background:#fff;border-radius:12px} input,select,textarea{width:100%;padding:8px;border:1px solid #ddd;border-radius:8px}.btn{background:#0a4a3a;color:#fff;padding:10px 20px;border-radius:20px;border:none}</style></head><body>
-<div class="wrap"><h1>Create + Earn USD</h1>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Create - 10 Ways Earn</title><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>body{font-family:sans-serif;background:#f6f5f0}.wrap{max-width:700px;margin:20px auto;padding:20px;background:#fff;border-radius:12px} input,select,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin:5px 0}.btn{background:#0a4a3a;color:#fff;padding:12px 20px;border-radius:20px;border:none;font-weight:bold;width:100%}</style>
+</head><body><div class="wrap"><h1>🌍 Create + Earn - 10 Types</h1>
+<div style="background:#e8f5e9;padding:10px;border-radius:8px;font-size:12px">📝 Blog | 💬 Forum | 🧵 Thread | 🎥 Reel | 🎙 Podcast | 📊 Poll | 📰 News | 🛒 Market | 💼 Job | 🎉 Event (10th)</div>
 <form method="post">{% csrf_token %}
 <p>Title: <input name="title" required></p>
-<p>Type: <select name="post_type"><option value="blog">Blog</option><option value="forum">Forum - HIGH PAY</option><option value="thread">Thread</option><option value="reel">Reel</option><option value="podcast">Podcast</option></select></p>
-<p>Subject: <input name="subject_name" placeholder="Biafra, History, Religion..."></p>
+<p>Type: <select name="post_type">
+<option value="blog">📝 Blog</option><option value="forum">💬 Forum</option><option value="thread">🧵 Thread</option><option value="reel">🎥 Reel</option><option value="podcast">🎙 Podcast</option><option value="poll">📊 Poll</option><option value="news">📰 News</option><option value="market">🛒 Market</option><option value="job">💼 Job</option><option value="event">🎉 Event - 10th NEW!</option>
+</select></p>
+<p>Subject: <input name="subject_name"></p>
 <p><label><input type="checkbox" name="is_hot_topic"> 🔥 Hot Topic?</label></p>
-<p>Body:<br><textarea name="body" required style="height:250px" placeholder="Biafra: My family story..."></textarea></p>
-<button class="btn">Publish</button>
-</form><p><a href="/community/">← Back</a></p></div></body></html>
+<p>Body:<br><textarea name="body" required style="height:280px"></textarea></p>
+<button class="btn">Publish 🚀</button></form><p><a href="/community/">← Back</a></p></div></body></html>

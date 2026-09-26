@@ -1,22 +1,9 @@
-{% extends "base.html" %}
-{% block content %}
-<div style="min-height:70vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:20px">
-<div style="background:white;max-width:420px;width:100%;padding:35px;border-radius:15px;box-shadow:0 20px 60px rgba(0,0,0,0.3)">
-<div style="text-align:center;margin-bottom:25px">
-<h2 style="color:#0d6efd;margin:0;font-size:28px">Welcome Back! 👋</h2>
-<p style="color:#666;margin:8px 0">MkomIgbo - Earn USD</p>
-<div style="background:#e8f5e9;padding:10px;border-radius:8px;font-size:13px;margin-top:10px">💰 <b>.01</b> per like | 👁️ <b>.001</b> per view</div>
-</div>
-<form method="post">
-{% csrf_token %}
-<style>input{width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px;margin:6px 0 16px 0;box-sizing:border-box;font-size:15px}input:focus{border-color:#0d6efd;outline:none}label{font-weight:600;color:#333;font-size:14px}</style>
+<h2>🔑 Login - For Already Signed Up Users</h2>
+<p>Only for people who ALREADY have an account</p>
+{% if form.errors %}<p style="color:red">Wrong username or password. New here? Please sign up first!</p>{% endif %}
+{% for m in messages %}<p style="color:red">{{ m }}</p>{% endfor %}
+<form method="post">{% csrf_token %}
 {{ form.as_p }}
-<button type="submit" style="background:linear-gradient(135deg,#0d6efd,#0b5ed7);color:white;padding:13px;border:none;border-radius:8px;width:100%;font-weight:bold;font-size:16px;cursor:pointer;margin-top:10px">Login & Start Earning 🚀</button>
+<button>Login</button>
 </form>
-<div style="text-align:center;margin-top:22px;padding-top:20px;border-top:1px solid #eee">
-<p style="color:#666;margin-bottom:10px">New to MkomIgbo?</p>
-<a href="/accounts/signup/" style="display:block;background:linear-gradient(135deg,#198754,#157347);color:white;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold">Create Account - Earn USD 💵</a>
-</div>
-</div>
-</div>
-{% endblock %}
+<p>New here? Never created account? <a href="/accounts/signup/{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">📝 Sign Up - Create New Account</a></p>

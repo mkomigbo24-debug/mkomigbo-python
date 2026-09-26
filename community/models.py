@@ -1,58 +1,39 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-
-POST_TYPES = [
-    ('blog', 'Blog 📝'),
-    ('forum', 'Forum 💬 HIGH PAY'),
-    ('thread', 'Thread 🧵'),
-    ('reel', 'Reel 🎥'),
-    ('podcast', 'Podcast 🎙️'),
-    ('poll', 'Poll 📊 $0.005/vote'),
-    ('news', 'News 📰 Breaking'),
-    ('market', 'Marketplace 🛒 5%'),
-    ('job', 'Job/Gig 💼 $2'),
-]
-
+import uuid
+POST_TYPES = [('blog','Blog'),('forum','Forum'),('thread','Thread'),('reel','Reel'),('podcast','Podcast'),('poll','Poll'),('news','News'),('market','Market'),('job','Job'),('event','Event')]
 class CreatorProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True)
-    wallet_balance_usd = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    wallet_balance_usd = models.FloatField(default=0.0)
     total_views = models.IntegerField(default=0)
     total_likes = models.IntegerField(default=0)
-    stripe_account_id = models.CharField(max_length=100, blank=True)
-    wise_email = models.EmailField(blank=True)
-    is_verified = models.BooleanField(default=False)
-    def __str__(self): return f"{self.user.username} - ${self.wallet_balance_usd}"
-
+    def __str__(self): return self.user.username
 class Post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    subject_name = models.CharField(max_length=100, blank=True)
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     body = models.TextField()
-    post_type = models.CharField(max_length=20, choices=POST_TYPES, default='blog')
-    views = models.IntegerField(default=0)
-    likes = models.IntegerField(default=0)
+    post_type = models.CharField(max_length=20, choices=POST_TYPES, default='thread')
+    subject_name = models.CharField(max_length=100, blank=True)
     is_hot_topic = models.BooleanField(default=False)
     is_monetized = models.BooleanField(default=True)
-    revenue_usd = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    views = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
+    revenue_usd = models.FloatField(default=0.0)
     created_at = models.DateTimeField(auto_now_add=True)
     def save(self, *args, **kwargs):
         if not self.slug:
-            base = slugify(self.title)[:40] or "post"
-            self.slug = f"{base}-{Post.objects.count()+1}"
+            self.slug = slugify(self.title)[:50] + "-" + uuid.uuid4().hex[:6]
         super().save(*args, **kwargs)
-    class Meta: ordering = ['-created_at']
-
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-
 class Vote(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    value = models.IntegerField(default=1)
-    class Meta: unique_together = ('post','user')
+    created_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        unique_together = ('post','user')
