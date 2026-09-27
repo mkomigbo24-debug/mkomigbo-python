@@ -16,7 +16,7 @@ urlpatterns = [
     path('observation/add/', core_views.add_observation, name='observation_add'),
     path('subjects/', include('subjects.urls')),
     path('amuzhi/', include('amuzhi_calendar.urls')),
-    path('awag/', include('africa_weekly.urls')),
+    path('awag/', include('africa_weekly.urls')),  # Your remote uses africa_weekly folder
 ]
 
 if settings.DEBUG:

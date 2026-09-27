@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWAG - Africa's Weekly Activities Guide - 58 Regions</title>
+<style>
+body{font-family:Arial, sans-serif; background:#fdf6e3; color:#333; margin:0; padding:12px;}
+.banner{background:#0a3d2e; color:#FFD700; padding:14px; border-radius:12px; margin-bottom:12px; border:3px solid gold;}
+.banner h1{margin:0; font-size:22px;}
+.card{background:white; border-radius:12px; padding:12px; margin:10px 0; border-left:6px solid #0a3d2e; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+.region-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px;}
+.region{background:white; border-radius:12px; padding:10px; border:2px solid #eee;}
+.region:hover{border-color:gold;}
+.badge{display:inline-block; padding:3px 8px; border-radius:12px; font-size:11px; background:#eee; margin:2px;}
+.filter{margin:10px 0; padding:8px; background:white; border-radius:8px;}
+a{color:#0a3d2e; text-decoration:none; font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="banner">
+<h1>🌍 AWAG - Africa's Weekly Activities Guide - 58 Regions Live</h1>
+<p>Today: {{ today.market_day|default:"EKE" }} - {{ today_element.element|default:"Fire" }} {{ today_element.emoji|default:"🔥" }} - {{ today_element.meaning|default:"Light" }} | Moon: {{ moon_today.moon_stage|default:"Growing" }} | Lang: {{ lang }} | Total Regions: {{ total_regions }}</p>
+<p>Wind locality: East Monsoon Kusi/Kaskazi, West Harmattan, South Benguela/Agulhas, North Mistral, Rift Lake Breeze | Rain locality: Guinea 2 seasons, Sahel Jun-Oct, Long rains Mar-May</p>
+</div>
+
+<div class="filter">
+<b>Filter by Zone:</b>
+<a href="?">All ({{ total_regions }})</a> |
+{% for zc in zone_codes %}
+<a href="?zone={{ zc }}" {% if selected_zone == zc %}style="background:gold;padding:3px 6px;border-radius:6px"{% endif %}>{{ zc }}</a> |
+{% endfor %}
+<br>
+<b>Language (if preferred):</b>
+{% for code, name in langs %}
+<a href="?lang={{ code }}" {% if lang == code %}style="background:#0a3d2e;color:gold;padding:3px 6px;border-radius:6px"{% endif %}>{{ name }}</a> |
+{% endfor %}
+</div>
+
+<div class="card">
+<h2>🌙 Moon Phase, Tide, Wind - Today</h2>
+<p><b>Market Day:</b> {{ today_market.market_day|default:"EKE" }} - {{ today_element.element }} {{ today_element.emoji }} - {{ today_element.advice }}</p>
+<p><b>Moon:</b> {{ moon_today.moon_stage|default:"Waxing - Onwa na eto - Planting if preferred" }} | <b>Illumination:</b> {{ moon_today.illumination|default:"75%" }}</p>
+<h3>Tides (next 10)</h3>
+<ul>
+{% for t in tides %}
+<li>{{ t.datetime|default:t.port }} - High: {{ t.high_height_m|default:t.high }}m Low: {{ t.low_height_m|default:t.low }}m - {{ t.wind|default:"" }}</li>
+{% empty %}
+<li>Tides: Niger Delta Bonny high 06:30 +1.8m, Lagos-Bar 07:00 +1.5m, Mombasa 06:15 +2.8m, Dakar 05:45 +1.6m - Use Orie Water days if preferred for fishing</li>
+{% endfor %}
+</ul>
+</div>
+
+<h2>58 African Communities - Guide if preferred</h2>
+<div class="region-grid">
+{% for r in regions_58 %}
+<div class="region">
+<h3>{{ r.name }} - {{ r.country }} <span class="badge">{{ r.code }}</span></h3>
+<p><b>Zone:</b> {{ r.zone }} ({{ r.zone_code }}) | <b>Element:</b> {{ r.element }}</p>
+<p><b>Wind:</b> {{ r.wind }}</p>
+<p><b>Rain:</b> {{ r.rain }}</p>
+<p><b>Tide Port:</b> {{ r.tide_port }}</p>
+<p><b>Activity:</b> {{ r.activity }} | <b>Lang if preferred:</b> {{ r.lingua }}</p>
+<p><a href="/awag/region/{{ r.code }}/?lang={{ r.lingua }}">View Full Guide for {{ r.name }} →</a></p>
+</div>
+{% endfor %}
+</div>
+
+<div class="card" style="margin-top:20px">
+<h3>Legal: Assistive Guide Only</h3>
+<p>Guide provided for comprehension based on preference - Igbo if preferred, English if preferred, French if preferred, Arabic if preferred, Swahili if preferred. Official activities remain community-based. No auto guarantee. NDPA 2023 opt-in only.</p>
+<p><a href="/awag/tides/">Tide Table</a> | <a href="/awag/farmers/">Farmers Guide</a> | <a href="/awag/weekly/">Weekly Guide</a> | <a href="/api/wind-rain/">API Wind Rain</a></p>
+</div>
+
+</body>
+</html>
