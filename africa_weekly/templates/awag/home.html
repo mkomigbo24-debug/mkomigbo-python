@@ -1,78 +1,269 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AWAG - Africa's Weekly Activities Guide - 58 Regions</title>
+<title>AWAG - Africa's Weekly Activities Guide - 58 Regions Live</title>
 <style>
-body{font-family:Arial, sans-serif; background:#fdf6e3; color:#333; margin:0; padding:12px;}
-.banner{background:#0a3d2e; color:#FFD700; padding:14px; border-radius:12px; margin-bottom:12px; border:3px solid gold;}
-.banner h1{margin:0; font-size:22px;}
-.card{background:white; border-radius:12px; padding:12px; margin:10px 0; border-left:6px solid #0a3d2e; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-.region-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px;}
-.region{background:white; border-radius:12px; padding:10px; border:2px solid #eee;}
-.region:hover{border-color:gold;}
-.badge{display:inline-block; padding:3px 8px; border-radius:12px; font-size:11px; background:#eee; margin:2px;}
-.filter{margin:10px 0; padding:8px; background:white; border-radius:8px;}
-a{color:#0a3d2e; text-decoration:none; font-weight:bold;}
+:root {
+  --fire:#ff4500; --water:#1e90ff; --earth:#8B4513; --air:#87ceeb;
+  --bg:#faf8f3; --card:#ffffff; --text:#1a1a1a; --muted:#6b7280;
+  --guinea:#2e7d32; --sahel:#e65100; --central:#4a148c; --east:#00695c; --rift:#bf360c; --north:#0d47a1; --south:#37474f; --island:#00838f; --redsea:#ad1457;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Segoe UI', system-ui, -apple-system, sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+.header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #2d5016 100%);
+  color:white; padding:2.5rem 1.5rem; position:sticky; top:0; z-index:20; box-shadow:0 4px 20px rgba(0,0,0,0.15);
+}
+.header-top { max-width:1400px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1rem; }
+.header h1 { font-size:clamp(1.4rem, 3vw, 2.2rem); letter-spacing:-0.02em; }
+.header h1 span.live { background:#22c55e; color:white; padding:0.15rem 0.6rem; border-radius:99px; font-size:0.75rem; vertical-align:middle; margin-left:0.5rem; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+.badge-row { display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1rem; }
+.badge { background:rgba(255,255,255,0.12); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); padding:0.4rem 0.9rem; border-radius:99px; font-size:0.85rem; }
+.badge strong { color:#facc15; }
+
+.controls { max-width:1400px; margin:0 auto; padding:1.5rem; display:grid; grid-template-columns:1fr auto; gap:1rem; background:white; border-bottom:1px solid #e5e7eb; position:sticky; top:0; z-index:10; }
+@media(max-width:800px){ .controls{grid-template-columns:1fr} }
+.search-box { position:relative; }
+.search-box input {
+  width:100%; padding:0.9rem 1rem 0.9rem 2.8rem; border:2px solid #e5e7eb; border-radius:12px; font-size:1rem; transition:all 0.2s;
+}
+.search-box input:focus { outline:none; border-color:var(--water); box-shadow:0 0 0 4px rgba(30,144,255,0.1); }
+.search-box::before { content:"🔍"; position:absolute; left:1rem; top:50%; transform:translateY(-50%); font-size:1.2rem; }
+.zone-filters { display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; }
+.zone-filters button {
+  padding:0.5rem 1rem; border-radius:99px; border:1.5px solid #e5e7eb; background:white; cursor:pointer; font-weight:600; font-size:0.85rem; transition:all 0.2s; white-space:nowrap;
+}
+.zone-filters button:hover { border-color:var(--text); transform:translateY(-1px); }
+.zone-filters button.active { background:var(--text); color:white; border-color:var(--text); }
+.zone-filters button small { opacity:0.7; margin-left:0.3rem; }
+
+.moon-tide-bar {
+  max-width:1400px; margin:1.5rem auto; padding:1.2rem 1.5rem; background:white; border-radius:16px; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:1.2rem; border:1px solid #e5e7eb; box-shadow:0 1px 3px rgba(0,0,0,0.05);
+}
+.moon-card { display:flex; gap:0.8rem; align-items:center; }
+.moon-icon { font-size:2rem; width:50px; height:50px; display:grid; place-items:center; background:#f3f4f6; border-radius:12px; }
+.moon-card b { display:block; font-size:0.9rem; }
+.moon-card span { font-size:0.8rem; color:var(--muted); }
+
+.main { max-width:1400px; margin:0 auto; padding:1.5rem; }
+.zone-section { margin-bottom:2.5rem; }
+.zone-header {
+  display:flex; align-items:center; gap:0.8rem; margin-bottom:1rem; padding-bottom:0.6rem; border-bottom:3px solid; position:sticky; top:88px; background:var(--bg); z-index:5; padding-top:0.5rem;
+}
+.zone-header h2 { font-size:1.25rem; }
+.zone-header .count { background:#e5e7eb; padding:0.2rem 0.6rem; border-radius:99px; font-size:0.8rem; }
+.zone-header.WA-G, .zone-header.WA-LC { border-color:var(--guinea); color:var(--guinea); }
+.zone-header.WA-S { border-color:var(--sahel); color:var(--sahel); }
+.zone-header.CA, .zone-header.CA-G { border-color:var(--central); color:var(--central); }
+.zone-header.EA-M { border-color:var(--east); color:var(--east); }
+.zone-header.Rift { border-color:var(--rift); color:var(--rift); }
+.zone-header.NA-Med { border-color:var(--north); color:var(--north); }
+.zone-header.SA-B { border-color:var(--south); color:var(--south); }
+.zone-header.SA-A { border-color:#00695c; color:#00695c; }
+.zone-header.SE-M, .zone-header.Island, .zone-header.RedSea { border-color:var(--island); color:var(--island); }
+
+.grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:1rem; }
+.card {
+  background:var(--card); border-radius:16px; padding:1.2rem; border:1px solid #e5e7eb; transition:all 0.25s; position:relative; overflow:hidden;
+}
+.card:hover { transform:translateY(-4px); box-shadow:0 12px 24px rgba(0,0,0,0.08); border-color:#d1d5db; }
+.card::before {
+  content:""; position:absolute; top:0; left:0; right:0; height:4px;
+}
+.card[data-element="Afo Earth"]::before { background:var(--earth); }
+.card[data-element="Eke Fire"]::before { background:var(--fire); }
+.card[data-element="Orie Water"]::before { background:var(--water); }
+.card[data-element="Nkwo Air"]::before { background:var(--air); }
+.card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.6rem; }
+.card-top h3 { font-size:1.05rem; line-height:1.2; }
+.card-top h3 small { display:block; font-weight:400; color:var(--muted); font-size:0.8rem; margin-top:0.15rem; }
+.flag { font-size:1.4rem; }
+.element-badge {
+  display:inline-flex; align-items:center; gap:0.3rem; padding:0.2rem 0.6rem; border-radius:99px; font-size:0.75rem; font-weight:700; margin-top:0.5rem;
+}
+.element-badge.Earth { background:#f5e6d3; color:#8B4513; }
+.element-badge.Fire { background:#ffe4d6; color:#ff4500; }
+.element-badge.Water { background:#dbeafe; color:#1e90ff; }
+.element-badge.Air { background:#e0f2fe; color:#0369a1; }
+.details { margin:0.8rem 0; display:grid; gap:0.35rem; font-size:0.85rem; }
+.details div { display:flex; gap:0.5rem; }
+.details div span.label { color:var(--muted); min-width:42px; font-weight:600; }
+.wind { color:#1e40af; }
+.rain { color:#065f46; }
+.tide { color:#7c2d12; }
+.activity { margin-top:0.6rem; display:flex; flex-wrap:wrap; gap:0.3rem; }
+.activity span { background:#f3f4f6; padding:0.2rem 0.5rem; border-radius:6px; font-size:0.75rem; }
+.btn {
+  display:inline-flex; margin-top:0.9rem; padding:0.5rem 0.9rem; background:#111827; color:white; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:600; transition:all 0.2s;
+}
+.btn:hover { background:#000; transform:translateY(-1px); }
+.lang { font-size:0.75rem; color:var(--muted); margin-left:0.5rem; }
+
+.footer {
+  max-width:1400px; margin:2rem auto; padding:1.5rem; background:white; border-radius:16px; border:1px solid #e5e7eb; font-size:0.85rem; color:var(--muted);
+}
+.footer a { color:var(--water); text-decoration:none; font-weight:600; }
+.footer a:hover { text-decoration:underline; }
 </style>
 </head>
 <body>
 
-<div class="banner">
-<h1>🌍 AWAG - Africa's Weekly Activities Guide - 58 Regions Live</h1>
-<p>Today: {{ today.market_day|default:"EKE" }} - {{ today_element.element|default:"Fire" }} {{ today_element.emoji|default:"🔥" }} - {{ today_element.meaning|default:"Light" }} | Moon: {{ moon_today.moon_stage|default:"Growing" }} | Lang: {{ lang }} | Total Regions: {{ total_regions }}</p>
-<p>Wind locality: East Monsoon Kusi/Kaskazi, West Harmattan, South Benguela/Agulhas, North Mistral, Rift Lake Breeze | Rain locality: Guinea 2 seasons, Sahel Jun-Oct, Long rains Mar-May</p>
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>🌍 AWAG - Africa's Weekly Activities Guide <span class="live">{{ total_regions }} Regions Live</span></h1>
+      <div class="badge-row">
+        <div class="badge">Today: <strong>{{ today_element.element|default:"EKE" }} {{ today_element.emoji|default:"🔥" }}</strong> - {{ today_element.meaning|default:"Light New beginnings" }}</div>
+        {% if today_market %}<div class="badge">Market Day: <strong>{{ today_market.market_day }}</strong></div>{% endif %}
+        <div class="badge">Moon: <strong>Growing</strong></div>
+        <div class="badge">Lang: <strong>{{ lang|upper }}</strong></div>
+        <div class="badge">Total: <strong>{{ total_regions }}</strong></div>
+      </div>
+    </div>
+    <div style="text-align:right; font-size:0.85rem; opacity:0.9; max-width:420px;">
+      <div>Wind locality: East Monsoon Kusi/Kaskazi, West Harmattan, South Benguela/Agulhas, North Mistral, Rift Lake Breeze</div>
+      <div>Rain locality: Guinea 2 seasons, Sahel Jun-Oct, Long rains Mar-May</div>
+    </div>
+  </div>
 </div>
 
-<div class="filter">
-<b>Filter by Zone:</b>
-<a href="?">All ({{ total_regions }})</a> |
-{% for zc in zone_codes %}
-<a href="?zone={{ zc }}" {% if selected_zone == zc %}style="background:gold;padding:3px 6px;border-radius:6px"{% endif %}>{{ zc }}</a> |
-{% endfor %}
-<br>
-<b>Language (if preferred):</b>
-{% for code, name in langs %}
-<a href="?lang={{ code }}" {% if lang == code %}style="background:#0a3d2e;color:gold;padding:3px 6px;border-radius:6px"{% endif %}>{{ name }}</a> |
-{% endfor %}
+<div class="controls">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search 58 regions - Bonny, Lagos, Mombasa, wind, rain, trader, fisherman...">
+  </div>
+  <div class="zone-filters" id="zoneFilters">
+    <button class="active" data-zone="all">All <small>({{ total_regions }})</small></button>
+    {% for zc in zone_codes %}
+      <button data-zone="{{ zc }}">{{ zc }}</button>
+    {% endfor %}
+  </div>
 </div>
 
-<div class="card">
-<h2>🌙 Moon Phase, Tide, Wind - Today</h2>
-<p><b>Market Day:</b> {{ today_market.market_day|default:"EKE" }} - {{ today_element.element }} {{ today_element.emoji }} - {{ today_element.advice }}</p>
-<p><b>Moon:</b> {{ moon_today.moon_stage|default:"Waxing - Onwa na eto - Planting if preferred" }} | <b>Illumination:</b> {{ moon_today.illumination|default:"75%" }}</p>
-<h3>Tides (next 10)</h3>
-<ul>
-{% for t in tides %}
-<li>{{ t.datetime|default:t.port }} - High: {{ t.high_height_m|default:t.high }}m Low: {{ t.low_height_m|default:t.low }}m - {{ t.wind|default:"" }}</li>
-{% empty %}
-<li>Tides: Niger Delta Bonny high 06:30 +1.8m, Lagos-Bar 07:00 +1.5m, Mombasa 06:15 +2.8m, Dakar 05:45 +1.6m - Use Orie Water days if preferred for fishing</li>
-{% endfor %}
-</ul>
+<div class="moon-tide-bar">
+  <div class="moon-card">
+    <div class="moon-icon">🌙</div>
+    <div>
+      <b>Moon Phase, Tide, Wind - Today</b>
+      <span>Market Day: EKE - Fire 🔥 - Traders start if preferred</span>
+    </div>
+  </div>
+  <div class="moon-card">
+    <div class="moon-icon">🌊</div>
+    <div>
+      <b>Moon: Waxing - Onwa na eto</b>
+      <span>Planting if preferred | Illumination: 75%</span>
+    </div>
+  </div>
+  <div class="moon-card">
+    <div class="moon-icon">⚓</div>
+    <div>
+      <b>Tides (next 10)</b>
+      <span>Niger Delta Bonny high 06:30 +1.8m, Lagos-Bar 07:00 +1.5m - Use Orie Water days if preferred</span>
+    </div>
+  </div>
 </div>
 
-<h2>58 African Communities - Guide if preferred</h2>
-<div class="region-grid">
-{% for r in regions_58 %}
-<div class="region">
-<h3>{{ r.name }} - {{ r.country }} <span class="badge">{{ r.code }}</span></h3>
-<p><b>Zone:</b> {{ r.zone }} ({{ r.zone_code }}) | <b>Element:</b> {{ r.element }}</p>
-<p><b>Wind:</b> {{ r.wind }}</p>
-<p><b>Rain:</b> {{ r.rain }}</p>
-<p><b>Tide Port:</b> {{ r.tide_port }}</p>
-<p><b>Activity:</b> {{ r.activity }} | <b>Lang if preferred:</b> {{ r.lingua }}</p>
-<p><a href="/awag/region/{{ r.code }}/?lang={{ r.lingua }}">View Full Guide for {{ r.name }} →</a></p>
-</div>
-{% endfor %}
+<div class="main" id="mainGrid">
+  {% regroup regions_58 by zone_code as zone_list %}
+  {% for zone in zone_list %}
+  <div class="zone-section" data-zone="{{ zone.grouper }}">
+    <div class="zone-header {{ zone.grouper }}">
+      <h2>{{ zone.grouper }} - {{ zone.list.0.zone }}</h2>
+      <span class="count">{{ zone.list|length }} regions</span>
+      <div style="margin-left:auto; font-size:0.8rem; opacity:0.7;">{{ zone.list.0.wind|truncatechars:40 }}</div>
+    </div>
+    <div class="grid">
+      {% for r in zone.list %}
+      <div class="card" data-element="{{ r.element }}" data-zone="{{ r.zone_code }}" data-search="{{ r.code }} {{ r.name }} {{ r.country }} {{ r.zone }} {{ r.wind }} {{ r.rain }} {{ r.activity }} {{ r.tide_port }} {{ r.lingua }}">
+        <div class="card-top">
+          <h3>{{ r.name }} - {{ r.country }} <small>{{ r.code }}</small></h3>
+          <div class="flag">
+            {% if r.country == "Nigeria" %}🇳🇬{% elif r.country == "Ghana" %}🇬🇭{% elif r.country == "Kenya" %}🇰🇪{% elif r.country == "South Africa" %}🇿🇦{% elif r.country == "Morocco" %}🇲🇦{% elif r.country == "Egypt" %}🇪🇬{% elif r.country == "Tanzania" %}🇹🇿{% elif r.country == "Senegal" %}🇸🇳{% elif r.country == "Angola" %}🇦🇴{% elif r.country == "Mozambique" %}🇲🇿{% elif r.country == "Madagascar" %}🇲🇬{% else %}🏳️{% endif %}
+          </div>
+        </div>
+        <div style="font-size:0.8rem; color:#6b7280; margin-bottom:0.4rem;">Zone: {{ r.zone }} ({{ r.zone_code }}) | Element: {{ r.element }}</div>
+        <div class="element-badge {{ r.element|cut:' Earth'|cut:' Fire'|cut:' Water'|cut:' Air' }}">{{ r.element }}</div>
+        <span class="lang">{{ r.lingua|upper }} if preferred</span>
+        <div class="details">
+          <div><span class="label">Wind:</span> <span class="wind">{{ r.wind }}</span></div>
+          <div><span class="label">Rain:</span> <span class="rain">{{ r.rain }}</span></div>
+          <div><span class="label">Tide:</span> <span class="tide">{{ r.tide_port }}</span></div>
+        </div>
+        <div class="activity">
+          {% for act in r.activity.split %}
+            <span>{{ act }}</span>
+          {% endfor %}
+        </div>
+        <a class="btn" href="/awag/region/{{ r.code }}/">View Full Guide for {{ r.name }} →</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
 </div>
 
-<div class="card" style="margin-top:20px">
-<h3>Legal: Assistive Guide Only</h3>
-<p>Guide provided for comprehension based on preference - Igbo if preferred, English if preferred, French if preferred, Arabic if preferred, Swahili if preferred. Official activities remain community-based. No auto guarantee. NDPA 2023 opt-in only.</p>
-<p><a href="/awag/tides/">Tide Table</a> | <a href="/awag/farmers/">Farmers Guide</a> | <a href="/awag/weekly/">Weekly Guide</a> | <a href="/api/wind-rain/">API Wind Rain</a></p>
+<div class="footer">
+  <strong>Legal: Assistive Guide Only</strong><br>
+  Guide provided for comprehension based on preference - Igbo if preferred, English if preferred, French if preferred, Arabic if preferred, Swahili if preferred. Official activities remain community-based. No auto guarantee. NDPA 2023 opt-in only.<br><br>
+  <a href="/awag/tides/">Tide Table</a> | <a href="/awag/farmers/">Farmers Guide</a> | <a href="/awag/weekly/">Weekly Guide</a> | <a href="/api/wind-rain/">API Wind Rain</a>
+  <div style="margin-top:0.8rem;">Filter by Zone: {% for zc in zone_codes %}<a href="?zone={{ zc }}">{{ zc }}</a>{% if not forloop.last %} | {% endif %}{% endfor %}</div>
+  <div style="margin-top:0.5rem;">Language (if preferred): {% for code,name in langs %}<a href="?lang={{ code }}">{{ name }}</a>{% if not forloop.last %} | {% endif %}{% endfor %}</div>
 </div>
 
+<script>
+const searchInput = document.getElementById('searchInput');
+const cards = document.querySelectorAll('.card');
+const zoneSections = document.querySelectorAll('.zone-section');
+const zoneButtons = document.querySelectorAll('#zoneFilters button');
+let activeZone = 'all';
+
+function filter() {
+  const q = searchInput.value.toLowerCase().trim();
+  cards.forEach(card => {
+    const search = card.dataset.search.toLowerCase();
+    const zone = card.dataset.zone;
+    const matchSearch = !q || search.includes(q);
+    const matchZone = activeZone === 'all' || zone === activeZone;
+    card.style.display = (matchSearch && matchZone) ? '' : 'none';
+  });
+  zoneSections.forEach(section => {
+    const visibleCards = section.querySelectorAll('.card:not([style*="display: none"])').length;
+    section.style.display = visibleCards === 0 ? 'none' : '';
+    const countEl = section.querySelector('.count');
+    if(countEl) countEl.textContent = visibleCards + ' regions';
+  });
+}
+
+searchInput.addEventListener('input', filter);
+
+zoneButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    zoneButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeZone = btn.dataset.zone;
+    // sync with url
+    const url = new URL(window.location);
+    if(activeZone==='all') url.searchParams.delete('zone'); else url.searchParams.set('zone', activeZone);
+    window.history.replaceState({}, '', url);
+    filter();
+  });
+});
+
+// init from url ?zone=
+const urlZone = new URLSearchParams(window.location.search).get('zone');
+if(urlZone){
+  activeZone = urlZone;
+  zoneButtons.forEach(b=>{ b.classList.toggle('active', b.dataset.zone===urlZone); if(b.dataset.zone==='all' && urlZone) b.classList.remove('active'); });
+  if(![...zoneButtons].some(b=>b.dataset.zone===urlZone)){
+    // create active if not in list
+    activeZone = urlZone;
+  }
+  filter();
+}
+</script>
 </body>
 </html>

@@ -1,11 +1,3 @@
 from django.urls import path
-from. import views
-app_name = 'africa_weekly'
-urlpatterns = [
-    path('', views.weekly_guide, name='index'),
-    path('tides/', views.tides_view, name='tides'),
-    path('farming/', views.farming_view, name='farming'),
-    path('regions/', views.regions_view, name='regions'),
-    path('week/<int:year>/<int:week>/', views.week_view, name='week'),
-    path('today/', views.today_guide, name='today'),
-]
+from . import views
+urlpatterns=[path('', views.awag_home, name='awag_home'), path('region/<path:code>/', views.awag_region, name='awag_region'), path('tides/', views.awag_tides, name='awag_tides'), path('tide-table/', views.awag_tide_table, name='awag_tide_table'), path('farmers/', views.awag_farmers, name='awag_farmers'), path('weekly/', views.awag_weekly, name='awag_weekly'), path('api/tides/', views.api_tides, name='api_tides'), path('api/moon/<str:date_str>/', views.api_moon, name='api_moon'), path('api/wind-rain/', views.api_wind_rain, name='api_wind_rain'), path('view/', views.awag_view, name='awag_view'), path('weekly-guide/', views.weekly_guide, name='weekly_guide'),]

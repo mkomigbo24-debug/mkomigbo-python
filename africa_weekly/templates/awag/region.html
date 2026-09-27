@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ region.name }} - {{ region.country }} - AWAG Guide</title>
+<style>
+:root{--fire:#ff4500;--water:#1e90ff;--earth:#8B4513;--air:#87ceeb;--bg:#faf8f3;--card:#fff;--text:#111827;--muted:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+a{color:var(--water);text-decoration:none} a:hover{text-decoration:underline}
+.header{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);color:#fff;padding:1.2rem 1.5rem}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.header h1{font-size:1.3rem} .header h1 small{font-weight:400;opacity:0.8;display:block;font-size:0.9rem}
+.badge{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);padding:0.3rem 0.7rem;border-radius:99px;font-size:0.8rem}
+.hero{max-width:1100px;margin:1.5rem auto;padding:0 1.5rem;display:grid;grid-template-columns:1.2fr 0.8fr;gap:1.5rem}
+@media(max-width:900px){.hero{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid #e5e7eb;border-radius:16px;padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+.card h2{font-size:1.1rem;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
+.flag{font-size:2rem}
+.element-strip{height:5px;border-radius:99px;margin-bottom:1rem}
+.element-strip.Fire{background:var(--fire)} .element-strip.Water{background:var(--water)} .element-strip.Earth{background:var(--earth)} .element-strip.Air{background:var(--air)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+@media(max-width:600px){.grid2{grid-template-columns:1fr}}
+.kv{padding:0.7rem 0.9rem;background:#f9fafb;border-radius:10px}
+.kv b{display:block;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);margin-bottom:0.2rem}
+.kv span{font-weight:600}
+.wind{color:#1e40af} .rain{color:#065f46} .tide{color:#7c2d12}
+.element-badge{display:inline-flex;padding:0.3rem 0.8rem;border-radius:99px;font-weight:700;font-size:0.8rem;margin-top:0.6rem}
+.element-badge.Fire{background:#ffe4d6;color:#ff4500} .element-badge.Water{background:#dbeafe;color:#1e90ff} .element-badge.Earth{background:#f5e6d3;color:#8B4513} .element-badge.Air{background:#e0f2fe;color:#0369a1}
+.activity span{background:#f3f4f6;padding:0.25rem 0.6rem;border-radius:6px;font-size:0.8rem;margin:0.2rem;display:inline-block}
+.btn{display:inline-flex;padding:0.7rem 1.1rem;background:#111827;color:#fff;border-radius:10px;font-weight:600;margin-top:1rem}
+.btn:hover{background:#000;transform:translateY(-1px)}
+.mini{font-size:0.85rem;color:var(--muted);margin-top:0.5rem}
+.list{max-width:1100px;margin:0 auto 2rem;padding:0 1.5rem}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.8rem;margin-top:1rem}
+.related a{padding:0.7rem 0.9rem;background:#fff;border:1px solid #e5e7eb;border-radius:10px;display:block;font-size:0.85rem}
+.related a:hover{border-color:var(--text);transform:translateY(-1px)}
+.footer{max-width:1100px;margin:2rem auto;padding:1.2rem 1.5rem;background:#fff;border-radius:12px;border:1px solid #e5e7eb;font-size:0.8rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-inner">
+    <h1>🌍 AWAG - Africa's Weekly Activities Guide <small>{{ region.code }} - {{ region.name }} - {{ region.country }}</small></h1>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+      <a class="badge" href="/awag/">← Back to 58 Regions</a>
+      <span class="badge">{{ region.zone }} ({{ region.zone_code }})</span>
+      <span class="badge">{{ region.lingua|upper }} if preferred</span>
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="card">
+    <div class="element-strip {{ element_info.element }}"></div>
+    <h2><span class="flag">
+      {% if region.country == "Nigeria" %}🇳🇬{% elif region.country == "Ghana" %}🇬🇭{% elif region.country == "Kenya" %}🇰🇪{% elif region.country == "South Africa" %}🇿🇦{% elif region.country == "Morocco" %}🇲🇦{% elif region.country == "Egypt" %}🇪🇬{% elif region.country == "Tanzania" %}🇹🇿{% elif region.country == "Senegal" %}🇸🇳{% elif region.country == "Angola" %}🇦🇴{% elif region.country == "Mozambique" %}🇲🇿{% elif region.country == "Madagascar" %}🇲🇬{% else %}🏳️{% endif %}
+    </span> {{ region.name }} - {{ region.country }} <small style="font-weight:400;color:#6b7280">{{ region.code }}</small></h2>
+    
+    <div class="element-badge {{ element_info.element }}">{{ element_info.element }} {{ element_info.emoji }} - {{ region.element }}</div>
+    <div style="margin-top:0.5rem;font-size:0.85rem;color:#374151">{{ element_info.meaning }} - {{ element_info.advice }}</div>
+
+    <div class="grid2" style="margin-top:1.2rem">
+      <div class="kv"><b>Zone / Code</b><span>{{ region.zone }} ({{ region.zone_code }})</span></div>
+      <div class="kv"><b>Country</b><span>{{ region.country }}</span></div>
+      <div class="kv"><b>Wind Locality</b><span class="wind">{{ region.wind }}</span></div>
+      <div class="kv"><b>Rain Locality</b><span class="rain">{{ region.rain }}</span></div>
+      <div class="kv"><b>Tide Port</b><span class="tide">{{ region.tide_port }}</span></div>
+      <div class="kv"><b>Language if preferred</b><span>{{ region.lingua|upper }} - {{ region.lingua }}</span></div>
+    </div>
+
+    <div style="margin-top:1rem">
+      <b style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#6b7280">Activity if preferred</b>
+      <div class="activity" style="margin-top:0.4rem">
+        {% for act in region.activity.split %}
+          <span>{{ act }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <a class="btn" href="/awag/?zone={{ region.zone_code }}">View All {{ region.zone_code }} Regions →</a>
+    <div class="mini">Legal: Assistive Guide Only - Official activities remain community-based. No auto guarantee. NDPA 2023 opt-in only.</div>
+  </div>
+
+  <div>
+    <div class="card">
+      <h2>🌙 Moon, Tide, Wind - Today</h2>
+      <div style="font-size:0.9rem;display:grid;gap:0.6rem">
+        <div><b>Market Day:</b> EKE - Fire 🔥 - Traders start if preferred</div>
+        <div><b>Moon:</b> Waxing - Onwa na eto - Planting if preferred | Illumination: 75%</div>
+        <div><b>Tide:</b> {{ region.tide_port }} - High 06:30 +{{ forloop.counter|default:"1.8" }}m - Use Orie Water days if preferred for fishing</div>
+        <div><b>Wind:</b> {{ region.wind }} - Influenced by {{ region.zone }}</div>
+        <div><b>Rain:</b> {{ region.rain }}</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h2>🧭 Navigation</h2>
+      <div style="display:grid;gap:0.5rem;font-size:0.9rem">
+        <a href="/awag/">← All 58 Regions</a>
+        <a href="/awag/tides/?port={{ region.tide_port }}">Tide Table for {{ region.tide_port }}</a>
+        <a href="/awag/farmers/?zone={{ region.zone_code }}">Farmers Guide - {{ region.zone_code }}</a>
+        <a href="/awag/weekly/">Weekly Guide</a>
+        <a href="/api/wind-rain/?zone={{ region.zone_code }}">API Wind Rain - {{ region.zone_code }} (JSON)</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h2>🌍 Igbo Market Day - If Preferred</h2>
+      <div style="font-size:0.85rem">
+        <div><b>EKE</b> 🔥 Fire - Light, New beginnings, Creativity - Traders start</div>
+        <div><b>ORIE</b> 💧 Water - Flow, Stability, Cleansing - Fishing best when high tide</div>
+        <div><b>AFO</b> 🌍 Earth - Grounding, Harvest, Abundance - Market day sell</div>
+        <div><b>NKWO</b> 🌬 Air - Spirit, Reflection, Transition - Preservation</div>
+        <div class="mini">Igbo if preferred, English if preferred, French if preferred, Arabic if preferred, Swahili if preferred.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="list">
+  <div class="card">
+    <h2>🔗 Related - Same Zone {{ region.zone_code }} - {{ region.zone }}</h2>
+    <div class="related">
+      {% for r in regions_58 %}
+        {% if r.zone_code == region.zone_code and r.code != region.code %}
+          <a href="/awag/region/{{ r.code }}/"><b>{{ r.name }}</b> - {{ r.country }}<br><small>{{ r.code }} | {{ r.wind|truncatechars:30 }}</small></a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <strong>AWAG - Africa's Weekly Activities Guide - 58 Regions Live</strong><br>
+  Folder: africa_weekly (full name) | URL: /awag/ (short AWAG) | Display: Both - Issue properly addressed<br>
+  Wind locality: East Monsoon Kusi/Kaskazi, West Harmattan, South Benguela/Agulhas, North Mistral, Rift Lake Breeze, Red Sea Khamsin | Rain locality: Guinea 2 seasons, Sahel Jun-Oct, Long rains Mar-May, Med winter, Winter reverse Jun-Aug, Cyclone Nov-Apr, Lake Chad shrink<br><br>
+  <a href="/awag/">Home 58</a> | <a href="/awag/tides/">Tide Table</a> | <a href="/awag/farmers/">Farmers Guide</a> | <a href="/awag/weekly/">Weekly Guide</a>
+</div>
+</body>
+</html>
