@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWAG - Tide Table - 58 Ports Grouped</title>
+<style>
+:root{--water:#1e90ff;--bg:#f6f3ee;--card:#fff;--text:#111827;--muted:#6b7280;--border:#e5e7eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.header{background:linear-gradient(135deg,#0f172a,#1e3a5f);color:#fff;padding:1.2rem 1.5rem}
+.header-inner{max-width:1200px;margin:0 auto}
+.search-bar{max-width:1200px;margin:1rem auto;padding:0 1.5rem;display:flex;gap:0.6rem;flex-wrap:wrap}
+.search-bar input{flex:1;min-width:220px;padding:0.8rem 1rem;border:1px solid var(--border);border-radius:12px}
+.pill{padding:0.45rem 0.8rem;border-radius:99px;border:1px solid var(--border);background:#fff;font-size:0.82rem;cursor:pointer}
+.pill.active{background:#111827;color:#fff}
+.zone-section{max-width:1200px;margin:1.2rem auto;padding:0 1.5rem}
+.zone-header{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--border);border-radius:12px;padding:0.8rem 1rem;cursor:pointer;margin-bottom:0.6rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.9rem}
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1rem}
+.badge{font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:99px;background:#dbeafe;color:var(--water);border:1px solid #bfdbfe}
+.kv{font-size:0.82rem;margin:0.2rem 0}
+.kv b{color:#6b7280;font-size:0.7rem;text-transform:uppercase;min-width:60px;display:inline-block}
+.hidden{display:none !important}
+.tide-time{font-family:monospace;background:#f3f4f6;padding:0.15rem 0.4rem;border-radius:6px;font-size:0.85rem}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-inner">
+    <h1>🌊 AWAG Tide Table - 58 African Ports</h1>
+    <p>Grouped by Zone - Search tide, port, wind, best fishing days: Orie Water if preferred | Total: {{ total_regions|default:58 }} ports</p>
+  </div>
+</div>
+<div class="search-bar">
+  <input id="search" placeholder="Search tide port, e.g. Bonny, Lagos-Bar, Mombasa, Ghana, Benguela, Orie...">
+  <button class="pill active" data-filter="all">All (58)</button>
+  {% for zc in zone_codes %}
+    <button class="pill" data-filter="{{ zc }}">{{ zc }}</button>
+  {% endfor %}
+</div>
+
+{% for zone in zones %}
+<div class="zone-section" data-zone="{{ zone }}">
+  <div class="zone-header" onclick="toggleZone('zone-{{ forloop.counter }}')">
+    <h2>🌊 {{ zone }} <small id="count-zone-{{ forloop.counter }}"></small></h2>
+    <small>▼</small>
+  </div>
+  <div class="grid" id="zone-{{ forloop.counter }}">
+    {% for r in regions_58 %}
+      {% if r.zone == zone %}
+      <div class="card" data-search="{{ r.code }} {{ r.name }} {{ r.country }} {{ r.tide_port }} {{ r.zone }} {{ r.zone_code }} {{ r.wind }} {{ r.element }} {{ r.activity }}" data-zonecode="{{ r.zone_code }}">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <b>{{ r.tide_port }}</b> <span class="badge">{{ r.zone_code }}</span>
+        </div>
+        <div class="kv"><b>Community</b> {{ r.name }} - {{ r.country }} ({{ r.code }})</div>
+        <div class="kv"><b>Wind</b> {{ r.wind|truncatechars:50 }}</div>
+        <div class="kv"><b>Element</b> {{ r.element }} - Fishing best on Orie Water if preferred</div>
+        <div class="kv"><b>Today Tide</b> <span class="tide-time">High 06:30 +1.8m</span> <span class="tide-time">Low 12:45 +0.6m</span> <span class="tide-time">High 18:50 +2.0m</span></div>
+        <div class="kv"><b>Activity</b> {{ r.activity|truncatechars:40 }}</div>
+        <a href="/awag/region/{{ r.code }}/" style="display:inline-block;margin-top:0.5rem;font-size:0.8rem;background:#111827;color:#fff;padding:0.35rem 0.7rem;border-radius:8px">View Guide →</a>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+
+<div style="max-width:1200px;margin:2rem auto;padding:0 1.5rem;text-align:center;color:#6b7280;font-size:0.8rem">
+  Legal: Assistive Guide Only - Tide times illustrative - Use Orie Water days if preferred for fishing - No auto guarantee<br>
+  <a href="/awag/">Home (58 grouped)</a> | <a href="/awag/farmers/">Farmers Guide</a> | <a href="/awag/weekly/">Weekly Guide</a> | <a href="/awag/api/wind-rain/">API Wind Rain</a>
+</div>
+<script>
+const search=document.getElementById('search'); const cards=document.querySelectorAll('.card'); const sections=document.querySelectorAll('.zone-section');
+function filterAll(){ const q=search.value.toLowerCase(); const active=document.querySelector('.pill.active')?.dataset.filter||'all';
+  cards.forEach(c=>{ const m=c.dataset.search.toLowerCase().includes(q); const mz=active==='all'||c.dataset.zonecode===active||c.closest('.zone-section').dataset.zone===active; c.classList.toggle('hidden',!(m&&mz)); });
+  sections.forEach(s=>{ const v=s.querySelectorAll('.card:not(.hidden)').length; const ce=s.querySelector('[id^="count-"]'); if(ce) ce.textContent='('+v+' ports)'; s.classList.toggle('hidden',v===0); });
+}
+search.addEventListener('input',filterAll); document.querySelectorAll('.pill').forEach(p=>{ p.addEventListener('click',()=>{ document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active')); p.classList.add('active'); filterAll(); }); });
+function toggleZone(id){ const el=document.getElementById(id); if(el) el.classList.toggle('hidden'); } filterAll();
+</script>
+</body>
+</html>
