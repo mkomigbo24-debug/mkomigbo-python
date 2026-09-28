@@ -19,7 +19,7 @@ urlpatterns = [
     path('amuzhi/', include('amuzhi_calendar.urls')),
     path('awag/', include('africa_weekly.urls')),
     path('ndebe/', RedirectView.as_view(url='/subjects/language1/', permanent=False), name='ndebe_short'),
-    path('odinala/', RedirectView.as_view(url='/subjects/religion/', permanent=False), name='odinala_short'),
+    path('odinala/', RedirectView.as_view(url='/subjects/spirituality/', permanent=False), name='odinala_short'),
     path('lang1/', RedirectView.as_view(url='/subjects/language1/', permanent=False), name='lang1_short'),
     path('history/', RedirectView.as_view(url='/subjects/history/', permanent=False), name='history_short'),
     path('religion/', RedirectView.as_view(url='/subjects/religion/', permanent=False), name='religion_short'),
