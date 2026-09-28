@@ -1,30 +1,9 @@
 __pycache__/
 *.pyc
 *.pyo
-*.zip
-*.BACKUP*
 db.sqlite3
 venv/
 .env
+media/
 staticfiles/
-*_BACKUP*
-add_missing.py
-base.html
-fix_*.py
-import_*.py
-load_*.py
-transfer_*.py
-venv/
-__pycache__/
-*.pyc
-db.sqlite3
-<<<<<<< Updated upstream
-
 gen.py
-
-__pycache__/
-=======
-gen.py
-__pycache__/
-*.pyc
->>>>>>> Stashed changes
