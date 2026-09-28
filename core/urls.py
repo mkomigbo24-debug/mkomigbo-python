@@ -4,8 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views_auth, views_sitemap
 from . import views as core_views
-from django.views.generic import TemplateView
-import os
+from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
     path('', core_views.landing, name='landing'),
@@ -18,12 +17,23 @@ urlpatterns = [
     path('observation/add/', core_views.add_observation, name='observation_add'),
     path('subjects/', include('subjects.urls')),
     path('amuzhi/', include('amuzhi_calendar.urls')),
-    path('awag/', include('africa_weekly.urls')),  # Your remote uses africa_weekly folder
+    path('awag/', include('africa_weekly.urls')),
     path('ndebe/', TemplateView.as_view(template_name='ndebe_viewer.html'), name='ndebe'),
     path('odinala/', TemplateView.as_view(template_name='odinala_viewer.html'), name='odinala'),
     path('lang1/', TemplateView.as_view(template_name='lang1_viewer.html'), name='lang1'),
+    path('history/', RedirectView.as_view(url='/subjects/history/', permanent=False), name='history_short'),
+    path('religion/', RedirectView.as_view(url='/subjects/religion/', permanent=False), name='religion_short'),
+    path('culture/', RedirectView.as_view(url='/subjects/culture/', permanent=False), name='culture_short'),
+    path('language1/', RedirectView.as_view(url='/subjects/language1/', permanent=False), name='language1_short'),
+    path('biafra/', RedirectView.as_view(url='/subjects/biafra/', permanent=False)),
+    path('slavery/', RedirectView.as_view(url='/subjects/slavery/', permanent=False)),
+    path('nigeria/', RedirectView.as_view(url='/subjects/nigeria/', permanent=False)),
+    path('africa/', RedirectView.as_view(url='/subjects/africa/', permanent=False)),
+    path('tradition/', RedirectView.as_view(url='/subjects/tradition/', permanent=False)),
+    path('esoterism/', RedirectView.as_view(url='/subjects/esoterism/', permanent=False)),
+    path('about/', RedirectView.as_view(url='/subjects/about/', permanent=False)),
+    path('spirituality/', RedirectView.as_view(url='/subjects/spirituality/', permanent=False)),
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
