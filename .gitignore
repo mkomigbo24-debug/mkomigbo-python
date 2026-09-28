@@ -18,7 +18,13 @@ venv/
 __pycache__/
 *.pyc
 db.sqlite3
+<<<<<<< Updated upstream
 
 gen.py
 
 __pycache__/
+=======
+gen.py
+__pycache__/
+*.pyc
+>>>>>>> Stashed changes
