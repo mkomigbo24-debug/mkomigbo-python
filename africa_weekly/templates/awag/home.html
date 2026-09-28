@@ -4,51 +4,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AWAG - 58 Regions - Grouped Guide</title>
+<title>AWAG - 58 Regions + Moon Phase</title>
 <style>
-:root{--fire:#ff4500;--water:#1e90ff;--earth:#8B4513;--air:#87ceeb;--bg:#f6f3ee;--card:#fff;--text:#111827;--muted:#6b7280;--border:#e5e7eb}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,Segoe UI,Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-a{color:var(--water);text-decoration:none}
+:root{--bg:#f6f3ee;--card:#fff;--text:#111827;--muted:#6b7280;--border:#e5e7eb;--water:#1e90ff}
+*{box-sizing:border-box;margin:0;padding:0} body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 .header{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);color:#fff;padding:1.2rem 1.5rem;position:sticky;top:0;z-index:10}
 .header-inner{max-width:1200px;margin:0 auto}
-.header h1{font-size:1.4rem} .header p{opacity:0.85;font-size:0.9rem;margin-top:0.3rem}
+.moon-banner{max-width:1200px;margin:1rem auto;padding:0 1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.8rem}
+.moon-card{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;border-radius:14px;padding:1rem;border:1px solid #334155}
+.moon-card.fishing{background:linear-gradient(135deg,#0c4a6e,#0284c7)} .moon-card.farming{background:linear-gradient(135deg,#14532d,#15803d)} .moon-card.healing{background:linear-gradient(135deg,#7c3aed,#a855f7)}
+.moon-emoji{font-size:2.2rem} .kv{font-size:0.82rem;margin:0.2rem 0} .kv b{color:#cbd5e1;font-size:0.7rem;text-transform:uppercase;min-width:70px;display:inline-block}
 .search-bar{max-width:1200px;margin:1rem auto;padding:0 1.5rem;display:flex;gap:0.6rem;flex-wrap:wrap}
-.search-bar input{flex:1;min-width:220px;padding:0.8rem 1rem;border:1px solid var(--border);border-radius:12px;font-size:0.95rem}
-.pill{padding:0.45rem 0.8rem;border-radius:99px;border:1px solid var(--border);background:#fff;font-size:0.82rem;cursor:pointer}
-.pill.active{background:#111827;color:#fff;border-color:#111827}
-.zone-section{max-width:1200px;margin:1.2rem auto;padding:0 1.5rem}
-.zone-header{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--border);border-radius:12px;padding:0.8rem 1rem;cursor:pointer;margin-bottom:0.6rem}
-.zone-header h2{font-size:1rem} .zone-header small{color:var(--muted);font-weight:400}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.9rem}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;box-shadow:0 1px 2px rgba(0,0,0,0.04);transition:transform 0.15s}
-.card:hover{transform:translateY(-2px);border-color:#111827}
-.card-top{display:flex;justify-content:space-between;align-items:start;gap:0.5rem;margin-bottom:0.5rem}
-.badge{font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:99px;background:#f3f4f6;border:1px solid var(--border)}
-.badge.Fire{background:#ffe4d6;color:var(--fire);border-color:#ffccaa}
-.badge.Water{background:#dbeafe;color:var(--water);border-color:#bfdbfe}
-.badge.Earth{background:#f5e6d3;color:var(--earth);border-color:#e8d0b0}
-.badge.Air{background:#e0f2fe;color:#0369a1;border-color:#bae6fd}
-.kv{font-size:0.82rem;color:#374151;margin:0.25rem 0;display:flex;gap:0.3rem}
-.kv b{color:var(--muted);font-size:0.72rem;text-transform:uppercase;min-width:38px}
-.btn{display:inline-flex;margin-top:0.6rem;padding:0.45rem 0.8rem;background:#111827;color:#fff;border-radius:8px;font-size:0.8rem;font-weight:600}
-.btn:hover{background:#000}
-.hidden{display:none !important}
-.footer{max-width:1200px;margin:2rem auto;padding:1rem 1.5rem;font-size:0.8rem;color:var(--muted);text-align:center}
+.search-bar input{flex:1;min-width:220px;padding:0.8rem 1rem;border:1px solid var(--border);border-radius:12px}
+.pill{padding:0.45rem 0.8rem;border-radius:99px;border:1px solid var(--border);background:#fff;font-size:0.82rem;cursor:pointer} .pill.active{background:#111827;color:#fff}
+.zone-section{max-width:1200px;margin:1.2rem auto;padding:0 1.5rem} .zone-header{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--border);border-radius:12px;padding:0.8rem 1rem;cursor:pointer;margin-bottom:0.6rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.9rem} .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;box-shadow:0 1px 2px rgba(0,0,0,0.04)}
+.card:hover{border-color:#111827} .badge{font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:99px;background:#f3f4f6;border:1px solid var(--border)}
+.hidden{display:none !important} .btn{display:inline-flex;margin-top:0.6rem;padding:0.45rem 0.8rem;background:#111827;color:#fff;border-radius:8px;font-size:0.8rem;font-weight:600}
+.week-strip{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;gap:0.5rem;overflow-x:auto;padding-bottom:0.5rem}
+.week-item{min-width:110px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.6rem;text-align:center;font-size:0.78rem}
+.week-item.today{border-color:#111827;background:#111827;color:#fff}
 </style>
 </head>
 <body>
 <div class="header">
   <div class="header-inner">
-    <h1>🌍 AWAG - Africa's Weekly Activities Guide - 58 Regions Live</h1>
-    <p>Today: {{ today.market_day|default:"EKE" }} - {{ today_element.element|default:"Fire" }} {{ today_element.emoji|default:"🔥" }} - {{ today_element.meaning|default:"Light New beginnings" }} | Total: {{ total_regions }} | Zone filter groups manageable sections</p>
-    <p style="margin-top:0.4rem;font-size:0.82rem;opacity:0.8">Wind: East Monsoon Kusi/Kaskazi, West Harmattan, South Benguela/Agulhas, North Mistral, Rift Lake Breeze | Rain: Guinea 2 seasons, Sahel Jun-Oct, Long rains Mar-May</p>
+    <h1>🌍 AWAG - 58 Regions + 🌙 Moon Phase Guide</h1>
+    <p>Today: {{ today_igbo|default:"EKE" }} - {{ today_element.element|default:"Fire 🔥" }} - {{ today_element.meaning|default:"Light New beginnings" }} | Total: {{ total_regions|default:58 }} | Moon guides fishing, farming, healing</p>
   </div>
 </div>
 
+<!-- MOON PHASE BANNER - New for fishing/farming/healing -->
+<div class="moon-banner">
+  <div class="moon-card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><div class="moon-emoji">{{ today_moon.emoji|default:"🌙" }}</div><b>{{ today_moon.name|default:"Waxing - Onwa na eto" }}</b><br><small>{{ today_moon.description|default:"Planting if preferred" }}</small></div>
+      <div style="text-align:right"><div style="font-size:1.6rem;font-weight:800">{{ today_moon.illumination|default:"75" }}%</div><small>Illumination</small><br><small>Age: {{ today_moon.age|default:"7.2" }} days</small></div>
+    </div>
+    <div class="kv" style="margin-top:0.6rem"><b>Igbo Day</b> {{ today_igbo }} - {{ today_element.element }} - {{ today_element.good_for|default:"Traders start if preferred" }}</div>
+    <div class="kv"><b>Best</b> Orie Water for fishing, Afo Earth for harvest, Eke Fire for planting, Nkwo Air for planning - if preferred</div>
+  </div>
+  <div class="moon-card fishing">
+    <b>🎣 Fishing - Today</b>
+    <div class="kv"><b>Moon</b> {{ today_moon.guidance.fishing|default:"Very Good - Orie Water high - Bonny, Mombasa peak" }}</div>
+    <div class="kv"><b>Tide</b> Niger Delta Bonny high 06:30 +1.8m, Lagos-Bar 07:00 +1.5m, Mombasa 06:15 +2.8m - Use Orie Water days if preferred</div>
+    <div class="kv"><b>Best Ports</b> Bonny, Brass, Lagos-Bar, Mombasa, Dakar - Full moon best - {{ today_moon.name }}</div>
+    <div class="kv"><b>Igbo</b> Orie Water days = fishing if preferred</div>
+  </div>
+  <div class="moon-card farming">
+    <b>🌾 Farming - Today</b>
+    <div class="kv"><b>Moon</b> {{ today_moon.guidance.farming|default:"Plant leafy - Eke Fire new beginnings" }}</div>
+    <div class="kv"><b>Rain</b> Guinea 2 seasons, Sahel Jun-Oct, Long rains Mar-May - Wind: Harmattan, Kusi/Kaskazi, Benguela</div>
+    <div class="kv"><b>Best</b> Eke Fire = planting if preferred, Afo Earth = harvest if preferred, Orie = irrigation</div>
+    <div class="kv"><b>Week</b> {% if "Full" in today_moon.name %}Harvest week if preferred - Afo{% else %}Planting week if preferred - Eke{% endif %}</div>
+  </div>
+  <div class="moon-card healing">
+    <b>🌿 Healing - Today</b>
+    <div class="kv"><b>Moon</b> {{ today_moon.guidance.healing|default:"Gather leaves - Orie Water" }}</div>
+    <div class="kv"><b>Element</b> {{ today_element.element }} - {{ today_element.meaning }}</div>
+    <div class="kv"><b>Best</b> Full moon 🌕 = powerful potency - Afo Earth grounding if preferred</div>
+    <div class="kv"><b>Use</b> Nkwo Air = Spirit Reflection, Afo Earth = harvest roots</div>
+  </div>
+</div>
+
+<!-- 14-day Moon + Igbo Market Day strip for planning -->
+<div style="max-width:1200px;margin:0.5rem auto;padding:0 1.5rem"><b style="font-size:0.9rem">📅 14-Day Moon + Igbo Market Day Planner (Fishing/Farming/Healing):</b></div>
+<div class="week-strip">
+  {% for day in week_moon %}
+  <div class="week-item {% if forloop.first %}today{% endif %}">
+    <div><b>{{ day.day_name|default:day.date }}</b></div>
+    <div style="font-size:1.2rem">{{ day.moon.emoji }}</div>
+    <div style="font-size:0.7rem">{{ day.moon.name|truncatechars:18 }}</div>
+    <div style="margin-top:0.2rem"><span style="background:{% if day.igbo_day == 'EKE' %}#ffedd5{% elif day.igbo_day == 'ORIE' %}#dbeafe{% elif day.igbo_day == 'AFO' %}#f5e6d3{% else %}#e0f2fe{% endif %};padding:0.15rem 0.4rem;border-radius:99px;font-size:0.65rem">{{ day.igbo_day }}</span></div>
+    <div style="font-size:0.6rem;margin-top:0.2rem;color:#6b7280">{{ day.moon.illumination }}%</div>
+  </div>
+  {% empty %}
+  <div class="week-item today"><b>Today EKE</b><div style="font-size:1.2rem">🌔</div><div>Waxing Gibbous</div><div><span style="background:#ffedd5;padding:0.15rem 0.4rem;border-radius:99px">EKE Fire</span></div></div>
+  <div class="week-item"><b>Tom ORIE</b><div style="font-size:1.2rem">🌔</div><div>Waxing</div><div><span style="background:#dbeafe;padding:0.15rem 0.4rem;border-radius:99px">ORIE Water</span></div></div>
+  <div class="week-item"><b>+2 AFO</b><div style="font-size:1.2rem">🌕</div><div>Full Moon</div><div><span style="background:#f5e6d3;padding:0.15rem 0.4rem;border-radius:99px">AFO Earth</span></div></div>
+  <div class="week-item"><b>+3 NKWO</b><div style="font-size:1.2rem">🌖</div><div>Waning Gibbous</div><div><span style="background:#e0f2fe;padding:0.15rem 0.4rem;border-radius:99px">NKWO Air</span></div></div>
+  {% endfor %}
+</div>
+
 <div class="search-bar">
-  <input id="search" placeholder="Search community, country, wind, rain, tide, activity... e.g. Bonny, Mombasa, Harmattan, Kusi">
-  <button class="pill active" data-filter="all">All ({{ total_regions }})</button>
+  <input id="search" placeholder="Search community, tide, wind, rain, activity, healing, fishing... e.g. Bonny, Mombasa, Harmattan, Kusi, Orie">
+  <button class="pill active" data-filter="all">All (58)</button>
   {% for zc in zone_codes %}
     <button class="pill" data-filter="{{ zc }}">{{ zc }}</button>
   {% endfor %}
@@ -57,21 +97,18 @@ a{color:var(--water);text-decoration:none}
 {% for zone in zones %}
 <div class="zone-section" data-zone="{{ zone }}">
   <div class="zone-header" onclick="toggleZone('zone-{{ forloop.counter }}')">
-    <h2>📍 {{ zone }} <small id="count-zone-{{ forloop.counter }}"></small></h2>
-    <small>Click to collapse/expand ▼</small>
+    <h2>📍 {{ zone }} <small id="count-zone-{{ forloop.counter }}"></small> <small style="font-weight:400;color:#6b7280">| Moon: {{ today_moon.emoji }} {{ today_moon.name }} | Igbo: {{ today_igbo }}</small></h2>
+    <small>▼</small>
   </div>
   <div class="grid" id="zone-{{ forloop.counter }}">
     {% for r in regions_58 %}
       {% if r.zone == zone %}
-      <div class="card" data-search="{{ r.code }} {{ r.name }} {{ r.country }} {{ r.zone }} {{ r.zone_code }} {{ r.wind }} {{ r.rain }} {{ r.tide_port }} {{ r.activity }} {{ r.lingua }}" data-zonecode="{{ r.zone_code }}">
-        <div class="card-top">
-          <div><b>{{ r.name }}</b> - {{ r.country }}<br><small style="color:#6b7280">{{ r.code }} | {{ r.zone_code }}</small></div>
-          <span class="badge {{ r.element|cut:' '|slice:'-4:'|default:'Fire' }}">{{ r.element }}</span>
-        </div>
-        <div class="kv"><b>Wind</b> <span>{{ r.wind|truncatechars:60 }}</span></div>
-        <div class="kv"><b>Rain</b> <span>{{ r.rain|truncatechars:60 }}</span></div>
-        <div class="kv"><b>Tide</b> <span>{{ r.tide_port|truncatechars:40 }}</span></div>
-        <div class="kv"><b>Act</b> <span>{{ r.activity|truncatechars:50 }} | {{ r.lingua|upper }}</span></div>
+      <div class="card" data-search="{{ r.code }} {{ r.name }} {{ r.country }} {{ r.zone }} {{ r.zone_code }} {{ r.wind }} {{ r.rain }} {{ r.tide_port }} {{ r.activity }} {{ r.lingua }} {{ r.element }}" data-zonecode="{{ r.zone_code }}">
+        <div style="display:flex;justify-content:space-between"><div><b>{{ r.name }}</b> - {{ r.country }}<br><small style="color:#6b7280">{{ r.code }} | {{ r.zone_code }} | {{ r.tide_port|truncatechars:25 }}</small></div><span class="badge">{{ r.element }}</span></div>
+        <div class="kv"><b>Wind</b> {{ r.wind|truncatechars:50 }}</div>
+        <div class="kv"><b>Rain</b> {{ r.rain|truncatechars:50 }}</div>
+        <div class="kv"><b>Moon+B</b> Today {{ today_moon.emoji }} {{ today_moon.illumination }}% - {% if "Orie" in r.element %}Best fishing Orie Water if preferred{% elif "Afo" in r.element %}Harvest Afo Earth if preferred{% elif "Eke" in r.element %}Planting Eke Fire if preferred{% else %}Planning Nkwo Air if preferred{% endif %}</div>
+        <div class="kv"><b>Act</b> {{ r.activity|truncatechars:40 }} | {{ r.lingua|upper }}</div>
         <a class="btn" href="/awag/region/{{ r.code }}/">View Full Guide →</a>
       </div>
       {% endif %}
@@ -80,44 +117,18 @@ a{color:var(--water);text-decoration:none}
 </div>
 {% endfor %}
 
-<div class="footer">
-  Legal: Assistive Guide Only - No auto guarantee - NDPA 2023 opt-in only | Folder: africa_weekly (full) | URL: /awag/ (short) | Grouped by manageable zones to avoid imposing list<br>
-  <a href="/awag/tides/">Tide Table</a> | <a href="/awag/farmers/">Farmers Guide</a> | <a href="/awag/weekly/">Weekly Guide</a>
+<div style="max-width:1200px;margin:2rem auto;padding:0 1.5rem;text-align:center;color:#6b7280;font-size:0.8rem">
+  🌙 Moon Phase guides: Full Moon 🌕 best fishing/tide/harvest, New Moon 🌑 rest - Igbo: EKE=Fire planting, ORIE=Water fishing/irrigation, AFO=Earth harvest/healing, NKWO=Air planning - If preferred only - Assistive Guide<br>
+  <a href="/awag/tides/">Tide Table + Moon</a> | <a href="/awag/farmers/">Farmers + Moon</a> | <a href="/awag/weekly/">Weekly + Moon Calendar</a>
 </div>
-
 <script>
-const search = document.getElementById('search');
-const cards = document.querySelectorAll('.card');
-const sections = document.querySelectorAll('.zone-section');
-function filterAll(){
-  const q = search.value.toLowerCase();
-  const active = document.querySelector('.pill.active')?.dataset.filter || 'all';
-  cards.forEach(c=>{
-    const matchSearch = c.dataset.search.toLowerCase().includes(q);
-    const matchZone = active==='all' || c.dataset.zonecode===active || c.closest('.zone-section').dataset.zone===active;
-    c.classList.toggle('hidden', !(matchSearch && matchZone));
-  });
-  sections.forEach(s=>{
-    const visible = s.querySelectorAll('.card:not(.hidden)').length;
-    const countEl = s.querySelector('[id^="count-"]');
-    if(countEl) countEl.textContent = '('+visible+' communities)';
-    s.classList.toggle('hidden', visible===0);
-  });
+const search=document.getElementById('search'); const cards=document.querySelectorAll('.card'); const sections=document.querySelectorAll('.zone-section');
+function filterAll(){ const q=search.value.toLowerCase(); const active=document.querySelector('.pill.active')?.dataset.filter||'all';
+  cards.forEach(c=>{ const m=c.dataset.search.toLowerCase().includes(q); const mz=active==='all'||c.dataset.zonecode===active||c.closest('.zone-section').dataset.zone===active; c.classList.toggle('hidden',!(m&&mz)); });
+  sections.forEach(s=>{ const v=s.querySelectorAll('.card:not(.hidden)').length; const ce=s.querySelector('[id^="count-"]'); if(ce) ce.textContent='('+v+')'; s.classList.toggle('hidden',v===0); });
 }
-search.addEventListener('input', filterAll);
-document.querySelectorAll('.pill').forEach(p=>{
-  p.addEventListener('click', ()=>{
-    document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
-    p.classList.add('active');
-    filterAll();
-  });
-});
-function toggleZone(id){
-  const el = document.getElementById(id);
-  if(el) el.classList.toggle('hidden');
-}
-// init counts
-filterAll();
+search.addEventListener('input',filterAll); document.querySelectorAll('.pill').forEach(p=>{ p.addEventListener('click',()=>{ document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active')); p.classList.add('active'); filterAll(); }); });
+function toggleZone(id){ const el=document.getElementById(id); if(el) el.classList.toggle('hidden'); } filterAll();
 </script>
 </body>
 </html>
