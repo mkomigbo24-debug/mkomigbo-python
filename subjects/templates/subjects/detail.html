@@ -3,7 +3,7 @@
 <style>body{font-family:Segoe UI;background:#0f0f0f;color:#f5f5f5;padding:20px} .btn{background:#d4a017;color:#000;padding:8px 16px;border-radius:20px;text-decoration:none;margin:4px;display:inline-block} .card{background:#1e1e1e;padding:15px;margin:10px 0;border-radius:10px}</style>
 </head><body>
 <h1>{{ subject.name }} - {{ subject.pages.count }} Pages</h1>
-<p>{{ subject.description }}</p>
+<p>{{ subject.description|safe }}</p>
 <a href="/" class="btn">Home</a> <a href="/subjects/" class="btn">All Subjects</a>
 {% for p in pages %}
 <div class="card">
