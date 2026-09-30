@@ -1,9 +1,13 @@
 __pycache__/
 *.pyc
-*.pyo
 db.sqlite3
-venv/
-.env
 media/
 staticfiles/
-gen.py
+.env
+venv/
+.venv/
+*.zip
+*.bak
+*.BACKUP*
+TRANSFER*.py
+backup_*
