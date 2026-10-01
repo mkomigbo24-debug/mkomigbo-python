@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='container mt-4'><h1>{{ post.title }}</h1><p>{{ post.content|linebreaks }}</p>
+{% if post.audio %}<audio controls src='{{ post.audio.url }}'></audio>{% endif %}
+<a href='/blog/'>← Back to Blog</a></div>
+{% endblock %}

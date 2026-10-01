@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='container mt-4'><h1>Blog - Nkomigbo</h1>
+{% for post in posts %}
+<div class='card mb-3 p-3'><h3><a href='/blog/{{ post.slug }}/'>{{ post.title }}</a></h3><p>{{ post.excerpt|default:post.content|truncatewords:30 }}</p><small>{{ post.created_at }}</small></div>
+{% empty %}<p>No posts yet - add in /admin/</p>{% endfor %}
+</div>
+{% endblock %}

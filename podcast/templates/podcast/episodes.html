@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='container mt-4'><h1>{{ podcast.title }}</h1><p>{{ podcast.description }}</p>
+{% for ep in episodes %}<div class='card mb-2 p-2'><a href='/podcast/{{ podcast.slug }}/{{ ep.slug }}/'>{{ ep.title }}</a> - {{ ep.duration }}</div>{% empty %}<p>No episodes</p>{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='container mt-4'><h1>{{ episode.title }}</h1><p>{{ episode.description|linebreaks }}</p>
+<audio controls style='width:100%' src='{{ episode.audio.url }}'></audio>
+<p><a href='/podcast/{{ podcast.slug }}/'>← Back</a></p></div>
+{% endblock %}

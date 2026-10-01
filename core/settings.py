@@ -7,8 +7,8 @@ INSTALLED_APPS = [
     'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
     'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
     'django.contrib.sites','django.contrib.sitemaps',
-    'community','core','subjects','lang1','language1','amuzhi_calendar','africa_weekly',
-    'history','culture','religion','esoterism','tradition','biafra','slavery','nigeria',
+    'community','core','subjects','lang1','language1','amuzhi_calendar','africa_weekly','blog',
+    'podcast','history','culture','religion','esoterism','tradition','biafra','slavery','nigeria',
     'africa','pogrom','uk','struggles','resistance','europe','arabs','about','people','persons',
 ]
 MIDDLEWARE = [
